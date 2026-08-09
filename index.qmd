@@ -12,14 +12,8 @@ page-layout: full
 title-block-banner: true
 ---
 
-# suma
+# Presentación
 
-```{r}
-suma = 9+1
-```
+Bienvenidos a mi blog.
 
-la suma es `r suma`
-
-`r suma`
-
-
+Este espacio reúne ideas, aprendizajes y recursos sobre análisis de datos, investigación y herramientas digitales. Aquí compartiré contenidos prácticos, claros y útiles para seguir aprendiendo de forma sencilla y aplicada.
