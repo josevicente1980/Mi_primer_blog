@@ -1,0 +1,318 @@
+/*-- scss:defaults --*/
+
+/* PALETA PRINCIPAL */
+$primary: #0B3A53;
+$secondary: #4C6F82;
+
+/* Fondo y texto */
+$body-bg: #F7FAFC;
+$body-color: #24323A;
+
+/* Enlaces */
+$link-color: #146C94;
+
+/* Bordes */
+$border-color: #DCE6EB;
+
+/* Código */
+$code-block-bg: #EEF4F7;
+
+/* Navbar */
+$navbar-bg: #FFFFFF;
+$navbar-fg: #24323A;
+
+/* Tipografía */
+$font-family-sans-serif: "Inter", "Segoe UI", Arial, sans-serif;
+
+
+/*-- scss:rules --*/
+
+/* =========================
+   ESTRUCTURA GENERAL
+========================= */
+
+body {
+  background: #F7FAFC;
+  color: #24323A;
+  line-height: 1.7;
+}
+
+/* Contenido principal */
+main {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 2rem 2.3rem;
+  box-shadow: 0 10px 35px rgba(31, 67, 86, 0.07);
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #E5EDF1;
+  box-shadow: 0 4px 20px rgba(13, 58, 83, 0.06);
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+/* Marca */
+.navbar-brand {
+  color: #0B3A53 !important;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+/* Links navegación */
+.navbar-nav .nav-link {
+  color: #405762 !important;
+  font-weight: 500;
+  padding-left: 0.9rem !important;
+  padding-right: 0.9rem !important;
+  transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #146C94 !important;
+  transform: translateY(-1px);
+}
+
+/* Link activo */
+.navbar-nav .nav-link.active {
+  color: #0B3A53 !important;
+  font-weight: 700;
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h1 {
+  color: #0B3A53;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 1.2rem;
+}
+
+h2 {
+  color: #104F6F;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  margin-top: 2rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid #D7EAF3;
+}
+
+h3 {
+  color: #26647F;
+  font-weight: 700;
+}
+
+h4,
+h5,
+h6 {
+  color: #405B68;
+  font-weight: 650;
+}
+
+
+/* =========================
+   ENLACES
+========================= */
+
+a {
+  color: #146C94;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #0B3A53;
+  text-decoration: none;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  background: #FFFFFF;
+  border-right: 1px solid #E6EEF2;
+}
+
+/* Elementos */
+.sidebar-item-text {
+  color: #536873;
+  font-weight: 500;
+}
+
+/* Hover */
+.sidebar-item-text:hover {
+  color: #146C94;
+}
+
+/* Elemento activo */
+.sidebar-item .active {
+  color: #0B3A53 !important;
+  font-weight: 700;
+  background: #EAF4F8;
+  border-radius: 10px;
+  padding: 0.35rem 0.65rem;
+}
+
+
+/* =========================
+   TABLAS
+========================= */
+
+.table {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(31, 67, 86, 0.05);
+}
+
+.table thead {
+  background: #0B3A53;
+  color: #FFFFFF;
+}
+
+.table thead th {
+  border: none;
+  font-weight: 650;
+}
+
+.table tbody tr:hover {
+  background: #F2F7F9;
+}
+
+
+/* =========================
+   BLOQUES DE CÓDIGO
+========================= */
+
+pre {
+  background: #EEF4F7 !important;
+  border: 1px solid #DCE8ED;
+  border-left: 4px solid #2F8DB3;
+  border-radius: 12px;
+  padding: 1.1rem;
+  box-shadow: 0 4px 14px rgba(31, 67, 86, 0.04);
+}
+
+code {
+  color: #0E597A;
+}
+
+
+/* =========================
+   CITAS
+========================= */
+
+blockquote {
+  background: #F1F7FA;
+  border-left: 4px solid #3C99BD;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.3rem;
+  color: #425A66;
+  font-style: normal;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn-primary {
+  background: linear-gradient(135deg, #0B3A53, #146C94);
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1.25rem;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(20, 108, 148, 0.20);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(20, 108, 148, 0.28);
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+  border: 1px solid #E3EDF1;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(28, 67, 87, 0.06);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(28, 67, 87, 0.10);
+}
+
+
+/* =========================
+   TOC
+========================= */
+
+#TOC {
+  font-size: 0.92rem;
+}
+
+#TOC a {
+  color: #607680;
+}
+
+#TOC a:hover {
+  color: #146C94;
+}
+
+#TOC .active {
+  color: #0B3A53 !important;
+  font-weight: 700;
+  border-left: 3px solid #3C99BD;
+  padding-left: 0.55rem;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EEF3F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A8C4D1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #789EAF;
+}
+
+
+/* =========================
+   SELECCIÓN DE TEXTO
+========================= */
+
+::selection {
+  background: #CDEAF5;
+  color: #0B3A53;
+}
+
