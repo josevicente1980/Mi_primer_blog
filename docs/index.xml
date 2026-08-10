@@ -141,7 +141,7 @@ font-style: inherit;">desc</span>(total))</span></code></pre></div></div>
   <category>bienvenida</category>
   <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/bienvenida/</guid>
   <pubDate>Sun, 09 Aug 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://josevicente1980.github.io/Mi_primer_blog/profile.png" medium="image" type="image/png" height="221" width="144"/>
 </item>
 <item>
   <title>El pipe nativo |&gt;: el operador que ya trae R y no usas</title>

@@ -3,7 +3,7 @@ title: "Bienvenidos al blog de R y Quarto"
 author: "José Vicente Ordóñez"
 date: "2026-08-09"
 categories: [bienvenida]
-image: ../../profile.jpg
+image: ../../profile.png
 draft: false
 ---
 
