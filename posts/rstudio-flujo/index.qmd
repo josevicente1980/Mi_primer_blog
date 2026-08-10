@@ -1,0 +1,111 @@
+---
+title: "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día"
+author: "José Vicente Ordóñez"
+date: "2026-08-04"
+categories: [RStudio, flujo-de-trabajo, productividad]
+description: "Atajos de teclado, snippets, proyectos y buenos hábitos para programar en R más rápido y con menos errores."
+---
+
+Tu **editor** es donde pasas la mitad de tu día. Aprender RStudio a fondo es tan
+importante como aprender el propio R. Estos son los trucos que más me aceleran.
+
+## 1. Los atajos que debes memorizar (Windows)
+
+| Atajo | Acción |
+|-------|--------|
+| `Ctrl + Enter` | Ejecutar la línea / selección actual |
+| `Ctrl + Shift + Enter` | Ejecutar **todo** el script |
+| `Ctrl + Shift + M` | Insertar el pipe `|>` |
+| `Ctrl + Shift + C` | Comentar / descomentar líneas |
+| `Ctrl + Alt + B` | Ejecutar **hasta** la línea actual |
+| `Alt + Shift + K` | Ver **todos** los atajos |
+| `Ctrl + Shift + F10` | Reiniciar la sesión de R |
+
+> 💡 El más poderoso: `Alt + Shift + K` te muestra la lista completa de atajos.
+> Mírala una vez y elige 3 que usarás hoy.
+
+## 2. `Ctrl + Shift + M` es tu mejor amigo
+
+Este es el atajo que uso cientos de veces al día: inserta el pipe `|>` al instante,
+sin escribir el símbolo a mano.
+
+```
+datos %>%        # ← pulsas Ctrl + Shift + M en R IDE moderno
+datos |>         # y obtienes el pipe nativo
+```
+
+## 3. Snippets: código que se escribe solo
+
+Escribe `lib` + `Tab` y RStudio completa `library()`. `fun` + `Tab` completa
+`function(...)`. Los **snippets** ahorran muchísimo tecleo.
+
+Prueba estos:
+- `lib` + Tab → `library()`
+- `fun` + Tab → `function() {}`
+- `sh` + Tab → `shiny::shinyApp()`
+- `mat` + Tab → matriz
+
+## 4. Trabaja SIEMPRE en un Proyecto (.Rproj)
+
+Un **proyecto de RStudio** fija el directorio de trabajo y aísla tu entorno.
+Así tu `setwd()` desaparece y tus rutas relativas funcionan siempre.
+
+```
+mi_proyecto/
+├── mi_proyecto.Rproj   ← doble clic y ya estás dentro
+├── data/
+├── scripts/
+├── output/
+└── informes/
+```
+
+> 💡 **Buen hábito**: usa paquetes como `here` o `fs` para rutas relativas
+> reproducibles, y organiza data/scripts/output en carpetas.
+
+## 5. No guardes el Workspace (en serio)
+
+Desactiva *"Save workspace to .RData on exit"* (Herramientas → Global Options).
+Un entorno limpio = **cero bugs por variables fantasma**. Tu análisis debe
+**construirse desde cero** cada vez con tu script.
+
+## 6. `source()` para scripts reutilizables
+
+¿Funciones que usas en varios análisis? Guárdalas en `scripts/funciones.R` y
+cárgalas con:
+
+```r
+source("scripts/funciones.R")
+```
+
+## 7. Organiza tu código con secciones
+
+Crea **secciones** con `# ----` (o ``` Ctrl+Shift+R ```) y usa el mapa de
+documento para navegar. Tu script se vuelve un índice navegable.
+
+```r
+# Cargar datos ----
+datos <- read.csv("data/datos.csv")
+
+# Modelo ----
+modelo <- lm(ventas ~ precio, data = datos)
+
+# Gráfico ----
+plot(modelo)
+```
+
+## 8. Envía el código al terminal y a Quarto
+
+Escribe en **Quarto/R Markdown** y ejecuta cada chunk con `Ctrl + Shift + Enter`.
+Todo lo que aprendes en un script es directamente exportable a un informe
+reproducible. No aprendas "dos formas": usa la misma.
+
+## Resumen
+
+- Memoriza `Ctrl + Enter`, `Ctrl + Shift + M` y `Alt + Shift + K`.
+- Usa **snippets** con Tab.
+- Trabaja en **Proyectos** y no guardes el Workspace.
+- Organiza por **carpetas y secciones**.
+- Escribe en **Quarto** para pasar del script al informe sin fricción.
+
+Con estos hábitos, RStudio deja de ser un editor y se convierte en una
+**máquina de productividad**. 🚀

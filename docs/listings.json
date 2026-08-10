@@ -3,8 +3,11 @@
     "listing": "/index.html",
     "items": [
       "/posts/bienvenida/index.html",
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
+      "/posts/pipe-nativo/index.html",
+      "/posts/dplyr-dia-a-dia/index.html",
+      "/posts/quarto-trucos/index.html",
+      "/posts/ggplot-practico/index.html",
+      "/posts/rstudio-flujo/index.html"
     ]
   }
 ]

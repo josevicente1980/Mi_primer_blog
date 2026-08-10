@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-website-url.example.com/posts/welcome/index.html</loc>
-    <lastmod>2026-08-09T14:12:40.265Z</lastmod>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/posts/rstudio-flujo/index.html</loc>
+    <lastmod>2026-08-10T02:12:09.135Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/posts/bienvenida/index.html</loc>
-    <lastmod>2026-08-09T14:24:58.695Z</lastmod>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/index.html</loc>
+    <lastmod>2026-08-10T02:09:57.191Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/about.html</loc>
-    <lastmod>2026-08-09T14:12:40.270Z</lastmod>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/posts/dplyr-dia-a-dia/index.html</loc>
+    <lastmod>2026-08-10T02:10:51.161Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/index.html</loc>
-    <lastmod>2026-08-09T23:50:47.690Z</lastmod>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/index.html</loc>
+    <lastmod>2026-08-10T02:17:14.290Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/posts/post-with-code/index.html</loc>
-    <lastmod>2026-08-09T14:12:40.268Z</lastmod>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/about.html</loc>
+    <lastmod>2026-08-10T02:09:14.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/posts/bienvenida/index.html</loc>
+    <lastmod>2026-08-10T02:09:55.175Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index.html</loc>
+    <lastmod>2026-08-10T02:13:43.810Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josevicente1980.github.io/Mi_primer_blog/posts/quarto-trucos/index.html</loc>
+    <lastmod>2026-08-10T02:10:53.154Z</lastmod>
   </url>
 </urlset>

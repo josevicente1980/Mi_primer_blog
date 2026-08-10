@@ -6,40 +6,1002 @@
       version="2.0">
 <channel>
 <title>José Vicente Ordóñez</title>
-<link>https://your-website-url.example.com/</link>
-<atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
-<description>blog de aprendizaje junto a Jose Vicente Ordonez</description>
+<link>https://josevicente1980.github.io/Mi_primer_blog/</link>
+<atom:link href="https://josevicente1980.github.io/Mi_primer_blog/index.xml" rel="self" type="application/rss+xml"/>
+<description>Blog con tips super prácticos de R y Quarto para aprender cada día</description>
 <generator>quarto-1.9.38</generator>
 <lastBuildDate>Sun, 09 Aug 2026 05:00:00 GMT</lastBuildDate>
 <item>
-  <title>Bienvenida</title>
-  <dc:creator>Jose Vicente</dc:creator>
-  <link>https://your-website-url.example.com/posts/bienvenida/</link>
+  <title>Bienvenidos al blog de R y Quarto</title>
+  <dc:creator>José Vicente Ordóñez</dc:creator>
+  <link>https://josevicente1980.github.io/Mi_primer_blog/posts/bienvenida/</link>
   <description><![CDATA[ 
 
 
 
 
 
+<p>¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.</p>
+<section id="la-idea" class="level2">
+<h2 class="anchored" data-anchor-id="la-idea">La idea</h2>
+<p>Aprendo <strong>R y Quarto</strong> casi todos los días, y me di cuenta de que los mejores consejos no son los que salen en los tutoriales teóricos, sino <strong>los pequeños trucos prácticos</strong> que usas una y otra vez en el trabajo real.</p>
+<p>Este blog nace para compartir exactamente eso: <strong>tips super prácticos</strong> que puedes aplicar <em>hoy mismo</em>.</p>
+</section>
+<section id="lo-que-vas-a-encontrar" class="level2">
+<h2 class="anchored" data-anchor-id="lo-que-vas-a-encontrar">Lo que vas a encontrar</h2>
+<ul>
+<li>⚙️ <strong>R y tidyverse</strong>: pipes <code>|&gt;</code>, <code>dplyr</code>, <code>ggplot2</code>, manipulación de datos.</li>
+<li>📄 <strong>Quarto</strong>: documentos, informes, blogs, presentaciones y cómo publicar.</li>
+<li>🧰 <strong>Flujo de trabajo</strong>: RStudio, atajos, proyectos organizados y reproducibles.</li>
+</ul>
+</section>
+<section id="un-ejemplo-rápido" class="level2">
+<h2 class="anchored" data-anchor-id="un-ejemplo-rápido">Un ejemplo rápido</h2>
+<p>¿Sabías que con el <strong>pipe nativo</strong> <code>|&gt;</code> (¡que ya viene con R!) puedes encadenar todo un análisis en una sola línea legible?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb5-2">datos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb5-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ciudad =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Madrid"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bogotá"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lima"</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb5-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ventas =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>))</span>
+<span id="cb5-5">)</span>
+<span id="cb5-6"></span>
+<span id="cb5-7">datos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb5-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(ciudad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb5-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(ventas)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb5-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(total))</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  ciudad total
+  &lt;chr&gt;  &lt;dbl&gt;
+1 Madrid  1313
+2 Bogotá   919
+3 Lima     760</code></pre>
+</div>
+</div>
+<p>Sin reasignar variables, sin líneas de por medio. En los próximos posts profundizaremos en esto y en mucho más.</p>
+<p>¡Nos vemos en el siguiente post! 🚀</p>
 
 
+</section>
 
  ]]></description>
-  <guid>https://your-website-url.example.com/posts/bienvenida/</guid>
+  <category>bienvenida</category>
+  <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/bienvenida/</guid>
   <pubDate>Sun, 09 Aug 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://your-website-url.example.com/posts/post-with-code/</link>
+  <title>El pipe nativo |&gt;: el operador que ya trae R y no usas</title>
+  <dc:creator>José Vicente Ordóñez</dc:creator>
+  <link>https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>This is a post with executable code.</p>
+<p>El pipe <code>|&gt;</code> es, junto con <code>%&gt;%</code>, la forma más elegante de escribir código en R. Desde <strong>R 4.1</strong> (2021) traes el pipe <strong>nativo</strong> incorporado: no necesitas instalar nada.</p>
+<section id="qué-es-un-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-un-pipe">¿Qué es un pipe?</h2>
+<p>Un pipe <strong>encadena</strong> el resultado de una expresión como primer argumento de la siguiente. En lugar de escribir código “de adentro hacia afuera”:</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(x)), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span></code></pre></div></div>
+</div>
+<p>Escribes <strong>de izquierda a derecha</strong>, que es como razonamos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>()</span></code></pre></div></div>
+</section>
+<section id="el-ejemplo-que-lo-cambia-todo" class="level2">
+<h2 class="anchored" data-anchor-id="el-ejemplo-que-lo-cambia-todo">El ejemplo que lo cambia todo</h2>
+<p>Imagina que quieres el promedio de ventas <strong>por ciudad</strong>, sólo de las ciudades con más de 5 pedidos, ordenado de mayor a menor. Sin pipe:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(datos, pedidos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>), ciudad), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(ventas))), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)</span></code></pre></div></div>
+</div>
+<p>Horroroso. Con <code>|&gt;</code> se lee solo:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>)</span>
+<span id="cb8-2"></span>
+<span id="cb8-3">datos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb8-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ciudad =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Madrid"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bogotá"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lima"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CDMX"</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb8-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ventas =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">120</span>)),</span>
+<span id="cb8-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pedidos =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb8-7">)</span>
+<span id="cb8-8"></span>
+<span id="cb8-9">datos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(pedidos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(ciudad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(ventas)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(media))</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  ciudad media
+  &lt;chr&gt;  &lt;dbl&gt;
+1 CDMX    542.
+2 Bogotá  508.
+3 Madrid  506.
+4 Lima    457.</code></pre>
+</div>
+</div>
+<p>Lee el código en voz alta: <em>“toma <code>datos</code>, filtra, agrupa, resume y ordena”</em>. Eso es exactamente lo que hace.</p>
+</section>
+<section id="nativo-vs-de-magrittr" class="level2">
+<h2 class="anchored" data-anchor-id="nativo-vs-de-magrittr"><code>|&gt;</code> nativo vs <code>%&gt;%</code> de magrittr</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th><code>|&gt;</code> (nativo)</th>
+<th><code>%&gt;%</code> (magrittr)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Requiere librería?</td>
+<td>No, viene en R</td>
+<td>Sí, <code>magrittr</code>/<code>dplyr</code></td>
+</tr>
+<tr class="even">
+<td>Pasar a un argumento distinto</td>
+<td>No directo</td>
+<td>Sí, con <code>.</code></td>
+</tr>
+<tr class="odd">
+<td>Velocidad</td>
+<td>Muy rápido</td>
+<td>Rápido</td>
+</tr>
+<tr class="even">
+<td>Mensajes de error</td>
+<td>Más claros</td>
+<td>A veces confusos</td>
+</tr>
+</tbody>
+</table>
+<section id="y-si-necesito-pasar-a-otro-argumento" class="level3">
+<h3 class="anchored" data-anchor-id="y-si-necesito-pasar-a-otro-argumento">¿Y si necesito pasar a otro argumento?</h3>
+<p>Con <code>|&gt;</code> puedes usar el <strong>placeholder <code>_</code></strong> (R 4.2+):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.by =</span> grupo)      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># .by va al final</span></span>
+<span id="cb10-2"><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(y <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> mtcars, _)         <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ejemplo conceptual</span></span></code></pre></div></div>
+<p>En la práctica, la mayoría del código encadena en el primer argumento, así que <code>|&gt;</code> cubre el 95% de los casos.</p>
+</section>
+</section>
+<section id="tip-pro-método-_-globalmente" class="level2">
+<h2 class="anchored" data-anchor-id="tip-pro-método-_-globalmente">Tip pro: método <code>_</code> globalmente</h2>
+<p>En cuanto dominas el pipe, <strong>nunca más quieres escribir sin él</strong>. Todos los paquetes del tidyverse (<code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>stringr</code>…) están diseñados para funcionar como eslabones de una cadena.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb11-2"></span>
+<span id="cb11-3">datos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(ciudad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(ventas)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reorder</span>(ciudad, media), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> media)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#146C94"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_flip</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ventas medias por ciudad"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Media"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/index_files/figure-html/pipe-ggplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 <strong>Regla sencilla</strong>: si tu operación es un paso más en el procesamiento de datos, llévala por el pipe. Lee tu código como una frase y todo encajará.</p>
+</blockquote>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<ul>
+<li><code>|&gt;</code> viene <strong>incluido</strong> en R 4.1+. No instalas nada.</li>
+<li>Escribe <strong>horizontalmente</strong> (de izquierda a derecha), no anidado.</li>
+<li>Combínalo con <code>dplyr</code> y <code>ggplot2</code> para análisis limpios y legibles.</li>
+</ul>
+<p>Domina el pipe y tu código (y tu cabeza) te lo agradecerán. 🚀</p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>tidyverse</category>
+  <category>principiantes</category>
+  <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/</guid>
+  <pubDate>Sat, 08 Aug 2026 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>5 funciones de dplyr que uso todos los días</title>
+  <dc:creator>José Vicente Ordóñez</dc:creator>
+  <link>https://josevicente1980.github.io/Mi_primer_blog/posts/dplyr-dia-a-dia/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><code>dplyr</code> es el paquete que más uso en R, y estas son <strong>5 funciones que me resuelven la vida todos los días</strong>. Si las dominas, tu análisis de datos va a otro nivel.</p>
+<section id="los-datos-de-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="los-datos-de-ejemplo">0. Los datos de ejemplo</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2026</span>)</span>
+<span id="cb5-2">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb5-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id     =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>,</span>
+<span id="cb5-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ciudad =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Madrid"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bogotá"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lima"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CDMX"</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb5-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ventas =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">120</span>)),</span>
+<span id="cb5-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">coste  =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span>))</span>
+<span id="cb5-7">)</span>
+<span id="cb5-8"></span>
+<span id="cb5-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(df)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id ciudad ventas coste
+1  1 Madrid    412   252
+2  2 Madrid    378   341
+3  3 Madrid    514   280
+4  4 Bogotá    443   290
+5  5 Madrid    451   216
+6  6   Lima    412   388</code></pre>
+</div>
+</div>
+</section>
+<section id="pull-sacar-una-columna-como-vector" class="level2">
+<h2 class="anchored" data-anchor-id="pull-sacar-una-columna-como-vector">1. <code>pull()</code> — sacar una columna como vector</h2>
+<p>¿Necesitas una columna suelta para un gráfico, un <code>if</code>, o pasarla a otra función? <code>pull()</code> extrae la columna como <strong>vector</strong> sin recurrir al <code>$</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pull</span>(ventas) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>()   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># vector directo: puedo aplicar cualquier función de base</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 662</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip</strong>: <code>pull()</code> es ideal cuando el resultado tiene una sola columna, p.&nbsp;ej. tras un <code>summarise()</code> y quieres ese valor en condicionales.</p>
+</blockquote>
+</section>
+<section id="slice_max-el-top-n-de-un-grupo" class="level2">
+<h2 class="anchored" data-anchor-id="slice_max-el-top-n-de-un-grupo">2. <code>slice_max()</code> — el top-N de un grupo</h2>
+<p>Top de ventas, últimos clientes, mejores resultados… <code>slice_max()</code> devuelve las filas con los valores más altos (y <code>slice_min()</code> los más bajos).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_max</span>(ventas, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id ciudad ventas coste
+1 10   CDMX    662   303
+2 11 Madrid    574   339
+3 12   Lima    526   404</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># El top 1 de CADA ciudad usando el argumento by:</span></span>
+<span id="cb11-2">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_max</span>(ventas, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> ciudad)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id ciudad ventas coste
+1 11 Madrid    574   339
+2  4 Bogotá    443   290
+3 12   Lima    526   404
+4 10   CDMX    662   303</code></pre>
+</div>
+</div>
+</section>
+<section id="across-aplicar-algo-a-varias-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="across-aplicar-algo-a-varias-columnas">3. <code>across()</code> — aplicar algo a varias columnas</h2>
+<p>¿Media de todas las columnas numéricas? ¿Redondear 3 columnas? <code>across()</code> dentro de <code>summarise()</code> o <code>mutate()</code> aplica una función a varias columnas a la vez.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb13-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb13-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">across</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(ventas, coste), mean)</span>
+<span id="cb13-4">  )</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    ventas    coste
+1 459.3333 327.8333</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Con .names podemos controlar el nombre de las nuevas columnas:</span></span>
+<span id="cb15-2">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb15-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">across</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(ventas, coste), mean, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.names =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"media_{.col}"</span>)</span>
+<span id="cb15-5">  )</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  media_ventas media_coste
+1     459.3333    327.8333</code></pre>
+</div>
+</div>
+</section>
+<section id="relocate-reordenar-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="relocate-reordenar-columnas">4. <code>relocate()</code> — reordenar columnas</h2>
+<p>El orden de las columnas importa más de lo que crees (sobre todo al exportar o mostrar tablas). <code>relocate()</code> mueve columnas sin más líneas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb17-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">relocate</span>(ciudad, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.before =</span> id)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ciudad id ventas coste
+1  Madrid  1    412   252
+2  Madrid  2    378   341
+3  Madrid  3    514   280
+4  Bogotá  4    443   290
+5  Madrid  5    451   216
+6    Lima  6    412   388
+7    Lima  7    473   303
+8    CDMX  8    473   414
+9    CDMX  9    194   404
+10   CDMX 10    662   303
+11 Madrid 11    574   339
+12   Lima 12    526   404</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb19-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">relocate</span>(coste, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.after =</span> ventas)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id ciudad ventas coste
+1   1 Madrid    412   252
+2   2 Madrid    378   341
+3   3 Madrid    514   280
+4   4 Bogotá    443   290
+5   5 Madrid    451   216
+6   6   Lima    412   388
+7   7   Lima    473   303
+8   8   CDMX    473   414
+9   9   CDMX    194   404
+10 10   CDMX    662   303
+11 11 Madrid    574   339
+12 12   Lima    526   404</code></pre>
+</div>
+</div>
+</section>
+<section id="case_when-condiciones-en-cascada" class="level2">
+<h2 class="anchored" data-anchor-id="case_when-condiciones-en-cascada">5. <code>case_when()</code> — condiciones en cascada</h2>
+<p>El <code>ifelse()</code> anidado es feo y frágil. <code>case_when()</code> evalúa condiciones <strong>en orden</strong> y devuelve el primer resultado que cumple.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb21-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">desempeno =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">case_when</span>(</span>
+<span id="cb21-3">    ventas <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span>            <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Excelente"</span>,</span>
+<span id="cb21-4">    ventas <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">450</span>            <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bueno"</span>,</span>
+<span id="cb21-5">    ventas <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>            <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Regular"</span>,</span>
+<span id="cb21-6">    <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>                     <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Crítico"</span></span>
+<span id="cb21-7">  )) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb21-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(id, ventas, desempeno)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id ventas desempeno
+1   1    412   Regular
+2   2    378   Regular
+3   3    514     Bueno
+4   4    443   Regular
+5   5    451     Bueno
+6   6    412   Regular
+7   7    473     Bueno
+8   8    473     Bueno
+9   9    194   Crítico
+10 10    662 Excelente
+11 11    574     Bueno
+12 12    526     Bueno</code></pre>
+</div>
+</div>
+</section>
+<section id="bono-reframe-para-devolver-varias-filas-por-grupo" class="level2">
+<h2 class="anchored" data-anchor-id="bono-reframe-para-devolver-varias-filas-por-grupo">Bono: <code>reframe()</code> para devolver varias filas por grupo</h2>
+<p>A diferencia de <code>summarise()</code>, <code>reframe()</code> permite devolver <strong>más de una fila</strong> por grupo (perfecto para rangos, cuantiles o top-N).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb23-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reframe</span>(</span>
+<span id="cb23-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cuantil =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.75</span>),</span>
+<span id="cb23-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">valor   =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">quantile</span>(ventas, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.75</span>))</span>
+<span id="cb23-5">  )</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cuantil valor
+1    0.25   412
+2    0.75   517</code></pre>
+</div>
+</div>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Función</th>
+<th>¿Para qué?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pull()</code></td>
+<td>Extraer una columna como vector</td>
+</tr>
+<tr class="even">
+<td><code>slice_max()</code> / <code>slice_min()</code></td>
+<td>Top-N (global o por grupo)</td>
+</tr>
+<tr class="odd">
+<td><code>across()</code></td>
+<td>Aplicar funciones a muchas columnas</td>
+</tr>
+<tr class="even">
+<td><code>relocate()</code></td>
+<td>Reordenar columnas fácil</td>
+</tr>
+<tr class="odd">
+<td><code>case_when()</code></td>
+<td>Condiciones múltiples y limpias</td>
+</tr>
+<tr class="even">
+<td><code>reframe()</code></td>
+<td>Varias filas de resultado por grupo</td>
+</tr>
+</tbody>
+</table>
+<p>Memoriza estas funciones y tendrás el 80% del análisis de datos diario resuelto. 🚀</p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>dplyr</category>
+  <category>tidyverse</category>
+  <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/dplyr-dia-a-dia/</guid>
+  <pubDate>Fri, 07 Aug 2026 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>10 trucos de Quarto que la gente no conoce (y debería)</title>
+  <dc:creator>José Vicente Ordóñez</dc:creator>
+  <link>https://josevicente1980.github.io/Mi_primer_blog/posts/quarto-trucos/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Quarto es una de las mejores herramientas para crear informes, blogs y presentaciones con R. Pero la mayoría de la gente sólo usa el 20% de su potencial. Aquí van <strong>10 trucos super prácticos</strong>.</p>
+<section id="recuadros-con-callouts" class="level2">
+<h2 class="anchored" data-anchor-id="recuadros-con-callouts">1. Recuadros con callouts (<code>:::</code>)</h2>
+<p>En lugar de un simple texto en negrita, usa callouts para <strong>destacar ideas</strong>. Muy útiles en informes.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Tip</strong>: usa <code>callout-tip</code> para consejos, <code>callout-note</code> para notas y <code>callout-warning</code> para advertencias.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Importante</strong>: los callouts se escriben con tres dos puntos <code>:::</code>.</p>
+</div>
+</div>
+</section>
+<section id="plegar-el-código-con-code-fold" class="level2">
+<h2 class="anchored" data-anchor-id="plegar-el-código-con-code-fold">2. Plegar el código con <code>code-fold</code></h2>
+<p>¿Informe para gente que sólo quiere resultados? Plegar el código con <code>code-fold</code> hace que tus bloques de código aparezcan <strong>colapsados</strong> y el lector pueda abrirlos si quiere.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
@@ -47,41 +1009,950 @@ background-color: null;
 font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span></span></code></pre></div></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
+</section>
+<section id="ocultar-código-pero-mostrar-el-resultado-echo-false" class="level2">
+<h2 class="anchored" data-anchor-id="ocultar-código-pero-mostrar-el-resultado-echo-false">3. Ocultar código pero mostrar el resultado (<code>echo: false</code>)</h2>
+<p>¿Quieres mostrar el resultado sin el código? <code>echo: false</code> es tu amigo:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Este texto lo genera R: 2026-08-09"</code></pre>
+</div>
+</div>
+</section>
+<section id="parámetros-para-informes-reutilizables-params" class="level2">
+<h2 class="anchored" data-anchor-id="parámetros-para-informes-reutilizables-params">4. Parámetros para informes reutilizables (<code>params</code>)</h2>
+<p>Crea un informe <strong>con parámetros</strong> y renderízalo con un botón “Render with parameters” en RStudio. Ideal para reportes que cambian de nombre, fecha o región.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">params</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb4-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">empresa</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Mi empresa"</span></span>
+<span id="cb4-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">anio</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2026</span></span>
+<span id="cb4-5"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span></code></pre></div></div>
+<p>Y dentro del documento, úsalos así:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>empresa</span>
+<span id="cb5-2">params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>anio</span></code></pre></div></div>
+</section>
+<section id="tabsets-para-comparar-.panel-tabset" class="level2">
+<h2 class="anchored" data-anchor-id="tabsets-para-comparar-.panel-tabset">5. Tabsets para comparar (<code>::: {.panel-tabset}</code>)</h2>
+<p>¿Varias regiones, varios paquetes, distintas versiones? Organiza el contenido en <strong>pestañas</strong> dentro del documento.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Opción A</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Opción B</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<p>Solución A: rápida pero menos flexible.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<p>Solución B: un poco más lenta pero mucho más flexible.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="freeze-para-no-volver-a-ejecutar-todo" class="level2">
+<h2 class="anchored" data-anchor-id="freeze-para-no-volver-a-ejecutar-todo">6. <code>freeze</code> para no volver a ejecutar todo</h2>
+<p>Si tienes un blog o informe con código que tarda mucho, utiliza <code>freeze: true</code> en el YAML de la carpeta (o <code>#| freeze: true</code> en un chunk). Quarto <strong>guarda los resultados</strong> y no re-ejecuta el código en la próxima renderización <strong>a menos que el código cambie</strong>. Renderizado más rápido, mejores tiempos de build.</p>
+</section>
+<section id="problemas-desaparecen-con-message-false" class="level2">
+<h2 class="anchored" data-anchor-id="problemas-desaparecen-con-message-false">7. Problemas desaparecen con <code>#| message: false</code></h2>
+<p>Los mensajes de carga de paquetes (<code>Attaching package: 'dplyr'...</code>) ensucian los documentos. Siléncialos en cada chunk o de forma global.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| message: false</span></span>
+<span id="cb6-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span></code></pre></div></div>
+</section>
+<section id="tablas-bonitas-con-knitrkable" class="level2">
+<h2 class="anchored" data-anchor-id="tablas-bonitas-con-knitrkable">8. Tablas bonitas con <code>knitr::kable()</code></h2>
+<p>Nada de tablas a medio formatear. Con <code>kable()</code> y <code>kableExtra()</code> tienes tablas listas para informes en <strong>dos líneas</strong>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(knitr)</span>
+<span id="cb7-2"></span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(</span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ciudad =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Madrid"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bogotá"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ventas =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">320</span>)),</span>
+<span id="cb7-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Resultados por ciudad"</span></span>
+<span id="cb7-6">)</span></code></pre></div></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Resultados por ciudad</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ciudad</th>
+<th style="text-align: right;">ventas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Madrid</td>
+<td style="text-align: right;">500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bogotá</td>
+<td style="text-align: right;">320</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="anotaciones-y-referencias-cruzadas" class="level2">
+<h2 class="anchored" data-anchor-id="anotaciones-y-referencias-cruzadas">9. Anotaciones y referencias cruzadas</h2>
+<p>Quarto genera <strong>referencias cruzadas</strong> a figuras, tablas y secciones. Ponle <code>#| label: fig-mi-grafico</code> a un chunk con figura y luego escribe <code>@fig-mi-grafico</code> en el texto. La numeración se genera sola.</p>
+</section>
+<section id="renvrenv-no-pero-sí-hidden-true" class="level2">
+<h2 class="anchored" data-anchor-id="renvrenv-no-pero-sí-hidden-true">10. <code>RENV</code>/<code>renv</code> no, pero <em>sí</em> <code>hidden: true</code></h2>
+<p>Este es el truco definitivo para posts y slides: añade <code>hidden: true</code> en el YAML de un archivo para que <strong>no aparezca en el índice del blog/sitio</strong> pero siga estando disponible con su URL directa.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb8-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">title</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Borrador"</span></span>
+<span id="cb8-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">draft</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">true</span></span>
+<span id="cb8-4"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span></code></pre></div></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En blogs de Quarto, además existe <code>draft: true</code>: el post se renderiza pero no se publica en la lista. Útil para tus notas en curso.</p>
+</div>
+</div>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<ul>
+<li><strong>Callouts</strong> para destacar ideas.</li>
+<li><strong>code-fold</strong>, <strong>echo: false</strong> y <strong>message: false</strong> para controlar lo que ve el lector.</li>
+<li><strong>params</strong> para informes reutilizables.</li>
+<li><strong>tabsets</strong> para comparar contenido.</li>
+<li><strong>freeze</strong> para renderizaciones rápidas.</li>
+<li><strong>kable()</strong> para tablas con una pinta profesional.</li>
+</ul>
+<p>Con estos 10 trucos, tus documentos Quarto pasan de “ok” a <strong>impresionantes</strong>. 🚀</p>
 
 
+</section>
 
  ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
-  <pubDate>Sun, 09 Aug 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
+  <category>Quarto</category>
+  <category>informes</category>
+  <category>publicacion</category>
+  <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/quarto-trucos/</guid>
+  <pubDate>Thu, 06 Aug 2026 05:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Welcome To My Blog</title>
-  <dc:creator>Tristan O&#39;Malley</dc:creator>
-  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <title>Tips de ggplot2 para gráficas que no parecen de R</title>
+  <dc:creator>José Vicente Ordóñez</dc:creator>
+  <link>https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<p>Una gráfica de ggplot2 <strong>no tiene por qué parecer de R</strong>. La diferencia entre un gráfico “de estudiante” y uno profesional está en 4 detalles: tema, colores, etiquetas y anotaciones. Aquí te muestro cómo.</p>
+<section id="empieza-con-un-buen-tema-theme_minimal-o-theme_light" class="level2">
+<h2 class="anchored" data-anchor-id="empieza-con-un-buen-tema-theme_minimal-o-theme_light">1. Empieza con un buen tema (<code>theme_minimal</code> o <code>theme_light</code>)</h2>
+<p>El tema por defecto de ggplot2 es feo. Con <code>theme_minimal()</code> o <code>theme_light()</code> y un <code>base_size</code> generoso, tu gráfica ya sube varios niveles.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>)</span>
+<span id="cb5-2">datos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb5-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">categoria =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Norte"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sur"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Este"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Oeste"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">each =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>),</span>
+<span id="cb5-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">valor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">70</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>))</span>
+<span id="cb5-5">)</span></code></pre></div></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> datos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> categoria, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> valor, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> categoria)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_boxplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_brewer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Blues"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Distribución de valores por categoría"</span>,</span>
+<span id="cb6-6">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Un boxplot limpio con tema minimal"</span>,</span>
+<span id="cb6-7">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Categoría"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Valor"</span>,</span>
+<span id="cb6-8">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Categoría"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>)</span>
+<span id="cb6-10"></span>
+<span id="cb6-11">p</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/tema-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="quita-el-ruido-del-tema" class="level2">
+<h2 class="anchored" data-anchor-id="quita-el-ruido-del-tema">2. Quita el “ruido” del tema</h2>
+<p>El tema por defecto mete <strong>cuadrículas</strong> y <strong>ejes</strong> que distraen. Limpia con <code>theme()</code> los elementos que no aportan.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb7-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb7-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb7-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey60"</span>),</span>
+<span id="cb7-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span></span>
+<span id="cb7-7">  )</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/limpio-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="elige-los-colores-con-intención" class="level2">
+<h2 class="anchored" data-anchor-id="elige-los-colores-con-intención">3. Elige los colores con intención</h2>
+<p><code>scale_fill_brewer()</code> te da paletas probadas y accesibles. Para datos categóricos usa paletas <code>Set2</code>, <code>Dark2</code> o <code>Blues</code>; para secuenciales, <code>Blues</code> o <code>Viridis</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">datos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(categoria) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(valor)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reorder</span>(categoria, media), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> media, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> categoria)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_brewer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Set2"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_flip</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Media por categoría"</span>,</span>
+<span id="cb8-9">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ordenado y con paleta profesional"</span>,</span>
+<span id="cb8-10">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Media"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/colores-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="etiqueta-tus-ejes-y-usa-títulos-informativos" class="level2">
+<h2 class="anchored" data-anchor-id="etiqueta-tus-ejes-y-usa-títulos-informativos">4. Etiqueta tus ejes y usa títulos informativos</h2>
+<p><code>labs()</code> es tu aliado: un <strong>título</strong>, un <strong>subtítulo</strong> y un <strong>caption</strong> con la fuente hacen que la gráfica cuente una historia.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb9-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"¿Cómo se distribuyen los valores?"</span>,</span>
+<span id="cb9-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Comparación de la variabilidad entre categorías"</span>,</span>
+<span id="cb9-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Fuente: datos de ejemplo · Elaboración propia"</span></span>
+<span id="cb9-6">  )</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/labs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="guarda-con-el-tamaño-correcto-ggsave" class="level2">
+<h2 class="anchored" data-anchor-id="guarda-con-el-tamaño-correcto-ggsave">5. Guarda con el tamaño correcto (<code>ggsave</code>)</h2>
+<p>No exportes capturas de pantalla. Usa <code>ggsave()</code> con <strong>dimensiones en pulgadas</strong> y <code>dpi = 300</code> para calidad de publicación.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggsave</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mi_grafico.png"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot =</span> p, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">height =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dpi =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)</span></code></pre></div></div>
+</div>
+</section>
+<section id="anota-puntos-clave-annotate-o-geom_text" class="level2">
+<h2 class="anchored" data-anchor-id="anota-puntos-clave-annotate-o-geom_text">6. Anota puntos clave (<code>annotate</code> o <code>geom_text</code>)</h2>
+<p>Resalta el dato importante para que el lector no tenga que adivinarlo. Con <code>geom_text()</code> marcas el valor máximo sin esfuerzo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">datos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(categoria) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(valor)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb11-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> categoria, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> media, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> categoria)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(media, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_brewer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Dark2"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_cartesian</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ylim =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">80</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Media por categoría"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Media"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb11-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/anota-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tip</th>
+<th>Código clave</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Buen tema</td>
+<td><code>theme_minimal(base_size = 14)</code></td>
+</tr>
+<tr class="even">
+<td>Menos ruido</td>
+<td><code>theme(panel.grid.minor = element_blank())</code></td>
+</tr>
+<tr class="odd">
+<td>Colores</td>
+<td><code>scale_fill_brewer(palette = "Set2")</code></td>
+</tr>
+<tr class="even">
+<td>Etiquetas</td>
+<td><code>labs(title, subtitle, caption, x, y)</code></td>
+</tr>
+<tr class="odd">
+<td>Exportar</td>
+<td><code>ggsave(..., dpi = 300)</code></td>
+</tr>
+<tr class="even">
+<td>Anotar</td>
+<td><code>geom_text()</code> o <code>annotate()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Aplica estos 6 tips y tus gráficas (y tus informes) lucirán <strong>profesionales</strong> en menos de 5 minutos. 🚀</p>
 
 
+</section>
 
  ]]></description>
-  <category>news</category>
-  <guid>https://your-website-url.example.com/posts/welcome/</guid>
-  <pubDate>Thu, 06 Aug 2026 05:00:00 GMT</pubDate>
+  <category>R</category>
+  <category>ggplot2</category>
+  <category>visualizacion</category>
+  <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/</guid>
+  <pubDate>Wed, 05 Aug 2026 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día</title>
+  <dc:creator>José Vicente Ordóñez</dc:creator>
+  <link>https://josevicente1980.github.io/Mi_primer_blog/posts/rstudio-flujo/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Tu <strong>editor</strong> es donde pasas la mitad de tu día. Aprender RStudio a fondo es tan importante como aprender el propio R. Estos son los trucos que más me aceleran.</p>
+<section id="los-atajos-que-debes-memorizar-windows" class="level2">
+<h2 class="anchored" data-anchor-id="los-atajos-que-debes-memorizar-windows">1. Los atajos que debes memorizar (Windows)</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Atajo</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Ctrl + Enter</code></td>
+<td>Ejecutar la línea / selección actual</td>
+</tr>
+<tr class="even">
+<td><code>Ctrl + Shift + Enter</code></td>
+<td>Ejecutar <strong>todo</strong> el script</td>
+</tr>
+<tr class="odd">
+<td><code>Ctrl + Shift + M</code></td>
+<td>Insertar el pipe <code>|&gt;</code></td>
+</tr>
+<tr class="even">
+<td><code>Ctrl + Shift + C</code></td>
+<td>Comentar / descomentar líneas</td>
+</tr>
+<tr class="odd">
+<td><code>Ctrl + Alt + B</code></td>
+<td>Ejecutar <strong>hasta</strong> la línea actual</td>
+</tr>
+<tr class="even">
+<td><code>Alt + Shift + K</code></td>
+<td>Ver <strong>todos</strong> los atajos</td>
+</tr>
+<tr class="odd">
+<td><code>Ctrl + Shift + F10</code></td>
+<td>Reiniciar la sesión de R</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>💡 El más poderoso: <code>Alt + Shift + K</code> te muestra la lista completa de atajos. Mírala una vez y elige 3 que usarás hoy.</p>
+</blockquote>
+</section>
+<section id="ctrl-shift-m-es-tu-mejor-amigo" class="level2">
+<h2 class="anchored" data-anchor-id="ctrl-shift-m-es-tu-mejor-amigo">2. <code>Ctrl + Shift + M</code> es tu mejor amigo</h2>
+<p>Este es el atajo que uso cientos de veces al día: inserta el pipe <code>|&gt;</code> al instante, sin escribir el símbolo a mano.</p>
+<pre><code>datos %&gt;%        # ← pulsas Ctrl + Shift + M en R IDE moderno
+datos |&gt;         # y obtienes el pipe nativo</code></pre>
+</section>
+<section id="snippets-código-que-se-escribe-solo" class="level2">
+<h2 class="anchored" data-anchor-id="snippets-código-que-se-escribe-solo">3. Snippets: código que se escribe solo</h2>
+<p>Escribe <code>lib</code> + <code>Tab</code> y RStudio completa <code>library()</code>. <code>fun</code> + <code>Tab</code> completa <code>function(...)</code>. Los <strong>snippets</strong> ahorran muchísimo tecleo.</p>
+<p>Prueba estos: - <code>lib</code> + Tab → <code>library()</code> - <code>fun</code> + Tab → <code>function() {}</code> - <code>sh</code> + Tab → <code>shiny::shinyApp()</code> - <code>mat</code> + Tab → matriz</p>
+</section>
+<section id="trabaja-siempre-en-un-proyecto-.rproj" class="level2">
+<h2 class="anchored" data-anchor-id="trabaja-siempre-en-un-proyecto-.rproj">4. Trabaja SIEMPRE en un Proyecto (.Rproj)</h2>
+<p>Un <strong>proyecto de RStudio</strong> fija el directorio de trabajo y aísla tu entorno. Así tu <code>setwd()</code> desaparece y tus rutas relativas funcionan siempre.</p>
+<pre><code>mi_proyecto/
+├── mi_proyecto.Rproj   ← doble clic y ya estás dentro
+├── data/
+├── scripts/
+├── output/
+└── informes/</code></pre>
+<blockquote class="blockquote">
+<p>💡 <strong>Buen hábito</strong>: usa paquetes como <code>here</code> o <code>fs</code> para rutas relativas reproducibles, y organiza data/scripts/output en carpetas.</p>
+</blockquote>
+</section>
+<section id="no-guardes-el-workspace-en-serio" class="level2">
+<h2 class="anchored" data-anchor-id="no-guardes-el-workspace-en-serio">5. No guardes el Workspace (en serio)</h2>
+<p>Desactiva <em>“Save workspace to .RData on exit”</em> (Herramientas → Global Options). Un entorno limpio = <strong>cero bugs por variables fantasma</strong>. Tu análisis debe <strong>construirse desde cero</strong> cada vez con tu script.</p>
+</section>
+<section id="source-para-scripts-reutilizables" class="level2">
+<h2 class="anchored" data-anchor-id="source-para-scripts-reutilizables">6. <code>source()</code> para scripts reutilizables</h2>
+<p>¿Funciones que usas en varios análisis? Guárdalas en <code>scripts/funciones.R</code> y cárgalas con:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">source</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"scripts/funciones.R"</span>)</span></code></pre></div></div>
+</section>
+<section id="organiza-tu-código-con-secciones" class="level2">
+<h2 class="anchored" data-anchor-id="organiza-tu-código-con-secciones">7. Organiza tu código con secciones</h2>
+<p>Crea <strong>secciones</strong> con <code># ----</code> (o <code>Ctrl+Shift+R</code>) y usa el mapa de documento para navegar. Tu script se vuelve un índice navegable.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cargar datos ----</span></span>
+<span id="cb4-2">datos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read.csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/datos.csv"</span>)</span>
+<span id="cb4-3"></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Modelo ----</span></span>
+<span id="cb4-5">modelo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(ventas <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> precio, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span>
+<span id="cb4-6"></span>
+<span id="cb4-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Gráfico ----</span></span>
+<span id="cb4-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(modelo)</span></code></pre></div></div>
+</section>
+<section id="envía-el-código-al-terminal-y-a-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="envía-el-código-al-terminal-y-a-quarto">8. Envía el código al terminal y a Quarto</h2>
+<p>Escribe en <strong>Quarto/R Markdown</strong> y ejecuta cada chunk con <code>Ctrl + Shift + Enter</code>. Todo lo que aprendes en un script es directamente exportable a un informe reproducible. No aprendas “dos formas”: usa la misma.</p>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<ul>
+<li>Memoriza <code>Ctrl + Enter</code>, <code>Ctrl + Shift + M</code> y <code>Alt + Shift + K</code>.</li>
+<li>Usa <strong>snippets</strong> con Tab.</li>
+<li>Trabaja en <strong>Proyectos</strong> y no guardes el Workspace.</li>
+<li>Organiza por <strong>carpetas y secciones</strong>.</li>
+<li>Escribe en <strong>Quarto</strong> para pasar del script al informe sin fricción.</li>
+</ul>
+<p>Con estos hábitos, RStudio deja de ser un editor y se convierte en una <strong>máquina de productividad</strong>. 🚀</p>
+
+
+</section>
+
+ ]]></description>
+  <category>RStudio</category>
+  <category>flujo-de-trabajo</category>
+  <category>productividad</category>
+  <guid>https://josevicente1980.github.io/Mi_primer_blog/posts/rstudio-flujo/</guid>
+  <pubDate>Tue, 04 Aug 2026 05:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

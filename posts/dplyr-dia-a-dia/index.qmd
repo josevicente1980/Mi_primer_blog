@@ -1,0 +1,134 @@
+---
+title: "5 funciones de dplyr que uso todos los días"
+author: "José Vicente Ordóñez"
+date: "2026-08-07"
+categories: [R, dplyr, tidyverse]
+description: "pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos."
+---
+
+`dplyr` es el paquete que más uso en R, y estas son **5 funciones que me resuelven la
+vida todos los días**. Si las dominas, tu análisis de datos va a otro nivel.
+
+## 0. Los datos de ejemplo
+
+```{r}
+#| label: datos
+library(dplyr)
+
+set.seed(2026)
+df <- data.frame(
+  id     = 1:12,
+  ciudad = sample(c("Madrid", "Bogotá", "Lima", "CDMX"), 12, replace = TRUE),
+  ventas = round(rnorm(12, 500, 120)),
+  coste  = round(rnorm(12, 300, 60))
+)
+
+head(df)
+```
+
+## 1. `pull()` — sacar una columna como vector
+
+¿Necesitas una columna suelta para un gráfico, un `if`, o pasarla a otra función?
+`pull()` extrae la columna como **vector** sin recurrir al `$`.
+
+```{r}
+#| label: pull
+df |>
+  pull(ventas) |>
+  max()   # vector directo: puedo aplicar cualquier función de base
+```
+
+> 💡 **Tip**: `pull()` es ideal cuando el resultado tiene una sola columna,
+> p. ej. tras un `summarise()` y quieres ese valor en condicionales.
+
+## 2. `slice_max()` — el top-N de un grupo
+
+Top de ventas, últimos clientes, mejores resultados... `slice_max()` devuelve las
+filas con los valores más altos (y `slice_min()` los más bajos).
+
+```{r}
+#| label: slice
+df |>
+  slice_max(ventas, n = 3)
+
+# El top 1 de CADA ciudad usando el argumento by:
+df |>
+  slice_max(ventas, n = 1, by = ciudad)
+```
+
+## 3. `across()` — aplicar algo a varias columnas
+
+¿Media de todas las columnas numéricas? ¿Redondear 3 columnas? `across()`
+dentro de `summarise()` o `mutate()` aplica una función a varias columnas a la vez.
+
+```{r}
+#| label: across
+df |>
+  summarise(
+    across(c(ventas, coste), mean)
+  )
+
+# Con .names podemos controlar el nombre de las nuevas columnas:
+df |>
+  summarise(
+    across(c(ventas, coste), mean, .names = "media_{.col}")
+  )
+```
+
+## 4. `relocate()` — reordenar columnas
+
+El orden de las columnas importa más de lo que crees (sobre todo al exportar o
+mostrar tablas). `relocate()` mueve columnas sin más líneas.
+
+```{r}
+#| label: relocate
+df |>
+  relocate(ciudad, .before = id)
+
+df |>
+  relocate(coste, .after = ventas)
+```
+
+## 5. `case_when()` — condiciones en cascada
+
+El `ifelse()` anidado es feo y frágil. `case_when()` evalúa condiciones **en orden**
+y devuelve el primer resultado que cumple.
+
+```{r}
+#| label: case_when
+df |>
+  mutate(desempeno = case_when(
+    ventas >= 600            ~ "Excelente",
+    ventas >= 450            ~ "Bueno",
+    ventas >= 300            ~ "Regular",
+    TRUE                     ~ "Crítico"
+  )) |>
+  select(id, ventas, desempeno)
+```
+
+## Bono: `reframe()` para devolver varias filas por grupo
+
+A diferencia de `summarise()`, `reframe()` permite devolver **más de una fila** por
+grupo (perfecto para rangos, cuantiles o top-N).
+
+```{r}
+#| label: reframe
+df |>
+  reframe(
+    cuantil = c(0.25, 0.75),
+    valor   = quantile(ventas, c(0.25, 0.75))
+  )
+```
+
+## Resumen
+
+| Función | ¿Para qué? |
+|---------|------------|
+| `pull()` | Extraer una columna como vector |
+| `slice_max()` / `slice_min()` | Top-N (global o por grupo) |
+| `across()` | Aplicar funciones a muchas columnas |
+| `relocate()` | Reordenar columnas fácil |
+| `case_when()` | Condiciones múltiples y limpias |
+| `reframe()` | Varias filas de resultado por grupo |
+
+Memoriza estas funciones y tendrás el 80% del análisis de datos diario resuelto. 🚀

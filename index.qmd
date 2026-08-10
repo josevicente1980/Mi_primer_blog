@@ -6,14 +6,18 @@ listing:
   sort: "date desc"
   type: default
   categories: true
-  sort-ui: false
-  filter-ui: false
+  sort-ui: true
+  filter-ui: true
 page-layout: full
 title-block-banner: true
 ---
 
-# Presentación
+# Bienvenidos 👋
 
-Bienvenidos a mi blog.
+Este blog reúne **tips super prácticos de R y Quarto** que la gente debería aprender.
 
-Este espacio reúne ideas, aprendizajes y recursos sobre análisis de datos, investigación y herramientas digitales. Aquí compartiré contenidos prácticos, claros y útiles para seguir aprendiendo de forma sencilla y aplicada.
+Aquí no encontrarás teoría interminable: solo trucos, atajos y flujos de trabajo que puedes aplicar **hoy mismo** en tus análisis, documentos, informes y dashboards.
+
+Si trabajas con datos (o quieres empezar), este es tu lugar. Cada entrada es corta, directa y con **código que funciona**.
+
+> 💡 **¿Qué vas a encontrar?** Pipes con `|>`, funciones de `dplyr`, gráficas bonitas con `ggplot2`, trucos de Quarto para publicar y mucho más.

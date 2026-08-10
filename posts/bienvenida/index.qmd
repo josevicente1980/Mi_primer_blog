@@ -1,7 +1,52 @@
 ---
-title: Bienvenida
-author: Jose Vicente
-date: '2026-08-09'
+title: "Bienvenidos al blog de R y Quarto"
+author: "José Vicente Ordóñez"
+date: "2026-08-09"
+categories: [bienvenida]
+image: ../../profile.jpg
+draft: false
 ---
 
+¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.
+
+## La idea
+
+Aprendo **R y Quarto** casi todos los días, y me di cuenta de que los mejores
+consejos no son los que salen en los tutoriales teóricos, sino **los pequeños trucos
+prácticos** que usas una y otra vez en el trabajo real.
+
+Este blog nace para compartir exactamente eso: **tips super prácticos** que puedes
+aplicar *hoy mismo*.
+
+## Lo que vas a encontrar
+
+- ⚙️ **R y tidyverse**: pipes `|>`, `dplyr`, `ggplot2`, manipulación de datos.
+- 📄 **Quarto**: documentos, informes, blogs, presentaciones y cómo publicar.
+- 🧰 **Flujo de trabajo**: RStudio, atajos, proyectos organizados y reproducibles.
+
+## Un ejemplo rápido
+
+¿Sabías que con el **pipe nativo** `|>` (¡que ya viene con R!) puedes encadenar todo
+un análisis en una sola línea legible?
+
+```{r}
+#| label: ejemplo
+library(dplyr)
+
+set.seed(1)
+datos <- data.frame(
+  ciudad = sample(c("Madrid", "Bogotá", "Lima"), 30, replace = TRUE),
+  ventas = round(rnorm(30, 100, 20))
+)
+
+datos |>
+  group_by(ciudad) |>
+  summarise(total = sum(ventas)) |>
+  arrange(desc(total))
+```
+
+Sin reasignar variables, sin líneas de por medio. En los próximos posts
+profundizaremos en esto y en mucho más.
+
+¡Nos vemos en el siguiente post! 🚀
 

@@ -1,30 +1,380 @@
 [
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "posts/rstudio-flujo/index.html",
+    "href": "posts/rstudio-flujo/index.html",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Tu editor es donde pasas la mitad de tu día. Aprender RStudio a fondo es tan importante como aprender el propio R. Estos son los trucos que más me aceleran."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "posts/rstudio-flujo/index.html#los-atajos-que-debes-memorizar-windows",
+    "href": "posts/rstudio-flujo/index.html#los-atajos-que-debes-memorizar-windows",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "1. Los atajos que debes memorizar (Windows)",
+    "text": "1. Los atajos que debes memorizar (Windows)\n\n\n\nAtajo\nAcción\n\n\n\n\nCtrl + Enter\nEjecutar la línea / selección actual\n\n\nCtrl + Shift + Enter\nEjecutar todo el script\n\n\nCtrl + Shift + M\nInsertar el pipe |&gt;\n\n\nCtrl + Shift + C\nComentar / descomentar líneas\n\n\nCtrl + Alt + B\nEjecutar hasta la línea actual\n\n\nAlt + Shift + K\nVer todos los atajos\n\n\nCtrl + Shift + F10\nReiniciar la sesión de R\n\n\n\n\n💡 El más poderoso: Alt + Shift + K te muestra la lista completa de atajos. Mírala una vez y elige 3 que usarás hoy."
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#ctrl-shift-m-es-tu-mejor-amigo",
+    "href": "posts/rstudio-flujo/index.html#ctrl-shift-m-es-tu-mejor-amigo",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "2. Ctrl + Shift + M es tu mejor amigo",
+    "text": "2. Ctrl + Shift + M es tu mejor amigo\nEste es el atajo que uso cientos de veces al día: inserta el pipe |&gt; al instante, sin escribir el símbolo a mano.\ndatos %&gt;%        # ← pulsas Ctrl + Shift + M en R IDE moderno\ndatos |&gt;         # y obtienes el pipe nativo"
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#snippets-código-que-se-escribe-solo",
+    "href": "posts/rstudio-flujo/index.html#snippets-código-que-se-escribe-solo",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "3. Snippets: código que se escribe solo",
+    "text": "3. Snippets: código que se escribe solo\nEscribe lib + Tab y RStudio completa library(). fun + Tab completa function(...). Los snippets ahorran muchísimo tecleo.\nPrueba estos: - lib + Tab → library() - fun + Tab → function() {} - sh + Tab → shiny::shinyApp() - mat + Tab → matriz"
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#trabaja-siempre-en-un-proyecto-.rproj",
+    "href": "posts/rstudio-flujo/index.html#trabaja-siempre-en-un-proyecto-.rproj",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "4. Trabaja SIEMPRE en un Proyecto (.Rproj)",
+    "text": "4. Trabaja SIEMPRE en un Proyecto (.Rproj)\nUn proyecto de RStudio fija el directorio de trabajo y aísla tu entorno. Así tu setwd() desaparece y tus rutas relativas funcionan siempre.\nmi_proyecto/\n├── mi_proyecto.Rproj   ← doble clic y ya estás dentro\n├── data/\n├── scripts/\n├── output/\n└── informes/\n\n💡 Buen hábito: usa paquetes como here o fs para rutas relativas reproducibles, y organiza data/scripts/output en carpetas."
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#no-guardes-el-workspace-en-serio",
+    "href": "posts/rstudio-flujo/index.html#no-guardes-el-workspace-en-serio",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "5. No guardes el Workspace (en serio)",
+    "text": "5. No guardes el Workspace (en serio)\nDesactiva “Save workspace to .RData on exit” (Herramientas → Global Options). Un entorno limpio = cero bugs por variables fantasma. Tu análisis debe construirse desde cero cada vez con tu script."
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#source-para-scripts-reutilizables",
+    "href": "posts/rstudio-flujo/index.html#source-para-scripts-reutilizables",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "6. source() para scripts reutilizables",
+    "text": "6. source() para scripts reutilizables\n¿Funciones que usas en varios análisis? Guárdalas en scripts/funciones.R y cárgalas con:\nsource(\"scripts/funciones.R\")"
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#organiza-tu-código-con-secciones",
+    "href": "posts/rstudio-flujo/index.html#organiza-tu-código-con-secciones",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "7. Organiza tu código con secciones",
+    "text": "7. Organiza tu código con secciones\nCrea secciones con # ---- (o Ctrl+Shift+R) y usa el mapa de documento para navegar. Tu script se vuelve un índice navegable.\n# Cargar datos ----\ndatos &lt;- read.csv(\"data/datos.csv\")\n\n# Modelo ----\nmodelo &lt;- lm(ventas ~ precio, data = datos)\n\n# Gráfico ----\nplot(modelo)"
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#envía-el-código-al-terminal-y-a-quarto",
+    "href": "posts/rstudio-flujo/index.html#envía-el-código-al-terminal-y-a-quarto",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "8. Envía el código al terminal y a Quarto",
+    "text": "8. Envía el código al terminal y a Quarto\nEscribe en Quarto/R Markdown y ejecuta cada chunk con Ctrl + Shift + Enter. Todo lo que aprendes en un script es directamente exportable a un informe reproducible. No aprendas “dos formas”: usa la misma."
+  },
+  {
+    "objectID": "posts/rstudio-flujo/index.html#resumen",
+    "href": "posts/rstudio-flujo/index.html#resumen",
+    "title": "Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día",
+    "section": "Resumen",
+    "text": "Resumen\n\nMemoriza Ctrl + Enter, Ctrl + Shift + M y Alt + Shift + K.\nUsa snippets con Tab.\nTrabaja en Proyectos y no guardes el Workspace.\nOrganiza por carpetas y secciones.\nEscribe en Quarto para pasar del script al informe sin fricción.\n\nCon estos hábitos, RStudio deja de ser un editor y se convierte en una máquina de productividad. 🚀"
+  },
+  {
+    "objectID": "posts/pipe-nativo/index.html",
+    "href": "posts/pipe-nativo/index.html",
+    "title": "El pipe nativo |>: el operador que ya trae R y no usas",
     "section": "",
-    "text": "About this blog"
+    "text": "El pipe |&gt; es, junto con %&gt;%, la forma más elegante de escribir código en R. Desde R 4.1 (2021) traes el pipe nativo incorporado: no necesitas instalar nada."
+  },
+  {
+    "objectID": "posts/pipe-nativo/index.html#qué-es-un-pipe",
+    "href": "posts/pipe-nativo/index.html#qué-es-un-pipe",
+    "title": "El pipe nativo |>: el operador que ya trae R y no usas",
+    "section": "¿Qué es un pipe?",
+    "text": "¿Qué es un pipe?\nUn pipe encadena el resultado de una expresión como primer argumento de la siguiente. En lugar de escribir código “de adentro hacia afuera”:\n\nsum(round(sqrt(abs(x)), 2))\n\nEscribes de izquierda a derecha, que es como razonamos:\nx |&gt; abs() |&gt; sqrt() |&gt; round(2) |&gt; sum()"
+  },
+  {
+    "objectID": "posts/pipe-nativo/index.html#el-ejemplo-que-lo-cambia-todo",
+    "href": "posts/pipe-nativo/index.html#el-ejemplo-que-lo-cambia-todo",
+    "title": "El pipe nativo |>: el operador que ya trae R y no usas",
+    "section": "El ejemplo que lo cambia todo",
+    "text": "El ejemplo que lo cambia todo\nImagina que quieres el promedio de ventas por ciudad, sólo de las ciudades con más de 5 pedidos, ordenado de mayor a menor. Sin pipe:\n\nhead(arrange(summarise(group_by(filter(datos, pedidos &gt; 5), ciudad), media = mean(ventas))), 3)\n\nHorroroso. Con |&gt; se lee solo:\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nset.seed(42)\n\ndatos &lt;- data.frame(\n  ciudad = sample(c(\"Madrid\", \"Bogotá\", \"Lima\", \"CDMX\"), 200, replace = TRUE),\n  ventas = round(rnorm(200, 500, 120)),\n  pedidos = sample(1:10, 200, replace = TRUE)\n)\n\ndatos |&gt;\n  filter(pedidos &gt; 5) |&gt;\n  group_by(ciudad) |&gt;\n  summarise(media = mean(ventas)) |&gt;\n  arrange(desc(media))\n\n# A tibble: 4 × 2\n  ciudad media\n  &lt;chr&gt;  &lt;dbl&gt;\n1 CDMX    542.\n2 Bogotá  508.\n3 Madrid  506.\n4 Lima    457.\n\n\nLee el código en voz alta: “toma datos, filtra, agrupa, resume y ordena”. Eso es exactamente lo que hace."
+  },
+  {
+    "objectID": "posts/pipe-nativo/index.html#nativo-vs-de-magrittr",
+    "href": "posts/pipe-nativo/index.html#nativo-vs-de-magrittr",
+    "title": "El pipe nativo |>: el operador que ya trae R y no usas",
+    "section": "|> nativo vs %>% de magrittr",
+    "text": "|&gt; nativo vs %&gt;% de magrittr\n\n\n\nCaracterística\n|&gt; (nativo)\n%&gt;% (magrittr)\n\n\n\n\n¿Requiere librería?\nNo, viene en R\nSí, magrittr/dplyr\n\n\nPasar a un argumento distinto\nNo directo\nSí, con .\n\n\nVelocidad\nMuy rápido\nRápido\n\n\nMensajes de error\nMás claros\nA veces confusos\n\n\n\n\n¿Y si necesito pasar a otro argumento?\nCon |&gt; puedes usar el placeholder _ (R 4.2+):\ndf |&gt; summarise(n = n(), .by = grupo)      # .by va al final\n1:10 |&gt; lm(y ~ x, data = mtcars, _)         # ejemplo conceptual\nEn la práctica, la mayoría del código encadena en el primer argumento, así que |&gt; cubre el 95% de los casos."
+  },
+  {
+    "objectID": "posts/pipe-nativo/index.html#tip-pro-método-_-globalmente",
+    "href": "posts/pipe-nativo/index.html#tip-pro-método-_-globalmente",
+    "title": "El pipe nativo |>: el operador que ya trae R y no usas",
+    "section": "Tip pro: método _ globalmente",
+    "text": "Tip pro: método _ globalmente\nEn cuanto dominas el pipe, nunca más quieres escribir sin él. Todos los paquetes del tidyverse (dplyr, tidyr, ggplot2, stringr…) están diseñados para funcionar como eslabones de una cadena.\n\nlibrary(ggplot2)\n\ndatos |&gt;\n  group_by(ciudad) |&gt;\n  summarise(media = mean(ventas)) |&gt;\n  ggplot(aes(x = reorder(ciudad, media), y = media)) +\n  geom_col(fill = \"#146C94\") +\n  coord_flip() +\n  labs(title = \"Ventas medias por ciudad\", x = NULL, y = \"Media\") +\n  theme_minimal(base_size = 13)\n\n\n\n\n\n\n\n\n\n💡 Regla sencilla: si tu operación es un paso más en el procesamiento de datos, llévala por el pipe. Lee tu código como una frase y todo encajará."
+  },
+  {
+    "objectID": "posts/pipe-nativo/index.html#resumen",
+    "href": "posts/pipe-nativo/index.html#resumen",
+    "title": "El pipe nativo |>: el operador que ya trae R y no usas",
+    "section": "Resumen",
+    "text": "Resumen\n\n|&gt; viene incluido en R 4.1+. No instalas nada.\nEscribe horizontalmente (de izquierda a derecha), no anidado.\nCombínalo con dplyr y ggplot2 para análisis limpios y legibles.\n\nDomina el pipe y tu código (y tu cabeza) te lo agradecerán. 🚀"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html",
+    "href": "posts/dplyr-dia-a-dia/index.html",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "",
+    "text": "dplyr es el paquete que más uso en R, y estas son 5 funciones que me resuelven la vida todos los días. Si las dominas, tu análisis de datos va a otro nivel."
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#los-datos-de-ejemplo",
+    "href": "posts/dplyr-dia-a-dia/index.html#los-datos-de-ejemplo",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "0. Los datos de ejemplo",
+    "text": "0. Los datos de ejemplo\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nset.seed(2026)\ndf &lt;- data.frame(\n  id     = 1:12,\n  ciudad = sample(c(\"Madrid\", \"Bogotá\", \"Lima\", \"CDMX\"), 12, replace = TRUE),\n  ventas = round(rnorm(12, 500, 120)),\n  coste  = round(rnorm(12, 300, 60))\n)\n\nhead(df)\n\n  id ciudad ventas coste\n1  1 Madrid    412   252\n2  2 Madrid    378   341\n3  3 Madrid    514   280\n4  4 Bogotá    443   290\n5  5 Madrid    451   216\n6  6   Lima    412   388"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#pull-sacar-una-columna-como-vector",
+    "href": "posts/dplyr-dia-a-dia/index.html#pull-sacar-una-columna-como-vector",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "1. pull() — sacar una columna como vector",
+    "text": "1. pull() — sacar una columna como vector\n¿Necesitas una columna suelta para un gráfico, un if, o pasarla a otra función? pull() extrae la columna como vector sin recurrir al $.\n\ndf |&gt;\n  pull(ventas) |&gt;\n  max()   # vector directo: puedo aplicar cualquier función de base\n\n[1] 662\n\n\n\n💡 Tip: pull() es ideal cuando el resultado tiene una sola columna, p. ej. tras un summarise() y quieres ese valor en condicionales."
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#slice_max-el-top-n-de-un-grupo",
+    "href": "posts/dplyr-dia-a-dia/index.html#slice_max-el-top-n-de-un-grupo",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "2. slice_max() — el top-N de un grupo",
+    "text": "2. slice_max() — el top-N de un grupo\nTop de ventas, últimos clientes, mejores resultados… slice_max() devuelve las filas con los valores más altos (y slice_min() los más bajos).\n\ndf |&gt;\n  slice_max(ventas, n = 3)\n\n  id ciudad ventas coste\n1 10   CDMX    662   303\n2 11 Madrid    574   339\n3 12   Lima    526   404\n\n# El top 1 de CADA ciudad usando el argumento by:\ndf |&gt;\n  slice_max(ventas, n = 1, by = ciudad)\n\n  id ciudad ventas coste\n1 11 Madrid    574   339\n2  4 Bogotá    443   290\n3 12   Lima    526   404\n4 10   CDMX    662   303"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#across-aplicar-algo-a-varias-columnas",
+    "href": "posts/dplyr-dia-a-dia/index.html#across-aplicar-algo-a-varias-columnas",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "3. across() — aplicar algo a varias columnas",
+    "text": "3. across() — aplicar algo a varias columnas\n¿Media de todas las columnas numéricas? ¿Redondear 3 columnas? across() dentro de summarise() o mutate() aplica una función a varias columnas a la vez.\n\ndf |&gt;\n  summarise(\n    across(c(ventas, coste), mean)\n  )\n\n    ventas    coste\n1 459.3333 327.8333\n\n# Con .names podemos controlar el nombre de las nuevas columnas:\ndf |&gt;\n  summarise(\n    across(c(ventas, coste), mean, .names = \"media_{.col}\")\n  )\n\n  media_ventas media_coste\n1     459.3333    327.8333"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#relocate-reordenar-columnas",
+    "href": "posts/dplyr-dia-a-dia/index.html#relocate-reordenar-columnas",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "4. relocate() — reordenar columnas",
+    "text": "4. relocate() — reordenar columnas\nEl orden de las columnas importa más de lo que crees (sobre todo al exportar o mostrar tablas). relocate() mueve columnas sin más líneas.\n\ndf |&gt;\n  relocate(ciudad, .before = id)\n\n   ciudad id ventas coste\n1  Madrid  1    412   252\n2  Madrid  2    378   341\n3  Madrid  3    514   280\n4  Bogotá  4    443   290\n5  Madrid  5    451   216\n6    Lima  6    412   388\n7    Lima  7    473   303\n8    CDMX  8    473   414\n9    CDMX  9    194   404\n10   CDMX 10    662   303\n11 Madrid 11    574   339\n12   Lima 12    526   404\n\ndf |&gt;\n  relocate(coste, .after = ventas)\n\n   id ciudad ventas coste\n1   1 Madrid    412   252\n2   2 Madrid    378   341\n3   3 Madrid    514   280\n4   4 Bogotá    443   290\n5   5 Madrid    451   216\n6   6   Lima    412   388\n7   7   Lima    473   303\n8   8   CDMX    473   414\n9   9   CDMX    194   404\n10 10   CDMX    662   303\n11 11 Madrid    574   339\n12 12   Lima    526   404"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#case_when-condiciones-en-cascada",
+    "href": "posts/dplyr-dia-a-dia/index.html#case_when-condiciones-en-cascada",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "5. case_when() — condiciones en cascada",
+    "text": "5. case_when() — condiciones en cascada\nEl ifelse() anidado es feo y frágil. case_when() evalúa condiciones en orden y devuelve el primer resultado que cumple.\n\ndf |&gt;\n  mutate(desempeno = case_when(\n    ventas &gt;= 600            ~ \"Excelente\",\n    ventas &gt;= 450            ~ \"Bueno\",\n    ventas &gt;= 300            ~ \"Regular\",\n    TRUE                     ~ \"Crítico\"\n  )) |&gt;\n  select(id, ventas, desempeno)\n\n   id ventas desempeno\n1   1    412   Regular\n2   2    378   Regular\n3   3    514     Bueno\n4   4    443   Regular\n5   5    451     Bueno\n6   6    412   Regular\n7   7    473     Bueno\n8   8    473     Bueno\n9   9    194   Crítico\n10 10    662 Excelente\n11 11    574     Bueno\n12 12    526     Bueno"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#bono-reframe-para-devolver-varias-filas-por-grupo",
+    "href": "posts/dplyr-dia-a-dia/index.html#bono-reframe-para-devolver-varias-filas-por-grupo",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "Bono: reframe() para devolver varias filas por grupo",
+    "text": "Bono: reframe() para devolver varias filas por grupo\nA diferencia de summarise(), reframe() permite devolver más de una fila por grupo (perfecto para rangos, cuantiles o top-N).\n\ndf |&gt;\n  reframe(\n    cuantil = c(0.25, 0.75),\n    valor   = quantile(ventas, c(0.25, 0.75))\n  )\n\n  cuantil valor\n1    0.25   412\n2    0.75   517"
+  },
+  {
+    "objectID": "posts/dplyr-dia-a-dia/index.html#resumen",
+    "href": "posts/dplyr-dia-a-dia/index.html#resumen",
+    "title": "5 funciones de dplyr que uso todos los días",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\nFunción\n¿Para qué?\n\n\n\n\npull()\nExtraer una columna como vector\n\n\nslice_max() / slice_min()\nTop-N (global o por grupo)\n\n\nacross()\nAplicar funciones a muchas columnas\n\n\nrelocate()\nReordenar columnas fácil\n\n\ncase_when()\nCondiciones múltiples y limpias\n\n\nreframe()\nVarias filas de resultado por grupo\n\n\n\nMemoriza estas funciones y tendrás el 80% del análisis de datos diario resuelto. 🚀"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Blog de aprendizaje",
     "section": "",
-    "text": "Presentación\nBienvenidos a mi blog.\nEste espacio reúne ideas, aprendizajes y recursos sobre análisis de datos, investigación y herramientas digitales. Aquí compartiré contenidos prácticos, claros y útiles para seguir aprendiendo de forma sencilla y aplicada.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBienvenida\n\n\n\n\n\n\n\n\nAug 9, 2026\n\n\nJose Vicente\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nAug 9, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 6, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Bienvenidos 👋\nEste blog reúne tips super prácticos de R y Quarto que la gente debería aprender.\nAquí no encontrarás teoría interminable: solo trucos, atajos y flujos de trabajo que puedes aplicar hoy mismo en tus análisis, documentos, informes y dashboards.\nSi trabajas con datos (o quieres empezar), este es tu lugar. Cada entrada es corta, directa y con código que funciona.\n\n💡 ¿Qué vas a encontrar? Pipes con |&gt;, funciones de dplyr, gráficas bonitas con ggplot2, trucos de Quarto para publicar y mucho más.\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nBienvenidos al blog de R y Quarto\n\n\n\nbienvenida\n\n\n\n\n\n\n\n\n\nAug 9, 2026\n\n\nJosé Vicente Ordóñez\n\n\n\n\n\n\n\n\n\n\n\n\nEl pipe nativo |&gt;: el operador que ya trae R y no usas\n\n\n\nR\n\ntidyverse\n\nprincipiantes\n\n\n\nAprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.\n\n\n\n\n\nAug 8, 2026\n\n\nJosé Vicente Ordóñez\n\n\n\n\n\n\n\n\n\n\n\n\n5 funciones de dplyr que uso todos los días\n\n\n\nR\n\ndplyr\n\ntidyverse\n\n\n\npull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos.\n\n\n\n\n\nAug 7, 2026\n\n\nJosé Vicente Ordóñez\n\n\n\n\n\n\n\n\n\n\n\n\n10 trucos de Quarto que la gente no conoce (y debería)\n\n\n\nQuarto\n\ninformes\n\npublicacion\n\n\n\nDesde code folding hasta callouts y parámetros: diez trucos prácticos de Quarto que harán que tus documentos e informes se vean (y funcionen) mucho mejor.\n\n\n\n\n\nAug 6, 2026\n\n\nJosé Vicente Ordóñez\n\n\n\n\n\n\n\n\n\n\n\n\nTips de ggplot2 para gráficas que no parecen de R\n\n\n\nR\n\nggplot2\n\nvisualizacion\n\n\n\nCon tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan.\n\n\n\n\n\nAug 5, 2026\n\n\nJosé Vicente Ordóñez\n\n\n\n\n\n\n\n\n\n\n\n\nMi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día\n\n\n\nRStudio\n\nflujo-de-trabajo\n\nproductividad\n\n\n\nAtajos de teclado, snippets, proyectos y buenos hábitos para programar en R más rápido y con menos errores.\n\n\n\n\n\nAug 4, 2026\n\n\nJosé Vicente Ordóñez\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre mí",
     "section": "",
-    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+    "text": "Este blog nació con una idea muy sencilla: compartir lo que aprendo de R y Quarto de la forma más práctica posible.\nCreo profundamente en que se aprende haciendo, y que el mejor tip vale más que un libro entero de teoría. Por eso cada entrada de este blog es:\n\nCorta y directa: nada de rodeos.\nAplicable: código que puedes copiar y adaptar hoy.\nEn español: porque aprender en tu idioma es más fácil."
+  },
+  {
+    "objectID": "about.html#hola-soy-josé-vicente-ordóñez",
+    "href": "about.html#hola-soy-josé-vicente-ordóñez",
+    "title": "Sobre mí",
+    "section": "",
+    "text": "Este blog nació con una idea muy sencilla: compartir lo que aprendo de R y Quarto de la forma más práctica posible.\nCreo profundamente en que se aprende haciendo, y que el mejor tip vale más que un libro entero de teoría. Por eso cada entrada de este blog es:\n\nCorta y directa: nada de rodeos.\nAplicable: código que puedes copiar y adaptar hoy.\nEn español: porque aprender en tu idioma es más fácil."
+  },
+  {
+    "objectID": "about.html#de-qué-hablo-aquí",
+    "href": "about.html#de-qué-hablo-aquí",
+    "title": "Sobre mí",
+    "section": "¿De qué hablo aquí?",
+    "text": "¿De qué hablo aquí?\n\n\n\nTema\nEjemplo de lo que verás\n\n\n\n\nR / tidyverse\nPipes |&gt;, dplyr, ggplot2, datos\n\n\nQuarto\nDocumentos, informes, blogs y publicación\n\n\nFlujo de trabajo\nRStudio, atajos, organización de proyectos"
+  },
+  {
+    "objectID": "about.html#por-qué-r-y-quarto",
+    "href": "about.html#por-qué-r-y-quarto",
+    "title": "Sobre mí",
+    "section": "¿Por qué R y Quarto?",
+    "text": "¿Por qué R y Quarto?\nPorque juntos forman un ecosistema gratuito, potente y reproducible para cualquier persona que trabaje con datos: análisis, informes automáticos, presentaciones y hasta este mismo blog.\n¡Nos vemos en los posts! 🚀"
+  },
+  {
+    "objectID": "posts/bienvenida/index.html",
+    "href": "posts/bienvenida/index.html",
+    "title": "Bienvenidos al blog de R y Quarto",
+    "section": "",
+    "text": "¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto."
+  },
+  {
+    "objectID": "posts/bienvenida/index.html#la-idea",
+    "href": "posts/bienvenida/index.html#la-idea",
+    "title": "Bienvenidos al blog de R y Quarto",
+    "section": "La idea",
+    "text": "La idea\nAprendo R y Quarto casi todos los días, y me di cuenta de que los mejores consejos no son los que salen en los tutoriales teóricos, sino los pequeños trucos prácticos que usas una y otra vez en el trabajo real.\nEste blog nace para compartir exactamente eso: tips super prácticos que puedes aplicar hoy mismo."
+  },
+  {
+    "objectID": "posts/bienvenida/index.html#lo-que-vas-a-encontrar",
+    "href": "posts/bienvenida/index.html#lo-que-vas-a-encontrar",
+    "title": "Bienvenidos al blog de R y Quarto",
+    "section": "Lo que vas a encontrar",
+    "text": "Lo que vas a encontrar\n\n⚙️ R y tidyverse: pipes |&gt;, dplyr, ggplot2, manipulación de datos.\n📄 Quarto: documentos, informes, blogs, presentaciones y cómo publicar.\n🧰 Flujo de trabajo: RStudio, atajos, proyectos organizados y reproducibles."
+  },
+  {
+    "objectID": "posts/bienvenida/index.html#un-ejemplo-rápido",
+    "href": "posts/bienvenida/index.html#un-ejemplo-rápido",
+    "title": "Bienvenidos al blog de R y Quarto",
+    "section": "Un ejemplo rápido",
+    "text": "Un ejemplo rápido\n¿Sabías que con el pipe nativo |&gt; (¡que ya viene con R!) puedes encadenar todo un análisis en una sola línea legible?\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nset.seed(1)\ndatos &lt;- data.frame(\n  ciudad = sample(c(\"Madrid\", \"Bogotá\", \"Lima\"), 30, replace = TRUE),\n  ventas = round(rnorm(30, 100, 20))\n)\n\ndatos |&gt;\n  group_by(ciudad) |&gt;\n  summarise(total = sum(ventas)) |&gt;\n  arrange(desc(total))\n\n# A tibble: 3 × 2\n  ciudad total\n  &lt;chr&gt;  &lt;dbl&gt;\n1 Madrid  1313\n2 Bogotá   919\n3 Lima     760\n\n\nSin reasignar variables, sin líneas de por medio. En los próximos posts profundizaremos en esto y en mucho más.\n¡Nos vemos en el siguiente post! 🚀"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html",
+    "href": "posts/ggplot-practico/index.html",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "",
+    "text": "Una gráfica de ggplot2 no tiene por qué parecer de R. La diferencia entre un gráfico “de estudiante” y uno profesional está en 4 detalles: tema, colores, etiquetas y anotaciones. Aquí te muestro cómo."
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#empieza-con-un-buen-tema-theme_minimal-o-theme_light",
+    "href": "posts/ggplot-practico/index.html#empieza-con-un-buen-tema-theme_minimal-o-theme_light",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "1. Empieza con un buen tema (theme_minimal o theme_light)",
+    "text": "1. Empieza con un buen tema (theme_minimal o theme_light)\nEl tema por defecto de ggplot2 es feo. Con theme_minimal() o theme_light() y un base_size generoso, tu gráfica ya sube varios niveles.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nset.seed(7)\ndatos &lt;- data.frame(\n  categoria = rep(c(\"Norte\", \"Sur\", \"Este\", \"Oeste\"), each = 25),\n  valor = c(rnorm(25, 60, 10), rnorm(25, 45, 8), rnorm(25, 70, 12), rnorm(25, 50, 9))\n)\n\n\np &lt;- datos |&gt;\n  ggplot(aes(x = categoria, y = valor, fill = categoria)) +\n  geom_boxplot(alpha = 0.9) +\n  scale_fill_brewer(palette = \"Blues\") +\n  labs(title = \"Distribución de valores por categoría\",\n       subtitle = \"Un boxplot limpio con tema minimal\",\n       x = \"Categoría\", y = \"Valor\",\n       fill = \"Categoría\") +\n  theme_minimal(base_size = 14)\n\np"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#quita-el-ruido-del-tema",
+    "href": "posts/ggplot-practico/index.html#quita-el-ruido-del-tema",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "2. Quita el “ruido” del tema",
+    "text": "2. Quita el “ruido” del tema\nEl tema por defecto mete cuadrículas y ejes que distraen. Limpia con theme() los elementos que no aportan.\n\np +\n  theme(\n    panel.grid.minor = element_blank(),\n    panel.grid.major.x = element_blank(),\n    axis.line = element_line(color = \"grey60\"),\n    legend.position = \"top\"\n  )"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#elige-los-colores-con-intención",
+    "href": "posts/ggplot-practico/index.html#elige-los-colores-con-intención",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "3. Elige los colores con intención",
+    "text": "3. Elige los colores con intención\nscale_fill_brewer() te da paletas probadas y accesibles. Para datos categóricos usa paletas Set2, Dark2 o Blues; para secuenciales, Blues o Viridis.\n\ndatos |&gt;\n  group_by(categoria) |&gt;\n  summarise(media = mean(valor)) |&gt;\n  ggplot(aes(x = reorder(categoria, media), y = media, fill = categoria)) +\n  geom_col(width = 0.6) +\n  scale_fill_brewer(palette = \"Set2\") +\n  coord_flip() +\n  labs(title = \"Media por categoría\",\n       subtitle = \"Ordenado y con paleta profesional\",\n       x = NULL, y = \"Media\") +\n  theme_minimal(base_size = 14) +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#etiqueta-tus-ejes-y-usa-títulos-informativos",
+    "href": "posts/ggplot-practico/index.html#etiqueta-tus-ejes-y-usa-títulos-informativos",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "4. Etiqueta tus ejes y usa títulos informativos",
+    "text": "4. Etiqueta tus ejes y usa títulos informativos\nlabs() es tu aliado: un título, un subtítulo y un caption con la fuente hacen que la gráfica cuente una historia.\n\np +\n  labs(\n    title = \"¿Cómo se distribuyen los valores?\",\n    subtitle = \"Comparación de la variabilidad entre categorías\",\n    caption = \"Fuente: datos de ejemplo · Elaboración propia\"\n  )"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#guarda-con-el-tamaño-correcto-ggsave",
+    "href": "posts/ggplot-practico/index.html#guarda-con-el-tamaño-correcto-ggsave",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "5. Guarda con el tamaño correcto (ggsave)",
+    "text": "5. Guarda con el tamaño correcto (ggsave)\nNo exportes capturas de pantalla. Usa ggsave() con dimensiones en pulgadas y dpi = 300 para calidad de publicación.\n\nggsave(\"mi_grafico.png\", plot = p, width = 8, height = 5, dpi = 300)"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#anota-puntos-clave-annotate-o-geom_text",
+    "href": "posts/ggplot-practico/index.html#anota-puntos-clave-annotate-o-geom_text",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "6. Anota puntos clave (annotate o geom_text)",
+    "text": "6. Anota puntos clave (annotate o geom_text)\nResalta el dato importante para que el lector no tenga que adivinarlo. Con geom_text() marcas el valor máximo sin esfuerzo.\n\ndatos |&gt;\n  group_by(categoria) |&gt;\n  summarise(media = mean(valor)) |&gt;\n  ggplot(aes(x = categoria, y = media, fill = categoria)) +\n  geom_col(width = 0.6) +\n  geom_text(aes(label = round(media, 1)), vjust = -0.5, size = 5) +\n  scale_fill_brewer(palette = \"Dark2\") +\n  coord_cartesian(ylim = c(0, 80)) +\n  labs(title = \"Media por categoría\", x = NULL, y = \"Media\") +\n  theme_minimal(base_size = 14) +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/ggplot-practico/index.html#resumen",
+    "href": "posts/ggplot-practico/index.html#resumen",
+    "title": "Tips de ggplot2 para gráficas que no parecen de R",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\nTip\nCódigo clave\n\n\n\n\nBuen tema\ntheme_minimal(base_size = 14)\n\n\nMenos ruido\ntheme(panel.grid.minor = element_blank())\n\n\nColores\nscale_fill_brewer(palette = \"Set2\")\n\n\nEtiquetas\nlabs(title, subtitle, caption, x, y)\n\n\nExportar\nggsave(..., dpi = 300)\n\n\nAnotar\ngeom_text() o annotate()\n\n\n\nAplica estos 6 tips y tus gráficas (y tus informes) lucirán profesionales en menos de 5 minutos. 🚀"
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html",
+    "href": "posts/quarto-trucos/index.html",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "",
+    "text": "Quarto es una de las mejores herramientas para crear informes, blogs y presentaciones con R. Pero la mayoría de la gente sólo usa el 20% de su potencial. Aquí van 10 trucos super prácticos."
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#recuadros-con-callouts",
+    "href": "posts/quarto-trucos/index.html#recuadros-con-callouts",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "1. Recuadros con callouts (:::)",
+    "text": "1. Recuadros con callouts (:::)\nEn lugar de un simple texto en negrita, usa callouts para destacar ideas. Muy útiles en informes.\n\n\n\n\n\n\nTip\n\n\n\nTip: usa callout-tip para consejos, callout-note para notas y callout-warning para advertencias.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nImportante: los callouts se escriben con tres dos puntos :::."
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#plegar-el-código-con-code-fold",
+    "href": "posts/quarto-trucos/index.html#plegar-el-código-con-code-fold",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "2. Plegar el código con code-fold",
+    "text": "2. Plegar el código con code-fold\n¿Informe para gente que sólo quiere resultados? Plegar el código con code-fold hace que tus bloques de código aparezcan colapsados y el lector pueda abrirlos si quiere.\n\n\nCode\n1 + 1\n\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#ocultar-código-pero-mostrar-el-resultado-echo-false",
+    "href": "posts/quarto-trucos/index.html#ocultar-código-pero-mostrar-el-resultado-echo-false",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "3. Ocultar código pero mostrar el resultado (echo: false)",
+    "text": "3. Ocultar código pero mostrar el resultado (echo: false)\n¿Quieres mostrar el resultado sin el código? echo: false es tu amigo:\n\n\n[1] \"Este texto lo genera R: 2026-08-09\""
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#parámetros-para-informes-reutilizables-params",
+    "href": "posts/quarto-trucos/index.html#parámetros-para-informes-reutilizables-params",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "4. Parámetros para informes reutilizables (params)",
+    "text": "4. Parámetros para informes reutilizables (params)\nCrea un informe con parámetros y renderízalo con un botón “Render with parameters” en RStudio. Ideal para reportes que cambian de nombre, fecha o región.\n---\nparams:\n  empresa: \"Mi empresa\"\n  anio: 2026\n---\nY dentro del documento, úsalos así:\nparams$empresa\nparams$anio"
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#tabsets-para-comparar-.panel-tabset",
+    "href": "posts/quarto-trucos/index.html#tabsets-para-comparar-.panel-tabset",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "5. Tabsets para comparar (::: {.panel-tabset})",
+    "text": "5. Tabsets para comparar (::: {.panel-tabset})\n¿Varias regiones, varios paquetes, distintas versiones? Organiza el contenido en pestañas dentro del documento.\n\nOpción AOpción B\n\n\nSolución A: rápida pero menos flexible.\n\n\nSolución B: un poco más lenta pero mucho más flexible."
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#freeze-para-no-volver-a-ejecutar-todo",
+    "href": "posts/quarto-trucos/index.html#freeze-para-no-volver-a-ejecutar-todo",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "6. freeze para no volver a ejecutar todo",
+    "text": "6. freeze para no volver a ejecutar todo\nSi tienes un blog o informe con código que tarda mucho, utiliza freeze: true en el YAML de la carpeta (o #| freeze: true en un chunk). Quarto guarda los resultados y no re-ejecuta el código en la próxima renderización a menos que el código cambie. Renderizado más rápido, mejores tiempos de build."
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#problemas-desaparecen-con-message-false",
+    "href": "posts/quarto-trucos/index.html#problemas-desaparecen-con-message-false",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "7. Problemas desaparecen con #| message: false",
+    "text": "7. Problemas desaparecen con #| message: false\nLos mensajes de carga de paquetes (Attaching package: 'dplyr'...) ensucian los documentos. Siléncialos en cada chunk o de forma global.\n#| message: false\nlibrary(dplyr)"
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#tablas-bonitas-con-knitrkable",
+    "href": "posts/quarto-trucos/index.html#tablas-bonitas-con-knitrkable",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "8. Tablas bonitas con knitr::kable()",
+    "text": "8. Tablas bonitas con knitr::kable()\nNada de tablas a medio formatear. Con kable() y kableExtra() tienes tablas listas para informes en dos líneas.\n\nlibrary(knitr)\n\nkable(\n  data.frame(ciudad = c(\"Madrid\", \"Bogotá\"), ventas = c(500, 320)),\n  caption = \"Resultados por ciudad\"\n)\n\n\nResultados por ciudad\n\n\nciudad\nventas\n\n\n\n\nMadrid\n500\n\n\nBogotá\n320"
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#anotaciones-y-referencias-cruzadas",
+    "href": "posts/quarto-trucos/index.html#anotaciones-y-referencias-cruzadas",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "9. Anotaciones y referencias cruzadas",
+    "text": "9. Anotaciones y referencias cruzadas\nQuarto genera referencias cruzadas a figuras, tablas y secciones. Ponle #| label: fig-mi-grafico a un chunk con figura y luego escribe @fig-mi-grafico en el texto. La numeración se genera sola."
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#renvrenv-no-pero-sí-hidden-true",
+    "href": "posts/quarto-trucos/index.html#renvrenv-no-pero-sí-hidden-true",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "10. RENV/renv no, pero sí hidden: true",
+    "text": "10. RENV/renv no, pero sí hidden: true\nEste es el truco definitivo para posts y slides: añade hidden: true en el YAML de un archivo para que no aparezca en el índice del blog/sitio pero siga estando disponible con su URL directa.\n---\ntitle: \"Borrador\"\ndraft: true\n---\n\n\n\n\n\n\nNote\n\n\n\nEn blogs de Quarto, además existe draft: true: el post se renderiza pero no se publica en la lista. Útil para tus notas en curso."
+  },
+  {
+    "objectID": "posts/quarto-trucos/index.html#resumen",
+    "href": "posts/quarto-trucos/index.html#resumen",
+    "title": "10 trucos de Quarto que la gente no conoce (y debería)",
+    "section": "Resumen",
+    "text": "Resumen\n\nCallouts para destacar ideas.\ncode-fold, echo: false y message: false para controlar lo que ve el lector.\nparams para informes reutilizables.\ntabsets para comparar contenido.\nfreeze para renderizaciones rápidas.\nkable() para tablas con una pinta profesional.\n\nCon estos 10 trucos, tus documentos Quarto pasan de “ok” a impresionantes. 🚀"
   }
 ]

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="José Vicente Ordóñez">
+<meta name="dcterms.date" content="2026-08-08">
+<meta name="description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.">
 
-<title>Blog de aprendizaje – José Vicente Ordóñez</title>
+<title>El pipe nativo |&gt;: el operador que ya trae R y no usas – José Vicente Ordóñez</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,28 +26,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fc3e0e11034d52fcd2f9e0a5364c13c6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fc3e0e11034d52fcd2f9e0a5364c13c6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,74 +108,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="José Vicente Ordóñez" href="index.xml" data-external="1"><meta property="og:title" content="Blog de aprendizaje – José Vicente Ordóñez">
-<meta property="og:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
-<meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="El pipe nativo |>: el operador que ya trae R y no usas – José Vicente Ordóñez">
+<meta property="og:description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.">
+<meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/index_files/figure-html/pipe-ggplot-1.png">
 <meta property="og:site_name" content="José Vicente Ordóñez">
-<meta name="twitter:title" content="Blog de aprendizaje – José Vicente Ordóñez">
-<meta name="twitter:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
-<meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+<meta name="twitter:title" content="El pipe nativo |>: el operador que ya trae R y no usas – José Vicente Ordóñez">
+<meta name="twitter:description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.">
+<meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/index_files/figure-html/pipe-ggplot-1.png">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -150,7 +132,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">José Vicente Ordóñez</span>
     </a>
   </div>
@@ -161,7 +143,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Sobre mí</span></a>
   </li>  
   <li class="nav-item compact">
@@ -184,21 +166,43 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog de aprendizaje</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">El pipe nativo |&gt;: el operador que ya trae R y no usas</h1>
+                  <div>
+        <div class="description">
+          Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">tidyverse</div>
+                <div class="quarto-category">principiantes</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>José Vicente Ordóñez </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 8, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -206,260 +210,162 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bienvenidos" id="toc-bienvenidos" class="nav-link active" data-scroll-target="#bienvenidos">Bienvenidos 👋</a></li>
+  <li><a href="#qué-es-un-pipe" id="toc-qué-es-un-pipe" class="nav-link active" data-scroll-target="#qué-es-un-pipe">¿Qué es un pipe?</a></li>
+  <li><a href="#el-ejemplo-que-lo-cambia-todo" id="toc-el-ejemplo-que-lo-cambia-todo" class="nav-link" data-scroll-target="#el-ejemplo-que-lo-cambia-todo">El ejemplo que lo cambia todo</a></li>
+  <li><a href="#nativo-vs-de-magrittr" id="toc-nativo-vs-de-magrittr" class="nav-link" data-scroll-target="#nativo-vs-de-magrittr"><code>|&gt;</code> nativo vs <code>%&gt;%</code> de magrittr</a>
+  <ul class="collapse">
+  <li><a href="#y-si-necesito-pasar-a-otro-argumento" id="toc-y-si-necesito-pasar-a-otro-argumento" class="nav-link" data-scroll-target="#y-si-necesito-pasar-a-otro-argumento">¿Y si necesito pasar a otro argumento?</a></li>
+  </ul></li>
+  <li><a href="#tip-pro-método-_-globalmente" id="toc-tip-pro-método-_-globalmente" class="nav-link" data-scroll-target="#tip-pro-método-_-globalmente">Tip pro: método <code>_</code> globalmente</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YmllbnZlbmlkYQ==">bienvenida <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZHBseXI=">dplyr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Zmx1am8tZGUtdHJhYmFqbw==">flujo-de-trabajo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2dwbG90Mg==">ggplot2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW5mb3JtZXM=">informes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJpbmNpcGlhbnRlcw==">principiantes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvZHVjdGl2aWRhZA==">productividad <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHVibGljYWNpb24=">publicacion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UlN0dWRpbw==">RStudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGlkeXZlcnNl">tidyverse <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dmlzdWFsaXphY2lvbg==">visualizacion <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<section id="bienvenidos" class="level1">
-<h1>Bienvenidos 👋</h1>
-<p>Este blog reúne <strong>tips super prácticos de R y Quarto</strong> que la gente debería aprender.</p>
-<p>Aquí no encontrarás teoría interminable: solo trucos, atajos y flujos de trabajo que puedes aplicar <strong>hoy mismo</strong> en tus análisis, documentos, informes y dashboards.</p>
-<p>Si trabajas con datos (o quieres empezar), este es tu lugar. Cada entrada es corta, directa y con <strong>código que funciona</strong>.</p>
+<p>El pipe <code>|&gt;</code> es, junto con <code>%&gt;%</code>, la forma más elegante de escribir código en R. Desde <strong>R 4.1</strong> (2021) traes el pipe <strong>nativo</strong> incorporado: no necesitas instalar nada.</p>
+<section id="qué-es-un-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-un-pipe">¿Qué es un pipe?</h2>
+<p>Un pipe <strong>encadena</strong> el resultado de una expresión como primer argumento de la siguiente. En lugar de escribir código “de adentro hacia afuera”:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(x)), <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Escribes <strong>de izquierda a derecha</strong>, que es como razonamos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">abs</span>() <span class="sc">|&gt;</span> <span class="fu">sqrt</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="el-ejemplo-que-lo-cambia-todo" class="level2">
+<h2 class="anchored" data-anchor-id="el-ejemplo-que-lo-cambia-todo">El ejemplo que lo cambia todo</h2>
+<p>Imagina que quieres el promedio de ventas <strong>por ciudad</strong>, sólo de las ciudades con más de 5 pedidos, ordenado de mayor a menor. Sin pipe:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">arrange</span>(<span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(datos, pedidos <span class="sc">&gt;</span> <span class="dv">5</span>), ciudad), <span class="at">media =</span> <span class="fu">mean</span>(ventas))), <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Horroroso. Con <code>|&gt;</code> se lee solo:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>, <span class="st">"Lima"</span>, <span class="st">"CDMX"</span>), <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">120</span>)),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pedidos =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pedidos <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ventas)) <span class="sc">|&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  ciudad media
+  &lt;chr&gt;  &lt;dbl&gt;
+1 CDMX    542.
+2 Bogotá  508.
+3 Madrid  506.
+4 Lima    457.</code></pre>
+</div>
+</div>
+<p>Lee el código en voz alta: <em>“toma <code>datos</code>, filtra, agrupa, resume y ordena”</em>. Eso es exactamente lo que hace.</p>
+</section>
+<section id="nativo-vs-de-magrittr" class="level2">
+<h2 class="anchored" data-anchor-id="nativo-vs-de-magrittr"><code>|&gt;</code> nativo vs <code>%&gt;%</code> de magrittr</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th><code>|&gt;</code> (nativo)</th>
+<th><code>%&gt;%</code> (magrittr)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Requiere librería?</td>
+<td>No, viene en R</td>
+<td>Sí, <code>magrittr</code>/<code>dplyr</code></td>
+</tr>
+<tr class="even">
+<td>Pasar a un argumento distinto</td>
+<td>No directo</td>
+<td>Sí, con <code>.</code></td>
+</tr>
+<tr class="odd">
+<td>Velocidad</td>
+<td>Muy rápido</td>
+<td>Rápido</td>
+</tr>
+<tr class="even">
+<td>Mensajes de error</td>
+<td>Más claros</td>
+<td>A veces confusos</td>
+</tr>
+</tbody>
+</table>
+<section id="y-si-necesito-pasar-a-otro-argumento" class="level3">
+<h3 class="anchored" data-anchor-id="y-si-necesito-pasar-a-otro-argumento">¿Y si necesito pasar a otro argumento?</h3>
+<p>Con <code>|&gt;</code> puedes usar el <strong>placeholder <code>_</code></strong> (R 4.2+):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.by =</span> grupo)      <span class="co"># .by va al final</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">|&gt;</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> mtcars, _)         <span class="co"># ejemplo conceptual</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En la práctica, la mayoría del código encadena en el primer argumento, así que <code>|&gt;</code> cubre el 95% de los casos.</p>
+</section>
+</section>
+<section id="tip-pro-método-_-globalmente" class="level2">
+<h2 class="anchored" data-anchor-id="tip-pro-método-_-globalmente">Tip pro: método <code>_</code> globalmente</h2>
+<p>En cuanto dominas el pipe, <strong>nunca más quieres escribir sin él</strong>. Todos los paquetes del tidyverse (<code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>stringr</code>…) están diseñados para funcionar como eslabones de una cadena.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ventas)) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ciudad, media), <span class="at">y =</span> media)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#146C94"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ventas medias por ciudad"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Media"</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/pipe-ggplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <blockquote class="blockquote">
-<p>💡 <strong>¿Qué vas a encontrar?</strong> Pipes con <code>|&gt;</code>, funciones de <code>dplyr</code>, gráficas bonitas con <code>ggplot2</code>, trucos de Quarto para publicar y mucho más.</p>
+<p>💡 <strong>Regla sencilla</strong>: si tu operación es un paso más en el procesamiento de datos, llévala por el pipe. Lee tu código como una frase y todo encajará.</p>
 </blockquote>
-
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<ul>
+<li><code>|&gt;</code> viene <strong>incluido</strong> en R 4.1+. No instalas nada.</li>
+<li>Escribe <strong>horizontalmente</strong> (de izquierda a derecha), no anidado.</li>
+<li>Combínalo con <code>dplyr</code> y <code>ggplot2</code> para análisis limpios y legibles.</li>
+</ul>
+<p>Domina el pipe y tu código (y tu cabeza) te lo agradecerán. 🚀</p>
 
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="YmllbnZlbmlkYQ==" data-listing-date-sort="1786251600000" data-listing-file-modified-sort="1786327795175" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181">
-<div class="thumbnail"><a href="./posts/bienvenida/index.html" class="no-external">
-
-<img loading="lazy" src="./profile.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/bienvenida/index.html" class="no-external">Bienvenidos al blog de R y Quarto</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YmllbnZlbmlkYQ=='); return false;">bienvenida</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/bienvenida/index.html" class="no-external">
-¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/bienvenida/index.html" class="no-external">
-<div class="listing-date">
-Aug 9, 2026
-</div>
-<div class="listing-author">
-José Vicente Ordóñez
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UiUyQ3RpZHl2ZXJzZSUyQ3ByaW5jaXBpYW50ZXM=" data-listing-date-sort="1786165200000" data-listing-file-modified-sort="1786327797191" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="446">
-<div class="thumbnail"><a href="./posts/pipe-nativo/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts\pipe-nativo\index_files\figure-html\pipe-ggplot-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/pipe-nativo/index.html" class="no-external">El pipe nativo |&gt;: el operador que ya trae R y no usas</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXZlcnNl'); return false;">tidyverse</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHJpbmNpcGlhbnRlcw=='); return false;">principiantes</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/pipe-nativo/index.html" class="no-external">
-<p>Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/pipe-nativo/index.html" class="no-external">
-<div class="listing-date">
-Aug 8, 2026
-</div>
-<div class="listing-author">
-José Vicente Ordóñez
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UiUyQ2RwbHlyJTJDdGlkeXZlcnNl" data-listing-date-sort="1786078800000" data-listing-file-modified-sort="1786327851161" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="538">
-<div class="thumbnail"><a href="./posts/dplyr-dia-a-dia/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/dplyr-dia-a-dia/index.html" class="no-external">5 funciones de dplyr que uso todos los días</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZHBseXI='); return false;">dplyr</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXZlcnNl'); return false;">tidyverse</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/dplyr-dia-a-dia/index.html" class="no-external">
-<p>pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/dplyr-dia-a-dia/index.html" class="no-external">
-<div class="listing-date">
-Aug 7, 2026
-</div>
-<div class="listing-author">
-José Vicente Ordóñez
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UXVhcnRvJTJDaW5mb3JtZXMlMkNwdWJsaWNhY2lvbg==" data-listing-date-sort="1785992400000" data-listing-file-modified-sort="1786327853154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="476">
-<div class="thumbnail"><a href="./posts/quarto-trucos/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/quarto-trucos/index.html" class="no-external">10 trucos de Quarto que la gente no conoce (y debería)</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aW5mb3JtZXM='); return false;">informes</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHVibGljYWNpb24='); return false;">publicacion</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/quarto-trucos/index.html" class="no-external">
-<p>Desde code folding hasta callouts y parámetros: diez trucos prácticos de Quarto que harán que tus documentos e informes se vean (y funcionen) mucho mejor.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/quarto-trucos/index.html" class="no-external">
-<div class="listing-date">
-Aug 6, 2026
-</div>
-<div class="listing-author">
-José Vicente Ordóñez
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UiUyQ2dncGxvdDIlMkN2aXN1YWxpemFjaW9u" data-listing-date-sort="1785906000000" data-listing-file-modified-sort="1786328023810" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="577">
-<div class="thumbnail"><a href="./posts/ggplot-practico/index.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts\ggplot-practico\index_files\figure-html\tema-plot-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/ggplot-practico/index.html" class="no-external">Tips de ggplot2 para gráficas que no parecen de R</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphY2lvbg=='); return false;">visualizacion</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/ggplot-practico/index.html" class="no-external">
-<p>Con tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/ggplot-practico/index.html" class="no-external">
-<div class="listing-date">
-Aug 5, 2026
-</div>
-<div class="listing-author">
-José Vicente Ordóñez
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="UlN0dWRpbyUyQ2ZsdWpvLWRlLXRyYWJham8lMkNwcm9kdWN0aXZpZGFk" data-listing-date-sort="1785819600000" data-listing-file-modified-sort="1786327929135" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="503">
-<div class="thumbnail"><a href="./posts/rstudio-flujo/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/rstudio-flujo/index.html" class="no-external">Mi flujo de trabajo en RStudio: atajos y trucos que aceleran tu día</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbw=='); return false;">RStudio</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Zmx1am8tZGUtdHJhYmFqbw=='); return false;">flujo-de-trabajo</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHJvZHVjdGl2aWRhZA=='); return false;">productividad</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/rstudio-flujo/index.html" class="no-external">
-<p>Atajos de teclado, snippets, proyectos y buenos hábitos para programar en R más rápido y con menos errores.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/rstudio-flujo/index.html" class="no-external">
-<div class="listing-date">
-Aug 4, 2026
-</div>
-<div class="listing-author">
-José Vicente Ordóñez
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

@@ -1,0 +1,15 @@
+{
+  "hash": "f68289880952f1eeaf435c1484dae043",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Bienvenidos al blog de R y Quarto\"\nauthor: \"José Vicente Ordóñez\"\ndate: \"2026-08-09\"\ncategories: [bienvenida]\nimage: ../../profile.jpg\ndraft: false\n---\n\n¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.\n\n## La idea\n\nAprendo **R y Quarto** casi todos los días, y me di cuenta de que los mejores\nconsejos no son los que salen en los tutoriales teóricos, sino **los pequeños trucos\nprácticos** que usas una y otra vez en el trabajo real.\n\nEste blog nace para compartir exactamente eso: **tips super prácticos** que puedes\naplicar *hoy mismo*.\n\n## Lo que vas a encontrar\n\n- ⚙️ **R y tidyverse**: pipes `|>`, `dplyr`, `ggplot2`, manipulación de datos.\n- 📄 **Quarto**: documentos, informes, blogs, presentaciones y cómo publicar.\n- 🧰 **Flujo de trabajo**: RStudio, atajos, proyectos organizados y reproducibles.\n\n## Un ejemplo rápido\n\n¿Sabías que con el **pipe nativo** `|>` (¡que ya viene con R!) puedes encadenar todo\nun análisis en una sola línea legible?\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\n\nAttaching package: 'dplyr'\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n\n\n:::\n\n```{.r .cell-code}\nset.seed(1)\ndatos <- data.frame(\n  ciudad = sample(c(\"Madrid\", \"Bogotá\", \"Lima\"), 30, replace = TRUE),\n  ventas = round(rnorm(30, 100, 20))\n)\n\ndatos |>\n  group_by(ciudad) |>\n  summarise(total = sum(ventas)) |>\n  arrange(desc(total))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 3 × 2\n  ciudad total\n  <chr>  <dbl>\n1 Madrid  1313\n2 Bogotá   919\n3 Lima     760\n```\n\n\n:::\n:::\n\n\nSin reasignar variables, sin líneas de por medio. En los próximos posts\nprofundizaremos en esto y en mucho más.\n\n¡Nos vemos en el siguiente post! 🚀\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

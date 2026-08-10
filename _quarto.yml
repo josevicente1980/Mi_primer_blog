@@ -3,8 +3,8 @@ project:
   output-dir: docs
 
 website:
-  description: "blog de aprendizaje junto a Jose Vicente Ordonez"
-  site-url: https://your-website-url.example.com # you must change this appropriately for RSS feeds to work properly
+  description: "Blog con tips super prácticos de R y Quarto para aprender cada día"
+  site-url: https://josevicente1980.github.io/Mi_primer_blog/
   title: "José Vicente Ordóñez"
   navbar:
     right:
@@ -13,6 +13,11 @@ website:
         href: https://github.com/
       - icon: bluesky
         href: https://bsky.app/
+  page-footer:
+    center: "Hecho con ❤️ en R y Quarto"
+  open-graph: true
+  twitter-card: true
+
 format:
   html:
     theme:
@@ -20,6 +25,9 @@ format:
       - brand
       - tema.scss
     css: styles.css
+    code-copy: true
+    toc: true
+    toc-location: right
 
 editor: visual
 

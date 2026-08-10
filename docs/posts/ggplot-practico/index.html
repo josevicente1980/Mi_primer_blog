@@ -7,9 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="José Vicente Ordóñez">
-<meta name="dcterms.date" content="2026-08-09">
+<meta name="dcterms.date" content="2026-08-05">
+<meta name="description" content="Con tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan.">
 
-<title>Bienvenidos al blog de R y Quarto – José Vicente Ordóñez</title>
+<title>Tips de ggplot2 para gráficas que no parecen de R – José Vicente Ordóñez</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,13 +111,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Bienvenidos al blog de R y Quarto – José Vicente Ordóñez">
-<meta property="og:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
-<meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg">
+<meta property="og:title" content="Tips de ggplot2 para gráficas que no parecen de R – José Vicente Ordóñez">
+<meta property="og:description" content="Con tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan.">
+<meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/tema-plot-1.png">
 <meta property="og:site_name" content="José Vicente Ordóñez">
-<meta name="twitter:title" content="Bienvenidos al blog de R y Quarto – José Vicente Ordóñez">
-<meta name="twitter:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
-<meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+<meta name="twitter:title" content="Tips de ggplot2 para gráficas que no parecen de R – José Vicente Ordóñez">
+<meta name="twitter:description" content="Con tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan.">
+<meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/ggplot-practico/index_files/figure-html/tema-plot-1.png">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -162,9 +167,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Bienvenidos al blog de R y Quarto</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">bienvenida</div>
+      <h1 class="title">Tips de ggplot2 para gráficas que no parecen de R</h1>
+                  <div>
+        <div class="description">
+          Con tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">ggplot2</div>
+                <div class="quarto-category">visualizacion</div>
               </div>
                   </div>
   </div>
@@ -182,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 9, 2026</p>
+        <p class="date">August 5, 2026</p>
       </div>
     </div>
     
@@ -198,9 +210,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#la-idea" id="toc-la-idea" class="nav-link active" data-scroll-target="#la-idea">La idea</a></li>
-  <li><a href="#lo-que-vas-a-encontrar" id="toc-lo-que-vas-a-encontrar" class="nav-link" data-scroll-target="#lo-que-vas-a-encontrar">Lo que vas a encontrar</a></li>
-  <li><a href="#un-ejemplo-rápido" id="toc-un-ejemplo-rápido" class="nav-link" data-scroll-target="#un-ejemplo-rápido">Un ejemplo rápido</a></li>
+  <li><a href="#empieza-con-un-buen-tema-theme_minimal-o-theme_light" id="toc-empieza-con-un-buen-tema-theme_minimal-o-theme_light" class="nav-link active" data-scroll-target="#empieza-con-un-buen-tema-theme_minimal-o-theme_light">1. Empieza con un buen tema (<code>theme_minimal</code> o <code>theme_light</code>)</a></li>
+  <li><a href="#quita-el-ruido-del-tema" id="toc-quita-el-ruido-del-tema" class="nav-link" data-scroll-target="#quita-el-ruido-del-tema">2. Quita el “ruido” del tema</a></li>
+  <li><a href="#elige-los-colores-con-intención" id="toc-elige-los-colores-con-intención" class="nav-link" data-scroll-target="#elige-los-colores-con-intención">3. Elige los colores con intención</a></li>
+  <li><a href="#etiqueta-tus-ejes-y-usa-títulos-informativos" id="toc-etiqueta-tus-ejes-y-usa-títulos-informativos" class="nav-link" data-scroll-target="#etiqueta-tus-ejes-y-usa-títulos-informativos">4. Etiqueta tus ejes y usa títulos informativos</a></li>
+  <li><a href="#guarda-con-el-tamaño-correcto-ggsave" id="toc-guarda-con-el-tamaño-correcto-ggsave" class="nav-link" data-scroll-target="#guarda-con-el-tamaño-correcto-ggsave">5. Guarda con el tamaño correcto (<code>ggsave</code>)</a></li>
+  <li><a href="#anota-puntos-clave-annotate-o-geom_text" id="toc-anota-puntos-clave-annotate-o-geom_text" class="nav-link" data-scroll-target="#anota-puntos-clave-annotate-o-geom_text">6. Anota puntos clave (<code>annotate</code> o <code>geom_text</code>)</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
 </nav>
     </div>
@@ -211,25 +227,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.</p>
-<section id="la-idea" class="level2">
-<h2 class="anchored" data-anchor-id="la-idea">La idea</h2>
-<p>Aprendo <strong>R y Quarto</strong> casi todos los días, y me di cuenta de que los mejores consejos no son los que salen en los tutoriales teóricos, sino <strong>los pequeños trucos prácticos</strong> que usas una y otra vez en el trabajo real.</p>
-<p>Este blog nace para compartir exactamente eso: <strong>tips super prácticos</strong> que puedes aplicar <em>hoy mismo</em>.</p>
-</section>
-<section id="lo-que-vas-a-encontrar" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-vas-a-encontrar">Lo que vas a encontrar</h2>
-<ul>
-<li>⚙️ <strong>R y tidyverse</strong>: pipes <code>|&gt;</code>, <code>dplyr</code>, <code>ggplot2</code>, manipulación de datos.</li>
-<li>📄 <strong>Quarto</strong>: documentos, informes, blogs, presentaciones y cómo publicar.</li>
-<li>🧰 <strong>Flujo de trabajo</strong>: RStudio, atajos, proyectos organizados y reproducibles.</li>
-</ul>
-</section>
-<section id="un-ejemplo-rápido" class="level2">
-<h2 class="anchored" data-anchor-id="un-ejemplo-rápido">Un ejemplo rápido</h2>
-<p>¿Sabías que con el <strong>pipe nativo</strong> <code>|&gt;</code> (¡que ya viene con R!) puedes encadenar todo un análisis en una sola línea legible?</p>
+<p>Una gráfica de ggplot2 <strong>no tiene por qué parecer de R</strong>. La diferencia entre un gráfico “de estudiante” y uno profesional está en 4 detalles: tema, colores, etiquetas y anotaciones. Aquí te muestro cómo.</p>
+<section id="empieza-con-un-buen-tema-theme_minimal-o-theme_light" class="level2">
+<h2 class="anchored" data-anchor-id="empieza-con-un-buen-tema-theme_minimal-o-theme_light">1. Empieza con un buen tema (<code>theme_minimal</code> o <code>theme_light</code>)</h2>
+<p>El tema por defecto de ggplot2 es feo. Con <code>theme_minimal()</code> o <code>theme_light()</code> y un <code>base_size</code> generoso, tu gráfica ya sube varios niveles.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -244,27 +248,165 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>, <span class="st">"Lima"</span>), <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">20</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(ventas)) <span class="sc">|&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  ciudad total
-  &lt;chr&gt;  &lt;dbl&gt;
-1 Madrid  1313
-2 Bogotá   919
-3 Lima     760</code></pre>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">categoria =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Norte"</span>, <span class="st">"Sur"</span>, <span class="st">"Este"</span>, <span class="st">"Oeste"</span>), <span class="at">each =</span> <span class="dv">25</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="dv">60</span>, <span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="dv">45</span>, <span class="dv">8</span>), <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="dv">70</span>, <span class="dv">12</span>), <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">9</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> valor, <span class="at">fill =</span> categoria)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de valores por categoría"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Un boxplot limpio con tema minimal"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Categoría"</span>, <span class="at">y =</span> <span class="st">"Valor"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Categoría"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/tema-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>Sin reasignar variables, sin líneas de por medio. En los próximos posts profundizaremos en esto y en mucho más.</p>
-<p>¡Nos vemos en el siguiente post! 🚀</p>
+</div>
+</section>
+<section id="quita-el-ruido-del-tema" class="level2">
+<h2 class="anchored" data-anchor-id="quita-el-ruido-del-tema">2. Quita el “ruido” del tema</h2>
+<p>El tema por defecto mete <strong>cuadrículas</strong> y <strong>ejes</strong> que distraen. Limpia con <code>theme()</code> los elementos que no aportan.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/limpio-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="elige-los-colores-con-intención" class="level2">
+<h2 class="anchored" data-anchor-id="elige-los-colores-con-intención">3. Elige los colores con intención</h2>
+<p><code>scale_fill_brewer()</code> te da paletas probadas y accesibles. Para datos categóricos usa paletas <code>Set2</code>, <code>Dark2</code> o <code>Blues</code>; para secuenciales, <code>Blues</code> o <code>Viridis</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categoria) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(valor)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(categoria, media), <span class="at">y =</span> media, <span class="at">fill =</span> categoria)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Media por categoría"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Ordenado y con paleta profesional"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Media"</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/colores-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="etiqueta-tus-ejes-y-usa-títulos-informativos" class="level2">
+<h2 class="anchored" data-anchor-id="etiqueta-tus-ejes-y-usa-títulos-informativos">4. Etiqueta tus ejes y usa títulos informativos</h2>
+<p><code>labs()</code> es tu aliado: un <strong>título</strong>, un <strong>subtítulo</strong> y un <strong>caption</strong> con la fuente hacen que la gráfica cuente una historia.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"¿Cómo se distribuyen los valores?"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparación de la variabilidad entre categorías"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fuente: datos de ejemplo · Elaboración propia"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/labs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="guarda-con-el-tamaño-correcto-ggsave" class="level2">
+<h2 class="anchored" data-anchor-id="guarda-con-el-tamaño-correcto-ggsave">5. Guarda con el tamaño correcto (<code>ggsave</code>)</h2>
+<p>No exportes capturas de pantalla. Usa <code>ggsave()</code> con <strong>dimensiones en pulgadas</strong> y <code>dpi = 300</code> para calidad de publicación.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"mi_grafico.png"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="anota-puntos-clave-annotate-o-geom_text" class="level2">
+<h2 class="anchored" data-anchor-id="anota-puntos-clave-annotate-o-geom_text">6. Anota puntos clave (<code>annotate</code> o <code>geom_text</code>)</h2>
+<p>Resalta el dato importante para que el lector no tenga que adivinarlo. Con <code>geom_text()</code> marcas el valor máximo sin esfuerzo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categoria) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(valor)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> media, <span class="at">fill =</span> categoria)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(media, <span class="dv">1</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">80</span>)) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Media por categoría"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Media"</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/anota-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tip</th>
+<th>Código clave</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Buen tema</td>
+<td><code>theme_minimal(base_size = 14)</code></td>
+</tr>
+<tr class="even">
+<td>Menos ruido</td>
+<td><code>theme(panel.grid.minor = element_blank())</code></td>
+</tr>
+<tr class="odd">
+<td>Colores</td>
+<td><code>scale_fill_brewer(palette = "Set2")</code></td>
+</tr>
+<tr class="even">
+<td>Etiquetas</td>
+<td><code>labs(title, subtitle, caption, x, y)</code></td>
+</tr>
+<tr class="odd">
+<td>Exportar</td>
+<td><code>ggsave(..., dpi = 300)</code></td>
+</tr>
+<tr class="even">
+<td>Anotar</td>
+<td><code>geom_text()</code> o <code>annotate()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Aplica estos 6 tips y tus gráficas (y tus informes) lucirán <strong>profesionales</strong> en menos de 5 minutos. 🚀</p>
 
 
 </section>

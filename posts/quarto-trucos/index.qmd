@@ -1,0 +1,144 @@
+---
+title: "10 trucos de Quarto que la gente no conoce (y debería)"
+author: "José Vicente Ordóñez"
+date: "2026-08-06"
+categories: [Quarto, informes, publicacion]
+description: "Desde code folding hasta callouts y parámetros: diez trucos prácticos de Quarto que harán que tus documentos e informes se vean (y funcionen) mucho mejor."
+---
+
+Quarto es una de las mejores herramientas para crear informes, blogs y
+presentaciones con R. Pero la mayoría de la gente sólo usa el 20% de su potencial.
+Aquí van **10 trucos super prácticos**.
+
+## 1. Recuadros con callouts (`:::`)
+
+En lugar de un simple texto en negrita, usa callouts para **destacar ideas**.
+Muy útiles en informes.
+
+::: {.callout-tip}
+**Tip**: usa `callout-tip` para consejos, `callout-note` para notas
+y `callout-warning` para advertencias.
+:::
+
+::: {.callout-important}
+**Importante**: los callouts se escriben con tres dos puntos `:::`.
+:::
+
+## 2. Plegar el código con `code-fold`
+
+¿Informe para gente que sólo quiere resultados? Plegar el código con `code-fold` hace
+que tus bloques de código aparezcan **colapsados** y el lector pueda abrirlos si quiere.
+
+```{r}
+#| code-fold: true
+1 + 1
+```
+
+## 3. Ocultar código pero mostrar el resultado (`echo: false`)
+
+¿Quieres mostrar el resultado sin el código? `echo: false` es tu amigo:
+
+```{r}
+#| echo: false
+paste("Este texto lo genera R:", Sys.Date())
+```
+
+## 4. Parámetros para informes reutilizables (`params`)
+
+Crea un informe **con parámetros** y renderízalo con un botón "Render with parameters"
+en RStudio. Ideal para reportes que cambian de nombre, fecha o región.
+
+```yaml
+---
+params:
+  empresa: "Mi empresa"
+  anio: 2026
+---
+```
+
+Y dentro del documento, úsalos así:
+
+```r
+params$empresa
+params$anio
+```
+
+## 5. Tabsets para comparar (`::: {.panel-tabset}`)
+
+¿Varias regiones, varios paquetes, distintas versiones? Organiza el contenido
+en **pestañas** dentro del documento.
+
+::: {.panel-tabset}
+### Opción A
+Solución A: rápida pero menos flexible.
+
+### Opción B
+Solución B: un poco más lenta pero mucho más flexible.
+:::
+
+## 6. `freeze` para no volver a ejecutar todo
+
+Si tienes un blog o informe con código que tarda mucho, utiliza
+`freeze: true` en el YAML de la carpeta (o `#| freeze: true` en un chunk).
+Quarto **guarda los resultados** y no re-ejecuta el código en la próxima renderización
+**a menos que el código cambie**. Renderizado más rápido, mejores tiempos de build.
+
+## 7. Problemas desaparecen con `#| message: false`
+
+Los mensajes de carga de paquetes (`Attaching package: 'dplyr'...`) ensucian
+los documentos. Siléncialos en cada chunk o de forma global.
+
+```r
+#| message: false
+library(dplyr)
+```
+
+## 8. Tablas bonitas con `knitr::kable()`
+
+Nada de tablas a medio formatear. Con `kable()` y `kableExtra()` tienes tablas
+listas para informes en **dos líneas**.
+
+```{r}
+#| message: false
+library(knitr)
+
+kable(
+  data.frame(ciudad = c("Madrid", "Bogotá"), ventas = c(500, 320)),
+  caption = "Resultados por ciudad"
+)
+```
+
+## 9. Anotaciones y referencias cruzadas
+
+Quarto genera **referencias cruzadas** a figuras, tablas y secciones. Ponle
+`#| label: fig-mi-grafico` a un chunk con figura y luego escribe
+`@fig-mi-grafico` en el texto. La numeración se genera sola.
+
+## 10. `RENV`/`renv` no, pero *sí* `hidden: true`
+
+Este es el truco definitivo para posts y slides: añade `hidden: true` en el YAML
+de un archivo para que **no aparezca en el índice del blog/sitio** pero siga
+estando disponible con su URL directa.
+
+```yaml
+---
+title: "Borrador"
+draft: true
+---
+```
+
+::: {.callout-note}
+En blogs de Quarto, además existe `draft: true`: el post se renderiza pero no se
+publica en la lista. Útil para tus notas en curso.
+:::
+
+## Resumen
+
+- **Callouts** para destacar ideas.
+- **code-fold**, **echo: false** y **message: false** para controlar lo que ve el lector.
+- **params** para informes reutilizables.
+- **tabsets** para comparar contenido.
+- **freeze** para renderizaciones rápidas.
+- **kable()** para tablas con una pinta profesional.
+
+Con estos 10 trucos, tus documentos Quarto pasan de "ok" a **impresionantes**. 🚀

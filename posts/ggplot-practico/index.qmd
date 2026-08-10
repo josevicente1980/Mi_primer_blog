@@ -1,0 +1,139 @@
+---
+title: "Tips de ggplot2 para gráficas que no parecen de R"
+author: "José Vicente Ordóñez"
+date: "2026-08-05"
+categories: [R, ggplot2, visualizacion]
+description: "Con tema, paleta y etiquetas bien elegidos, una gráfica de ggplot2 puede verse profesional. Estos tips prácticos te lo garantizan."
+---
+
+Una gráfica de ggplot2 **no tiene por qué parecer de R**. La diferencia entre un
+gráfico "de estudiante" y uno profesional está en 4 detalles: tema, colores,
+etiquetas y anotaciones. Aquí te muestro cómo.
+
+## 1. Empieza con un buen tema (`theme_minimal` o `theme_light`)
+
+El tema por defecto de ggplot2 es feo. Con `theme_minimal()` o `theme_light()`
+y un `base_size` generoso, tu gráfica ya sube varios niveles.
+
+```{r}
+#| label: tema
+library(ggplot2)
+library(dplyr)
+
+set.seed(7)
+datos <- data.frame(
+  categoria = rep(c("Norte", "Sur", "Este", "Oeste"), each = 25),
+  valor = c(rnorm(25, 60, 10), rnorm(25, 45, 8), rnorm(25, 70, 12), rnorm(25, 50, 9))
+)
+```
+
+```{r}
+#| label: tema-plot
+p <- datos |>
+  ggplot(aes(x = categoria, y = valor, fill = categoria)) +
+  geom_boxplot(alpha = 0.9) +
+  scale_fill_brewer(palette = "Blues") +
+  labs(title = "Distribución de valores por categoría",
+       subtitle = "Un boxplot limpio con tema minimal",
+       x = "Categoría", y = "Valor",
+       fill = "Categoría") +
+  theme_minimal(base_size = 14)
+
+p
+```
+
+## 2. Quita el "ruido" del tema
+
+El tema por defecto mete **cuadrículas** y **ejes** que distraen. Limpia con
+`theme()` los elementos que no aportan.
+
+```{r}
+#| label: limpio
+p +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(color = "grey60"),
+    legend.position = "top"
+  )
+```
+
+## 3. Elige los colores con intención
+
+`scale_fill_brewer()` te da paletas probadas y accesibles. Para datos categóricos
+usa paletas `Set2`, `Dark2` o `Blues`; para secuenciales, `Blues` o `Viridis`.
+
+```{r}
+#| label: colores
+datos |>
+  group_by(categoria) |>
+  summarise(media = mean(valor)) |>
+  ggplot(aes(x = reorder(categoria, media), y = media, fill = categoria)) +
+  geom_col(width = 0.6) +
+  scale_fill_brewer(palette = "Set2") +
+  coord_flip() +
+  labs(title = "Media por categoría",
+       subtitle = "Ordenado y con paleta profesional",
+       x = NULL, y = "Media") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
+```
+
+## 4. Etiqueta tus ejes y usa títulos informativos
+
+`labs()` es tu aliado: un **título**, un **subtítulo** y un **caption** con la fuente
+hacen que la gráfica cuente una historia.
+
+```{r}
+#| label: labs
+p +
+  labs(
+    title = "¿Cómo se distribuyen los valores?",
+    subtitle = "Comparación de la variabilidad entre categorías",
+    caption = "Fuente: datos de ejemplo · Elaboración propia"
+  )
+```
+
+## 5. Guarda con el tamaño correcto (`ggsave`)
+
+No exportes capturas de pantalla. Usa `ggsave()` con **dimensiones en pulgadas** y
+`dpi = 300` para calidad de publicación.
+
+```{r}
+#| eval: false
+ggsave("mi_grafico.png", plot = p, width = 8, height = 5, dpi = 300)
+```
+
+## 6. Anota puntos clave (`annotate` o `geom_text`)
+
+Resalta el dato importante para que el lector no tenga que adivinarlo. Con
+`geom_text()` marcas el valor máximo sin esfuerzo.
+
+```{r}
+#| label: anota
+datos |>
+  group_by(categoria) |>
+  summarise(media = mean(valor)) |>
+  ggplot(aes(x = categoria, y = media, fill = categoria)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = round(media, 1)), vjust = -0.5, size = 5) +
+  scale_fill_brewer(palette = "Dark2") +
+  coord_cartesian(ylim = c(0, 80)) +
+  labs(title = "Media por categoría", x = NULL, y = "Media") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
+```
+
+## Resumen
+
+| Tip | Código clave |
+|-----|--------------|
+| Buen tema | `theme_minimal(base_size = 14)` |
+| Menos ruido | `theme(panel.grid.minor = element_blank())` |
+| Colores | `scale_fill_brewer(palette = "Set2")` |
+| Etiquetas | `labs(title, subtitle, caption, x, y)` |
+| Exportar | `ggsave(..., dpi = 300)` |
+| Anotar | `geom_text()` o `annotate()` |
+
+Aplica estos 6 tips y tus gráficas (y tus informes) lucirán **profesionales** en
+menos de 5 minutos. 🚀

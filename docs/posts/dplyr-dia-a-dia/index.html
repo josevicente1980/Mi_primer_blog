@@ -7,9 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="José Vicente Ordóñez">
-<meta name="dcterms.date" content="2026-08-09">
+<meta name="dcterms.date" content="2026-08-07">
+<meta name="description" content="pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos.">
 
-<title>Bienvenidos al blog de R y Quarto – José Vicente Ordóñez</title>
+<title>5 funciones de dplyr que uso todos los días – José Vicente Ordóñez</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,14 +111,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Bienvenidos al blog de R y Quarto – José Vicente Ordóñez">
-<meta property="og:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
-<meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg">
+<meta property="og:title" content="5 funciones de dplyr que uso todos los días – José Vicente Ordóñez">
+<meta property="og:description" content="pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos.">
 <meta property="og:site_name" content="José Vicente Ordóñez">
-<meta name="twitter:title" content="Bienvenidos al blog de R y Quarto – José Vicente Ordóñez">
-<meta name="twitter:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
-<meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="5 funciones de dplyr que uso todos los días – José Vicente Ordóñez">
+<meta name="twitter:description" content="pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -162,9 +161,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Bienvenidos al blog de R y Quarto</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">bienvenida</div>
+      <h1 class="title">5 funciones de dplyr que uso todos los días</h1>
+                  <div>
+        <div class="description">
+          pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">dplyr</div>
+                <div class="quarto-category">tidyverse</div>
               </div>
                   </div>
   </div>
@@ -182,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 9, 2026</p>
+        <p class="date">August 7, 2026</p>
       </div>
     </div>
     
@@ -198,9 +204,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#la-idea" id="toc-la-idea" class="nav-link active" data-scroll-target="#la-idea">La idea</a></li>
-  <li><a href="#lo-que-vas-a-encontrar" id="toc-lo-que-vas-a-encontrar" class="nav-link" data-scroll-target="#lo-que-vas-a-encontrar">Lo que vas a encontrar</a></li>
-  <li><a href="#un-ejemplo-rápido" id="toc-un-ejemplo-rápido" class="nav-link" data-scroll-target="#un-ejemplo-rápido">Un ejemplo rápido</a></li>
+  <li><a href="#los-datos-de-ejemplo" id="toc-los-datos-de-ejemplo" class="nav-link active" data-scroll-target="#los-datos-de-ejemplo">0. Los datos de ejemplo</a></li>
+  <li><a href="#pull-sacar-una-columna-como-vector" id="toc-pull-sacar-una-columna-como-vector" class="nav-link" data-scroll-target="#pull-sacar-una-columna-como-vector">1. <code>pull()</code> — sacar una columna como vector</a></li>
+  <li><a href="#slice_max-el-top-n-de-un-grupo" id="toc-slice_max-el-top-n-de-un-grupo" class="nav-link" data-scroll-target="#slice_max-el-top-n-de-un-grupo">2. <code>slice_max()</code> — el top-N de un grupo</a></li>
+  <li><a href="#across-aplicar-algo-a-varias-columnas" id="toc-across-aplicar-algo-a-varias-columnas" class="nav-link" data-scroll-target="#across-aplicar-algo-a-varias-columnas">3. <code>across()</code> — aplicar algo a varias columnas</a></li>
+  <li><a href="#relocate-reordenar-columnas" id="toc-relocate-reordenar-columnas" class="nav-link" data-scroll-target="#relocate-reordenar-columnas">4. <code>relocate()</code> — reordenar columnas</a></li>
+  <li><a href="#case_when-condiciones-en-cascada" id="toc-case_when-condiciones-en-cascada" class="nav-link" data-scroll-target="#case_when-condiciones-en-cascada">5. <code>case_when()</code> — condiciones en cascada</a></li>
+  <li><a href="#bono-reframe-para-devolver-varias-filas-por-grupo" id="toc-bono-reframe-para-devolver-varias-filas-por-grupo" class="nav-link" data-scroll-target="#bono-reframe-para-devolver-varias-filas-por-grupo">Bono: <code>reframe()</code> para devolver varias filas por grupo</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
 </nav>
     </div>
@@ -211,23 +222,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.</p>
-<section id="la-idea" class="level2">
-<h2 class="anchored" data-anchor-id="la-idea">La idea</h2>
-<p>Aprendo <strong>R y Quarto</strong> casi todos los días, y me di cuenta de que los mejores consejos no son los que salen en los tutoriales teóricos, sino <strong>los pequeños trucos prácticos</strong> que usas una y otra vez en el trabajo real.</p>
-<p>Este blog nace para compartir exactamente eso: <strong>tips super prácticos</strong> que puedes aplicar <em>hoy mismo</em>.</p>
-</section>
-<section id="lo-que-vas-a-encontrar" class="level2">
-<h2 class="anchored" data-anchor-id="lo-que-vas-a-encontrar">Lo que vas a encontrar</h2>
-<ul>
-<li>⚙️ <strong>R y tidyverse</strong>: pipes <code>|&gt;</code>, <code>dplyr</code>, <code>ggplot2</code>, manipulación de datos.</li>
-<li>📄 <strong>Quarto</strong>: documentos, informes, blogs, presentaciones y cómo publicar.</li>
-<li>🧰 <strong>Flujo de trabajo</strong>: RStudio, atajos, proyectos organizados y reproducibles.</li>
-</ul>
-</section>
-<section id="un-ejemplo-rápido" class="level2">
-<h2 class="anchored" data-anchor-id="un-ejemplo-rápido">Un ejemplo rápido</h2>
-<p>¿Sabías que con el <strong>pipe nativo</strong> <code>|&gt;</code> (¡que ya viene con R!) puedes encadenar todo un análisis en una sola línea legible?</p>
+<p><code>dplyr</code> es el paquete que más uso en R, y estas son <strong>5 funciones que me resuelven la vida todos los días</strong>. Si las dominas, tu análisis de datos va a otro nivel.</p>
+<section id="los-datos-de-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="los-datos-de-ejemplo">0. Los datos de ejemplo</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -244,27 +241,210 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>, <span class="st">"Lima"</span>), <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">20</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(ventas)) <span class="sc">|&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id     =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>, <span class="st">"Lima"</span>, <span class="st">"CDMX"</span>), <span class="dv">12</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="dv">500</span>, <span class="dv">120</span>)),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">coste  =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="dv">300</span>, <span class="dv">60</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  ciudad total
-  &lt;chr&gt;  &lt;dbl&gt;
-1 Madrid  1313
-2 Bogotá   919
-3 Lima     760</code></pre>
+<pre><code>  id ciudad ventas coste
+1  1 Madrid    412   252
+2  2 Madrid    378   341
+3  3 Madrid    514   280
+4  4 Bogotá    443   290
+5  5 Madrid    451   216
+6  6   Lima    412   388</code></pre>
 </div>
 </div>
-<p>Sin reasignar variables, sin líneas de por medio. En los próximos posts profundizaremos en esto y en mucho más.</p>
-<p>¡Nos vemos en el siguiente post! 🚀</p>
+</section>
+<section id="pull-sacar-una-columna-como-vector" class="level2">
+<h2 class="anchored" data-anchor-id="pull-sacar-una-columna-como-vector">1. <code>pull()</code> — sacar una columna como vector</h2>
+<p>¿Necesitas una columna suelta para un gráfico, un <code>if</code>, o pasarla a otra función? <code>pull()</code> extrae la columna como <strong>vector</strong> sin recurrir al <code>$</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(ventas) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>()   <span class="co"># vector directo: puedo aplicar cualquier función de base</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 662</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip</strong>: <code>pull()</code> es ideal cuando el resultado tiene una sola columna, p.&nbsp;ej. tras un <code>summarise()</code> y quieres ese valor en condicionales.</p>
+</blockquote>
+</section>
+<section id="slice_max-el-top-n-de-un-grupo" class="level2">
+<h2 class="anchored" data-anchor-id="slice_max-el-top-n-de-un-grupo">2. <code>slice_max()</code> — el top-N de un grupo</h2>
+<p>Top de ventas, últimos clientes, mejores resultados… <code>slice_max()</code> devuelve las filas con los valores más altos (y <code>slice_min()</code> los más bajos).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(ventas, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id ciudad ventas coste
+1 10   CDMX    662   303
+2 11 Madrid    574   339
+3 12   Lima    526   404</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El top 1 de CADA ciudad usando el argumento by:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(ventas, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">by =</span> ciudad)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id ciudad ventas coste
+1 11 Madrid    574   339
+2  4 Bogotá    443   290
+3 12   Lima    526   404
+4 10   CDMX    662   303</code></pre>
+</div>
+</div>
+</section>
+<section id="across-aplicar-algo-a-varias-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="across-aplicar-algo-a-varias-columnas">3. <code>across()</code> — aplicar algo a varias columnas</h2>
+<p>¿Media de todas las columnas numéricas? ¿Redondear 3 columnas? <code>across()</code> dentro de <code>summarise()</code> o <code>mutate()</code> aplica una función a varias columnas a la vez.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(ventas, coste), mean)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    ventas    coste
+1 459.3333 327.8333</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con .names podemos controlar el nombre de las nuevas columnas:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(ventas, coste), mean, <span class="at">.names =</span> <span class="st">"media_{.col}"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  media_ventas media_coste
+1     459.3333    327.8333</code></pre>
+</div>
+</div>
+</section>
+<section id="relocate-reordenar-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="relocate-reordenar-columnas">4. <code>relocate()</code> — reordenar columnas</h2>
+<p>El orden de las columnas importa más de lo que crees (sobre todo al exportar o mostrar tablas). <code>relocate()</code> mueve columnas sin más líneas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(ciudad, <span class="at">.before =</span> id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ciudad id ventas coste
+1  Madrid  1    412   252
+2  Madrid  2    378   341
+3  Madrid  3    514   280
+4  Bogotá  4    443   290
+5  Madrid  5    451   216
+6    Lima  6    412   388
+7    Lima  7    473   303
+8    CDMX  8    473   414
+9    CDMX  9    194   404
+10   CDMX 10    662   303
+11 Madrid 11    574   339
+12   Lima 12    526   404</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(coste, <span class="at">.after =</span> ventas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id ciudad ventas coste
+1   1 Madrid    412   252
+2   2 Madrid    378   341
+3   3 Madrid    514   280
+4   4 Bogotá    443   290
+5   5 Madrid    451   216
+6   6   Lima    412   388
+7   7   Lima    473   303
+8   8   CDMX    473   414
+9   9   CDMX    194   404
+10 10   CDMX    662   303
+11 11 Madrid    574   339
+12 12   Lima    526   404</code></pre>
+</div>
+</div>
+</section>
+<section id="case_when-condiciones-en-cascada" class="level2">
+<h2 class="anchored" data-anchor-id="case_when-condiciones-en-cascada">5. <code>case_when()</code> — condiciones en cascada</h2>
+<p>El <code>ifelse()</code> anidado es feo y frágil. <code>case_when()</code> evalúa condiciones <strong>en orden</strong> y devuelve el primer resultado que cumple.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desempeno =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    ventas <span class="sc">&gt;=</span> <span class="dv">600</span>            <span class="sc">~</span> <span class="st">"Excelente"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    ventas <span class="sc">&gt;=</span> <span class="dv">450</span>            <span class="sc">~</span> <span class="st">"Bueno"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    ventas <span class="sc">&gt;=</span> <span class="dv">300</span>            <span class="sc">~</span> <span class="st">"Regular"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                     <span class="sc">~</span> <span class="st">"Crítico"</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, ventas, desempeno)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id ventas desempeno
+1   1    412   Regular
+2   2    378   Regular
+3   3    514     Bueno
+4   4    443   Regular
+5   5    451     Bueno
+6   6    412   Regular
+7   7    473     Bueno
+8   8    473     Bueno
+9   9    194   Crítico
+10 10    662 Excelente
+11 11    574     Bueno
+12 12    526     Bueno</code></pre>
+</div>
+</div>
+</section>
+<section id="bono-reframe-para-devolver-varias-filas-por-grupo" class="level2">
+<h2 class="anchored" data-anchor-id="bono-reframe-para-devolver-varias-filas-por-grupo">Bono: <code>reframe()</code> para devolver varias filas por grupo</h2>
+<p>A diferencia de <code>summarise()</code>, <code>reframe()</code> permite devolver <strong>más de una fila</strong> por grupo (perfecto para rangos, cuantiles o top-N).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reframe</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cuantil =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">valor   =</span> <span class="fu">quantile</span>(ventas, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cuantil valor
+1    0.25   412
+2    0.75   517</code></pre>
+</div>
+</div>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Función</th>
+<th>¿Para qué?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pull()</code></td>
+<td>Extraer una columna como vector</td>
+</tr>
+<tr class="even">
+<td><code>slice_max()</code> / <code>slice_min()</code></td>
+<td>Top-N (global o por grupo)</td>
+</tr>
+<tr class="odd">
+<td><code>across()</code></td>
+<td>Aplicar funciones a muchas columnas</td>
+</tr>
+<tr class="even">
+<td><code>relocate()</code></td>
+<td>Reordenar columnas fácil</td>
+</tr>
+<tr class="odd">
+<td><code>case_when()</code></td>
+<td>Condiciones múltiples y limpias</td>
+</tr>
+<tr class="even">
+<td><code>reframe()</code></td>
+<td>Varias filas de resultado por grupo</td>
+</tr>
+</tbody>
+</table>
+<p>Memoriza estas funciones y tendrás el 80% del análisis de datos diario resuelto. 🚀</p>
 
 
 </section>
