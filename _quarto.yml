@@ -12,12 +12,11 @@ website:
       - about.qmd
       - icon: github
         href: https://github.com/josevicente1980
-      - icon: bluesky
-        href: https://bsky.app/
+      - icon: linkedin
+        href: https://www.linkedin.com/in/jos%C3%A9-ord%C3%B3%C3%B1ez-b895a12a/
   page-footer:
     center: "Hecho con R y Quarto desde Loja, Ecuador 🇪🇨"
   open-graph: true
-  twitter-card: true
 
 format:
   html:

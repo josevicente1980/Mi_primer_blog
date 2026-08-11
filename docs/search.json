@@ -186,28 +186,35 @@
     "href": "about.html",
     "title": "Sobre mí",
     "section": "",
-    "text": "Vivo en Loja, Ecuador, y desde aquí trabajo con datos, enseño y escribo. Este blog nació con una idea muy sencilla: compartir lo que aprendo de R y Quarto de la forma más práctica posible.\nCreo profundamente en que se aprende haciendo, y que un buen ejemplo vale más que un capítulo entero de teoría. Por eso cada entrada de este blog:\n\nEs corta y directa: sin rodeos.\nSe puede reproducir: el código está pensado para copiarse, ejecutarse y adaptarse a tu propio trabajo.\nUsa ejemplos cercanos: cuando un ejemplo necesita datos, los genero como datos simulados de Loja, Quito, Cuenca, Guayaquil y otras ciudades del país, para que el aprendizaje no se sienta lejano.\nEstá en español: porque aprender en tu propio idioma es más fácil."
+    "text": "Soy Economista y Profesor Titular de la Universidad Nacional de Loja, donde actualmente dirijo la Maestría en Economía y Dirección de Empresas. Vivo en Loja, Ecuador, y desde la región sur del país combino la docencia, la investigación y la gestión académica con un interés creciente por la ciencia de datos y la investigación reproducible.\nMi formación no se ha quedado sólo en la economía: también he trabajado en planificación territorial y desarrollo regional. Soy Máster en Gestión Sustentable de la Tierra y el Territorio por la Universidad de Santiago de Compostela —donde además curso actualmente el doctorado en Gestión Sustentable de la Tierra y el Territorio— y Máster Universitario en Comunicación y Marketing Político. Esa trayectoria me ha llevado a transitar por la gestión pública, la docencia universitaria y la dirección académica."
   },
   {
-    "objectID": "about.html#hola-soy-josé-vicente-ordóñez",
-    "href": "about.html#hola-soy-josé-vicente-ordóñez",
+    "objectID": "about.html#hola-soy-josé-vicente-ordóñez-yaguache",
+    "href": "about.html#hola-soy-josé-vicente-ordóñez-yaguache",
     "title": "Sobre mí",
     "section": "",
-    "text": "Vivo en Loja, Ecuador, y desde aquí trabajo con datos, enseño y escribo. Este blog nació con una idea muy sencilla: compartir lo que aprendo de R y Quarto de la forma más práctica posible.\nCreo profundamente en que se aprende haciendo, y que un buen ejemplo vale más que un capítulo entero de teoría. Por eso cada entrada de este blog:\n\nEs corta y directa: sin rodeos.\nSe puede reproducir: el código está pensado para copiarse, ejecutarse y adaptarse a tu propio trabajo.\nUsa ejemplos cercanos: cuando un ejemplo necesita datos, los genero como datos simulados de Loja, Quito, Cuenca, Guayaquil y otras ciudades del país, para que el aprendizaje no se sienta lejano.\nEstá en español: porque aprender en tu propio idioma es más fácil."
+    "text": "Soy Economista y Profesor Titular de la Universidad Nacional de Loja, donde actualmente dirijo la Maestría en Economía y Dirección de Empresas. Vivo en Loja, Ecuador, y desde la región sur del país combino la docencia, la investigación y la gestión académica con un interés creciente por la ciencia de datos y la investigación reproducible.\nMi formación no se ha quedado sólo en la economía: también he trabajado en planificación territorial y desarrollo regional. Soy Máster en Gestión Sustentable de la Tierra y el Territorio por la Universidad de Santiago de Compostela —donde además curso actualmente el doctorado en Gestión Sustentable de la Tierra y el Territorio— y Máster Universitario en Comunicación y Marketing Político. Esa trayectoria me ha llevado a transitar por la gestión pública, la docencia universitaria y la dirección académica."
+  },
+  {
+    "objectID": "about.html#de-dónde-nace-este-blog",
+    "href": "about.html#de-dónde-nace-este-blog",
+    "title": "Sobre mí",
+    "section": "De dónde nace este blog",
+    "text": "De dónde nace este blog\nEn el día a día de mis clases y de mis proyectos de investigación uso R, Quarto, Python y otras herramientas digitales para analizar datos, elaborar informes y practicar una ciencia más abierta y reproducible. Con frecuencia, colegas, estudiantes y tesistas me preguntan: “¿cómo hiciste este análisis?” o “¿cómo puedo replicar ese gráfico?”.\nEste blog nace exactamente de ahí: de la convicción de que se aprende haciendo y del deseo de compartir, con ejemplos prácticos y reproducibles, lo que he ido aprendiendo en el camino."
   },
   {
     "objectID": "about.html#de-qué-hablo-aquí",
     "href": "about.html#de-qué-hablo-aquí",
     "title": "Sobre mí",
     "section": "¿De qué hablo aquí?",
-    "text": "¿De qué hablo aquí?\n\n\n\nTema\nLo que verás\n\n\n\n\nR y tidyverse\nPipes |&gt;, dplyr, ggplot2 y manejo de datos\n\n\nQuarto\nDocumentos, informes, blogs y publicación\n\n\nFlujo de trabajo\nRStudio, atajos y proyectos ordenados"
+    "text": "¿De qué hablo aquí?\n\n\n\n\n\n\n\nTema\nLo que verás\n\n\n\n\nR y tidyverse\nPipes |&gt;, dplyr, ggplot2 y manejo de datos\n\n\nQuarto\nDocumentos, informes, blogs y publicación\n\n\nInvestigación reproducible\nFlujos de trabajo ordenados y ciencia abierta\n\n\nFlujo de trabajo\nRStudio, Python y buenas prácticas"
   },
   {
     "objectID": "about.html#por-qué-r-y-quarto",
     "href": "about.html#por-qué-r-y-quarto",
     "title": "Sobre mí",
     "section": "¿Por qué R y Quarto?",
-    "text": "¿Por qué R y Quarto?\nPorque juntos forman un ecosistema gratuito, potente y reproducible para cualquier persona que trabaje con datos: análisis, informes automáticos, presentaciones y hasta este mismo blog.\n¡Nos vemos en los posts! 🚀"
+    "text": "¿Por qué R y Quarto?\nPorque juntos forman un ecosistema gratuito, potente y reproducible para cualquier persona que trabaje con datos: análisis, informes automáticos, presentaciones y hasta este mismo blog.\nEste espacio está pensado especialmente para quienes empiezan o quieren mejorar en Loja, en el sur del Ecuador y en cualquier lugar donde se trabaje con datos. ¡Nos vemos en los posts! 🚀"
   },
   {
     "objectID": "posts/bienvenida/index.html",

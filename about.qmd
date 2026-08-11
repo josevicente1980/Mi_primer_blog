@@ -7,31 +7,39 @@ about:
     - icon: github
       text: GitHub
       href: https://github.com/josevicente1980
-    - icon: bluesky
-      text: Bluesky
-      href: https://bsky.app/
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/jos%C3%A9-ord%C3%B3%C3%B1ez-b895a12a/
 
 ---
 
-## Hola, soy José Vicente Ordóñez 👋
+## Hola, soy José Vicente Ordóñez Yaguache 👋
 
-Vivo en **Loja, Ecuador**, y desde aquí trabajo con datos, enseño y escribo. Este
-blog nació con una idea muy sencilla: **compartir lo que aprendo de R y Quarto**
-de la forma más práctica posible.
+Soy **Economista** y **Profesor Titular** de la **Universidad Nacional de Loja**,
+donde actualmente dirijo la **Maestría en Economía y Dirección de Empresas**. Vivo
+en **Loja, Ecuador**, y desde la región sur del país combino la docencia, la
+investigación y la gestión académica con un interés creciente por la ciencia de
+datos y la investigación reproducible.
 
-Creo profundamente en que **se aprende haciendo**, y que un buen ejemplo vale más
-que un capítulo entero de teoría. Por eso cada entrada de este blog:
+Mi formación no se ha quedado sólo en la economía: también he trabajado en
+**planificación territorial** y **desarrollo regional**. Soy **Máster en Gestión
+Sustentable de la Tierra y el Territorio** por la Universidad de Santiago de
+Compostela —donde además curso actualmente el **doctorado en Gestión Sustentable
+de la Tierra y el Territorio**— y **Máster Universitario en Comunicación y
+Marketing Político**. Esa trayectoria me ha llevado a transitar por la **gestión
+pública**, la docencia universitaria y la **dirección académica**.
 
-- **Es corta y directa**: sin rodeos.
-- **Se puede reproducir**: el código está pensado para copiarse, ejecutarse y
-  adaptarse a tu propio trabajo.
-- **Usa ejemplos cercanos**: cuando un ejemplo necesita datos, los genero como
-  datos simulados de Loja, Quito, Cuenca, Guayaquil y otras ciudades del país,
-  para que el aprendizaje no se sienta lejano.
-- **Está en español**: porque aprender en tu propio idioma es más fácil.
+## De dónde nace este blog
+
+En el día a día de mis clases y de mis proyectos de investigación uso **R**,
+**Quarto**, **Python** y otras herramientas digitales para analizar datos,
+elaborar informes y practicar una ciencia más **abierta y reproducible**. Con
+frecuencia, colegas, estudiantes y tesistas me preguntan: *"¿cómo hiciste este
+análisis?"* o *"¿cómo puedo replicar ese gráfico?"*.
+
+Este blog nace exactamente de ahí: de la convicción de que **se aprende haciendo**
+y del deseo de compartir, con ejemplos prácticos y reproducibles, lo que he ido
+aprendiendo en el camino.
 
 ## ¿De qué hablo aquí?
 
@@ -39,7 +47,8 @@ que un capítulo entero de teoría. Por eso cada entrada de este blog:
 |------|--------------|
 | **R y tidyverse** | Pipes `|>`, `dplyr`, `ggplot2` y manejo de datos |
 | **Quarto** | Documentos, informes, blogs y publicación |
-| **Flujo de trabajo** | RStudio, atajos y proyectos ordenados |
+| **Investigación reproducible** | Flujos de trabajo ordenados y ciencia abierta |
+| **Flujo de trabajo** | RStudio, Python y buenas prácticas |
 
 ## ¿Por qué R y Quarto?
 
@@ -47,5 +56,7 @@ Porque juntos forman un ecosistema **gratuito, potente y reproducible** para
 cualquier persona que trabaje con datos: análisis, informes automáticos,
 presentaciones y hasta este mismo blog.
 
+Este espacio está pensado especialmente para quienes empiezan o quieren mejorar en
+**Loja, en el sur del Ecuador** y en cualquier lugar donde se trabaje con datos.
 ¡Nos vemos en los posts! 🚀
 
