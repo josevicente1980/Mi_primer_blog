@@ -6,8 +6,10 @@ categories: [RStudio, flujo-de-trabajo, productividad]
 description: "Atajos de teclado, snippets, proyectos y buenos hábitos para programar en R más rápido y con menos errores."
 ---
 
-Tu **editor** es donde pasas la mitad de tu día. Aprender RStudio a fondo es tan
-importante como aprender el propio R. Estos son los trucos que más me aceleran.
+Tu **editor** es donde pasas la mitad de tu día, sobre todo si además de analizar
+datos, das clases y preparas materiales. Aprender RStudio a fondo es tan importante
+como aprender el propio R. Estos son los trucos que más me aceleran en el día a día,
+y que recomiendo a quienes empiezan en mi curso de análisis de datos.
 
 ## 1. Los atajos que debes memorizar (Windows)
 

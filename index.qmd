@@ -1,5 +1,5 @@
 ---
-title: "Blog de aprendizaje"
+title: "Blog de R, Quarto y análisis de datos"
 listing:
   contents: posts
   feed: true
@@ -14,10 +14,24 @@ title-block-banner: true
 
 # Bienvenidos 👋
 
-Este blog reúne **tips super prácticos de R y Quarto** que la gente debería aprender.
+Soy **José Vicente Ordóñez** y desde **Loja, Ecuador** escribo este blog de **R,
+Quarto y análisis de datos**, pensado para estudiantes, docentes y profesionales
+que aprenden haciendo.
 
-Aquí no encontrarás teoría interminable: solo trucos, atajos y flujos de trabajo que puedes aplicar **hoy mismo** en tus análisis, documentos, informes y dashboards.
+Aquí no encontrarás teoría interminable: encontrarás trucos, atajos y flujos de
+trabajo que aplico en mis análisis, informes y clases, siempre con ejemplos
+cercanos a nuestra realidad: el comercio de Loja, la agricultura de Zamora
+Chinchipe, el turismo de Cuenca o los emprendimientos de Quito y Guayaquil.
 
-Si trabajas con datos (o quieres empezar), este es tu lugar. Cada entrada es corta, directa y con **código que funciona**.
+::: {.callout-tip}
+**¿Qué vas a encontrar?** El pipe nativo `|>`, las funciones de `dplyr` que uso a
+diario, gráficas limpias con `ggplot2`, trucos de Quarto para publicar y buenas
+prácticas para organizar tu trabajo con RStudio.
+:::
 
-> 💡 **¿Qué vas a encontrar?** Pipes con `|>`, funciones de `dplyr`, gráficas bonitas con `ggplot2`, trucos de Quarto para publicar y mucho más.
+Cada entrada es corta, directa y viene con **código reproducible**: los datos de
+los ejemplos son ficticios y se generan en el propio código, para que puedas
+copiarlos, ejecutarlos y adaptarlos a tus propios proyectos sin depender de
+archivos externos.
+
+Navega por las entradas de abajo o usa el buscador. ¡Nos vemos en los posts! 🚀

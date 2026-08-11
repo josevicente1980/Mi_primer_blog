@@ -3,18 +3,19 @@ project:
   output-dir: docs
 
 website:
-  description: "Blog con tips super prácticos de R y Quarto para aprender cada día"
-  site-url: https://josevicente1980.github.io/Mi_primer_blog/
   title: "José Vicente Ordóñez"
+  description: "Blog de R, Quarto y análisis de datos con ejemplos prácticos, reproducibles y en español, escritos desde Loja, Ecuador."
+  site-url: https://josevicente1980.github.io/Mi_primer_blog/
+  image: profile.png
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/josevicente1980
       - icon: bluesky
         href: https://bsky.app/
   page-footer:
-    center: "Hecho con ❤️ en R y Quarto"
+    center: "Hecho con R y Quarto desde Loja, Ecuador 🇪🇨"
   open-graph: true
   twitter-card: true
 

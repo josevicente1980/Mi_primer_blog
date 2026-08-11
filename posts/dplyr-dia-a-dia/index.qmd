@@ -3,7 +3,7 @@ title: "5 funciones de dplyr que uso todos los días"
 author: "José Vicente Ordóñez"
 date: "2026-08-07"
 categories: [R, dplyr, tidyverse]
-description: "pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos."
+description: "pull(), slice_max(), across(), relocate() y case_when(): cinco funciones de dplyr que te resuelven la vida en el análisis de datos, con un ejemplo de negocios de Loja, Quito, Cuenca y Guayaquil."
 ---
 
 `dplyr` es el paquete que más uso en R, y estas son **5 funciones que me resuelven la
@@ -11,25 +11,36 @@ vida todos los días**. Si las dominas, tu análisis de datos va a otro nivel.
 
 ## 0. Los datos de ejemplo
 
+Para que no tengas que buscar datos, trabajaremos con un registro **simulado** de
+doce negocios de las principales ciudades del país: Loja, Quito, Cuenca y
+Guayaquil. Las ventas y los costos están en dólares y se generaron al azar con
+`set.seed(2026)`, así que los números no corresponden a ninguna empresa real.
+
 ```{r}
 #| label: datos
+#| message: false
 library(dplyr)
+library(knitr)
 
 set.seed(2026)
 df <- data.frame(
   id     = 1:12,
-  ciudad = sample(c("Madrid", "Bogotá", "Lima", "CDMX"), 12, replace = TRUE),
-  ventas = round(rnorm(12, 500, 120)),
-  coste  = round(rnorm(12, 300, 60))
+  ciudad = sample(c("Loja", "Quito", "Cuenca", "Guayaquil"), 12, replace = TRUE),
+  ventas = round(rnorm(12, 5000, 1200)),  # ventas mensuales en USD
+  coste  = round(rnorm(12, 3000, 600))    # costos operativos en USD
 )
 
-head(df)
+df |>
+  head() |>
+  kable(caption = "Primeras filas del registro simulado de negocios.")
 ```
+
+*Fuente: elaboración propia con datos simulados.* Ahora sí, veamos las funciones.
 
 ## 1. `pull()` — sacar una columna como vector
 
 ¿Necesitas una columna suelta para un gráfico, un `if`, o pasarla a otra función?
-`pull()` extrae la columna como **vector** sin recurrir al `$`.
+`pull()` extrae la columna como **vector** sin recurrir al `$`:
 
 ```{r}
 #| label: pull
@@ -38,28 +49,36 @@ df |>
   max()   # vector directo: puedo aplicar cualquier función de base
 ```
 
+Con este dato podemos responder preguntas sencillas, por ejemplo: *"¿cuál fue la
+venta máxima registrada en la muestra?"* — justamente el valor que devuelve.
+
 > 💡 **Tip**: `pull()` es ideal cuando el resultado tiene una sola columna,
-> p. ej. tras un `summarise()` y quieres ese valor en condicionales.
+> p. ej. tras un `summarise()`, y quieres ese valor en condicionales o en otra
+> función.
 
 ## 2. `slice_max()` — el top-N de un grupo
 
-Top de ventas, últimos clientes, mejores resultados... `slice_max()` devuelve las
-filas con los valores más altos (y `slice_min()` los más bajos).
+Top de ventas, mejores resultados, mayores movimientos... `slice_max()` devuelve las
+filas con los valores más altos (y `slice_min()` los más bajos):
 
 ```{r}
 #| label: slice
 df |>
   slice_max(ventas, n = 3)
 
-# El top 1 de CADA ciudad usando el argumento by:
+# El negocio con mayores ventas de CADA ciudad (argumento by):
 df |>
   slice_max(ventas, n = 1, by = ciudad)
 ```
 
+El primer resultado te da el **ranking nacional**; el segundo, el **ranking local**:
+cuál fue el negocio más fuerte en Loja, cuál en Quito, etc. Son preguntas muy
+comunes en informes de ventas por territorio.
+
 ## 3. `across()` — aplicar algo a varias columnas
 
-¿Media de todas las columnas numéricas? ¿Redondear 3 columnas? `across()`
-dentro de `summarise()` o `mutate()` aplica una función a varias columnas a la vez.
+¿Media de todas las columnas numéricas? ¿Redondear cinco columnas? `across()` dentro
+de `summarise()` o `mutate()` aplica una función a varias columnas a la vez:
 
 ```{r}
 #| label: across
@@ -68,17 +87,20 @@ df |>
     across(c(ventas, coste), mean)
   )
 
-# Con .names podemos controlar el nombre de las nuevas columnas:
+# Con .names controlamos el nombre de las nuevas columnas:
 df |>
   summarise(
     across(c(ventas, coste), mean, .names = "media_{.col}")
   )
 ```
 
+Si no usaras `across()`, tendrías que escribir dos `summarise()` separados o un
+`mutate()` por cada columna. Con diez columnas, el ahorro de líneas es evidente.
+
 ## 4. `relocate()` — reordenar columnas
 
 El orden de las columnas importa más de lo que crees (sobre todo al exportar o
-mostrar tablas). `relocate()` mueve columnas sin más líneas.
+mostrar tablas). `relocate()` mueve columnas sin más líneas:
 
 ```{r}
 #| label: relocate
@@ -89,27 +111,47 @@ df |>
   relocate(coste, .after = ventas)
 ```
 
+Pregúntate siempre: *¿qué columnas quiere ver primero quien reciba esta tabla?*
+Con `relocate()` ordenas el resultado en segundos, sin `select()` de por medio.
+
 ## 5. `case_when()` — condiciones en cascada
 
 El `ifelse()` anidado es feo y frágil. `case_when()` evalúa condiciones **en orden**
-y devuelve el primer resultado que cumple.
+y devuelve el primer resultado que cumple:
 
 ```{r}
 #| label: case_when
 df |>
   mutate(desempeno = case_when(
-    ventas >= 600            ~ "Excelente",
-    ventas >= 450            ~ "Bueno",
-    ventas >= 300            ~ "Regular",
-    TRUE                     ~ "Crítico"
+    ventas >= 6000 ~ "Excelente",
+    ventas >= 4500 ~ "Bueno",
+    ventas >= 3500 ~ "Regular",
+    TRUE           ~ "Crítico"
   )) |>
-  select(id, ventas, desempeno)
+  select(id, ciudad, ventas, desempeno)
+```
+
+Interpretación: el código clasifica cada negocio según su nivel de ventas, de
+*Excelente* a *Crítico*. Con esta columna podrías, por ejemplo, contar cuántos
+negocios de cada ciudad necesitan atención:
+
+```{r}
+#| label: case_when_resumen
+df |>
+  mutate(desempeno = case_when(
+    ventas >= 6000 ~ "Excelente",
+    ventas >= 4500 ~ "Bueno",
+    ventas >= 3500 ~ "Regular",
+    TRUE           ~ "Crítico"
+  )) |>
+  count(ciudad, desempeno) |>
+  kable(caption = "Número de negocios simulados por ciudad y desempeño.")
 ```
 
 ## Bono: `reframe()` para devolver varias filas por grupo
 
 A diferencia de `summarise()`, `reframe()` permite devolver **más de una fila** por
-grupo (perfecto para rangos, cuantiles o top-N).
+grupo (perfecto para rangos, cuantiles o top-N):
 
 ```{r}
 #| label: reframe
@@ -119,6 +161,10 @@ df |>
     valor   = quantile(ventas, c(0.25, 0.75))
   )
 ```
+
+En este caso obtenemos, para el total de la muestra, los **cuartiles 25 y 75** de
+las ventas: una manera rápida de describir cómo se reparte el dinero entre los
+negocios simulados.
 
 ## Resumen
 
@@ -131,4 +177,6 @@ df |>
 | `case_when()` | Condiciones múltiples y limpias |
 | `reframe()` | Varias filas de resultado por grupo |
 
-Memoriza estas funciones y tendrás el 80% del análisis de datos diario resuelto. 🚀
+Memoriza estas funciones y tendrás el 80 % del análisis de datos diario resuelto.
+Los datos de este post son simulados, pero el procedimiento es exactamente el mismo
+que usarías con un registro real de tu trabajo o tus clases. 🚀

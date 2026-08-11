@@ -7,36 +7,43 @@ image: ../../profile.png
 draft: false
 ---
 
-¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.
+¡Hola! 👋 Este es el primer post del blog y quiero contarte de qué va todo esto y,
+de paso, dejarte un primer ejemplo trabajando con datos de nuestro país.
 
 ## La idea
 
 Aprendo **R y Quarto** casi todos los días, y me di cuenta de que los mejores
-consejos no son los que salen en los tutoriales teóricos, sino **los pequeños trucos
-prácticos** que usas una y otra vez en el trabajo real.
+consejos no salen de los tutoriales teóricos, sino de los **pequeños trucos
+prácticos** que se usan una y otra vez en el trabajo real, con datos reales… o con
+datos que se les parecen.
 
-Este blog nace para compartir exactamente eso: **tips super prácticos** que puedes
+Este blog nace para compartir exactamente eso: **tips muy prácticos** que puedas
 aplicar *hoy mismo*.
 
 ## Lo que vas a encontrar
 
-- ⚙️ **R y tidyverse**: pipes `|>`, `dplyr`, `ggplot2`, manipulación de datos.
-- 📄 **Quarto**: documentos, informes, blogs, presentaciones y cómo publicar.
-- 🧰 **Flujo de trabajo**: RStudio, atajos, proyectos organizados y reproducibles.
+- ⚙️ **R y tidyverse**: pipes `|>`, `dplyr`, `ggplot2` y manipulación de datos.
+- 📄 **Quarto**: documentos, informes, blogs, presentaciones y cómo publicarlos.
+- 🧰 **Flujo de trabajo**: RStudio, atajos y proyectos ordenados y reproducibles.
 
 ## Un ejemplo rápido
 
-¿Sabías que con el **pipe nativo** `|>` (¡que ya viene con R!) puedes encadenar todo
-un análisis en una sola línea legible?
+¿Sabías que con el **pipe nativo** `|>` (que ya viene con R) puedes encadenar todo
+un análisis en pocas líneas legibles?
+
+Imaginemos que llevamos un registro de las **ventas mensuales** (en dólares) de una
+muestra de negocios de Loja, Quito y Cuenca. Los datos son ficticios: se generan
+aquí mismo, con `set.seed()`, únicamente con fines didácticos.
 
 ```{r}
 #| label: ejemplo
+#| message: false
 library(dplyr)
 
 set.seed(1)
 datos <- data.frame(
-  ciudad = sample(c("Madrid", "Bogotá", "Lima"), 30, replace = TRUE),
-  ventas = round(rnorm(30, 100, 20))
+  ciudad = sample(c("Loja", "Quito", "Cuenca"), 30, replace = TRUE),
+  ventas = round(rnorm(30, 2500, 500))  # dólares; cifras simuladas
 )
 
 datos |>
@@ -45,8 +52,15 @@ datos |>
   arrange(desc(total))
 ```
 
-Sin reasignar variables, sin líneas de por medio. En los próximos posts
-profundizaremos en esto y en mucho más.
+Fíjate en lo que hace el código: toma `datos`, agrupa por ciudad, suma las ventas y
+ordena de mayor a menor. Todo en una sola cadena, sin reasignar variables ni
+escribir líneas de por medio.
+
+> 💡 *Fuente: elaboración propia con datos simulados.* El objetivo de los ejemplos
+> de este blog es que aprendas el procedimiento; los números, por coincidencia o
+> parecido con la realidad, no son cifras oficiales.
+
+En los próximos posts profundizaremos en esto y en mucho más.
 
 ¡Nos vemos en el siguiente post! 🚀
 

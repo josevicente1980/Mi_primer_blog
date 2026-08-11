@@ -7,8 +7,8 @@ description: "Desde code folding hasta callouts y parámetros: diez trucos prác
 ---
 
 Quarto es una de las mejores herramientas para crear informes, blogs y
-presentaciones con R. Pero la mayoría de la gente sólo usa el 20% de su potencial.
-Aquí van **10 trucos super prácticos**.
+presentaciones con R. Pero la mayoría de la gente sólo usa el 20 % de su potencial.
+Aquí van **10 trucos muy prácticos**.
 
 ## 1. Recuadros con callouts (`:::`)
 
@@ -27,7 +27,8 @@ y `callout-warning` para advertencias.
 ## 2. Plegar el código con `code-fold`
 
 ¿Informe para gente que sólo quiere resultados? Plegar el código con `code-fold` hace
-que tus bloques de código aparezcan **colapsados** y el lector pueda abrirlos si quiere.
+que tus bloques de código aparezcan **colapsados** y el lector pueda abrirlos si
+quiere:
 
 ```{r}
 #| code-fold: true
@@ -36,57 +37,68 @@ que tus bloques de código aparezcan **colapsados** y el lector pueda abrirlos s
 
 ## 3. Ocultar código pero mostrar el resultado (`echo: false`)
 
-¿Quieres mostrar el resultado sin el código? `echo: false` es tu amigo:
+¿Quieres mostrar el resultado sin el código? `echo: false` es tu amigo. Por
+ejemplo, esta línea genera la fecha de hoy sin mostrar el fragmento que la crea:
 
 ```{r}
 #| echo: false
-paste("Este texto lo genera R:", Sys.Date())
+paste("Informe generado el:", Sys.Date())
 ```
 
 ## 4. Parámetros para informes reutilizables (`params`)
 
-Crea un informe **con parámetros** y renderízalo con un botón "Render with parameters"
-en RStudio. Ideal para reportes que cambian de nombre, fecha o región.
+Crea un informe **con parámetros** y renderízalo con el botón *"Render with
+parameters"* de RStudio. Ideal para reportes que cambian de nombre, fecha o región.
+
+Imaginemos que llevamos informes mensuales para una **asociación de emprendedores
+de Loja**. En el YAML del documento pondríamos:
 
 ```yaml
 ---
 params:
-  empresa: "Mi empresa"
+  empresa: "Asociación de emprendedores de Loja"
   anio: 2026
 ---
 ```
 
-Y dentro del documento, úsalos así:
+Y dentro del documento los usaríamos así:
 
 ```r
 params$empresa
 params$anio
 ```
 
+Con un solo archivo fuente generas el informe de cualquier mes, sede o cliente:
+sólo cambia el valor de los parámetros al renderizar.
+
 ## 5. Tabsets para comparar (`::: {.panel-tabset}`)
 
-¿Varias regiones, varios paquetes, distintas versiones? Organiza el contenido
-en **pestañas** dentro del documento.
+¿Varias opciones, varias regiones, varias formas de hacer lo mismo? Organiza el
+contenido en **pestañas** dentro del documento:
 
 ::: {.panel-tabset}
-### Opción A
-Solución A: rápida pero menos flexible.
+### Opción A: un informe por sede
 
-### Opción B
-Solución B: un poco más lenta pero mucho más flexible.
+Si sólo tienes una sede (por ejemplo, la sucursal de Loja), creas un informe único
+y copias el archivo para cada sede. Simple, pero duplicas el mantenimiento.
+
+### Opción B: un informe parametrizado
+
+Creas **un solo** informe con `params` para la sede y lo renderizas en un clic para
+Loja, Cuenca o Quito. Menos duplicación y menos errores.
 :::
 
 ## 6. `freeze` para no volver a ejecutar todo
 
-Si tienes un blog o informe con código que tarda mucho, utiliza
-`freeze: true` en el YAML de la carpeta (o `#| freeze: true` en un chunk).
-Quarto **guarda los resultados** y no re-ejecuta el código en la próxima renderización
-**a menos que el código cambie**. Renderizado más rápido, mejores tiempos de build.
+Si tienes un blog o informe con código que tarda mucho, utiliza `freeze: true` en el
+YAML de la carpeta (o `#| freeze: true` en un chunk). Quarto **guarda los
+resultados** y no re-ejecuta el código en la próxima renderización **a menos que el
+código cambie**. Renderizado más rápido y mejores tiempos de build.
 
-## 7. Problemas desaparecen con `#| message: false`
+## 7. Los mensajes de carga desaparecen con `#| message: false`
 
-Los mensajes de carga de paquetes (`Attaching package: 'dplyr'...`) ensucian
-los documentos. Siléncialos en cada chunk o de forma global.
+Los mensajes de los paquetes (`Attaching package: 'dplyr'...`) ensucian los
+documentos. Siléncialos en cada chunk o de forma global:
 
 ```r
 #| message: false
@@ -95,41 +107,47 @@ library(dplyr)
 
 ## 8. Tablas bonitas con `knitr::kable()`
 
-Nada de tablas a medio formatear. Con `kable()` y `kableExtra()` tienes tablas
-listas para informes en **dos líneas**.
+Nada de tablas a medio formatear. Con `kable()` tienes tablas listas para informes
+en **dos líneas**:
 
 ```{r}
 #| message: false
 library(knitr)
 
 kable(
-  data.frame(ciudad = c("Madrid", "Bogotá"), ventas = c(500, 320)),
-  caption = "Resultados por ciudad"
+  data.frame(ciudad = c("Loja", "Cuenca", "Quito"),
+             ventas = c(12500, 14800, 19300)),
+  caption = "Ventas mensuales simuladas por ciudad (USD)"
 )
 ```
+
+*Fuente: elaboración propia con datos simulados.* El resultado es una tabla con
+título, alineación automática y un aspecto mucho más profesional que un `print()`.
 
 ## 9. Anotaciones y referencias cruzadas
 
 Quarto genera **referencias cruzadas** a figuras, tablas y secciones. Ponle
-`#| label: fig-mi-grafico` a un chunk con figura y luego escribe
-`@fig-mi-grafico` en el texto. La numeración se genera sola.
+`#| label: fig-mi-grafico` a un chunk con figura y luego escribe `@fig-mi-grafico`
+en el texto. La numeración se genera sola y se actualiza al renumerar.
 
-## 10. `RENV`/`renv` no, pero *sí* `hidden: true`
+## 10. Guarda tus borradores con `draft: true`
 
-Este es el truco definitivo para posts y slides: añade `hidden: true` en el YAML
-de un archivo para que **no aparezca en el índice del blog/sitio** pero siga
-estando disponible con su URL directa.
+Para un post o documento en progreso usa `draft: true` en el YAML: Quarto **lo
+renderiza** pero **no lo publica** en el índice del blog ni en el feed, y sigue
+accesible desde su URL directa si necesitas compartir el avance:
 
 ```yaml
 ---
-title: "Borrador"
+title: "Mi borrador en curso"
 draft: true
 ---
 ```
 
+Útil para escribir con calma y publicar cuando el post esté listo.
+
 ::: {.callout-note}
-En blogs de Quarto, además existe `draft: true`: el post se renderiza pero no se
-publica en la lista. Útil para tus notas en curso.
+En blogs de Quarto, además existe `hidden: true`: el archivo se integra al sitio
+pero no aparece en los listados. Útil para páginas de apoyo o materiales de clase.
 :::
 
 ## Resumen
@@ -140,5 +158,6 @@ publica en la lista. Útil para tus notas en curso.
 - **tabsets** para comparar contenido.
 - **freeze** para renderizaciones rápidas.
 - **kable()** para tablas con una pinta profesional.
+- **draft** y **hidden** para publicar sólo lo que está listo.
 
 Con estos 10 trucos, tus documentos Quarto pasan de "ok" a **impresionantes**. 🚀

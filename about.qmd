@@ -4,41 +4,46 @@ image: profile.png
 about:
   template: jolla
   links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/josevicente1980
     - icon: bluesky
       text: Bluesky
       href: https://bsky.app/
     - icon: linkedin
       text: LinkedIn
       href: https://linkedin.com
-    - icon: github
-      text: Github
-      href: https://github.com
 
 ---
 
 ## Hola, soy José Vicente Ordóñez 👋
 
-Este blog nació con una idea muy sencilla: **compartir lo que aprendo de R y Quarto**
+Vivo en **Loja, Ecuador**, y desde aquí trabajo con datos, enseño y escribo. Este
+blog nació con una idea muy sencilla: **compartir lo que aprendo de R y Quarto**
 de la forma más práctica posible.
 
-Creo profundamente en que **se aprende haciendo**, y que el mejor tip vale más que
-un libro entero de teoría. Por eso cada entrada de este blog es:
+Creo profundamente en que **se aprende haciendo**, y que un buen ejemplo vale más
+que un capítulo entero de teoría. Por eso cada entrada de este blog:
 
-- **Corta y directa**: nada de rodeos.
-- **Aplicable**: código que puedes copiar y adaptar hoy.
-- **En español**: porque aprender en tu idioma es más fácil.
+- **Es corta y directa**: sin rodeos.
+- **Se puede reproducir**: el código está pensado para copiarse, ejecutarse y
+  adaptarse a tu propio trabajo.
+- **Usa ejemplos cercanos**: cuando un ejemplo necesita datos, los genero como
+  datos simulados de Loja, Quito, Cuenca, Guayaquil y otras ciudades del país,
+  para que el aprendizaje no se sienta lejano.
+- **Está en español**: porque aprender en tu propio idioma es más fácil.
 
 ## ¿De qué hablo aquí?
 
-| Tema | Ejemplo de lo que verás |
-|------|--------------------------|
-| **R / tidyverse** | Pipes `|>`, dplyr, ggplot2, datos |
+| Tema | Lo que verás |
+|------|--------------|
+| **R y tidyverse** | Pipes `|>`, `dplyr`, `ggplot2` y manejo de datos |
 | **Quarto** | Documentos, informes, blogs y publicación |
-| **Flujo de trabajo** | RStudio, atajos, organización de proyectos |
+| **Flujo de trabajo** | RStudio, atajos y proyectos ordenados |
 
 ## ¿Por qué R y Quarto?
 
-Porque juntos forman un ecosistema gratuito, potente y reproducible para
+Porque juntos forman un ecosistema **gratuito, potente y reproducible** para
 cualquier persona que trabaje con datos: análisis, informes automáticos,
 presentaciones y hasta este mismo blog.
 

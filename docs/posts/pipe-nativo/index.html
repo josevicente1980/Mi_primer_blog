@@ -8,7 +8,7 @@
 
 <meta name="author" content="José Vicente Ordóñez">
 <meta name="dcterms.date" content="2026-08-08">
-<meta name="description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.">
+<meta name="description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones, con un ejemplo de ventas de comercios de Loja, Cuenca, Quito y Guayaquil.">
 
 <title>El pipe nativo |&gt;: el operador que ya trae R y no usas – José Vicente Ordóñez</title>
 <style>
@@ -112,13 +112,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="El pipe nativo |>: el operador que ya trae R y no usas – José Vicente Ordóñez">
-<meta property="og:description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.">
+<meta property="og:description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones, con un ejemplo de ventas de comercios de Loja, Cuenca, Quito y Guayaquil.">
 <meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/index_files/figure-html/pipe-ggplot-1.png">
 <meta property="og:site_name" content="José Vicente Ordóñez">
 <meta property="og:image:height" content="960">
 <meta property="og:image:width" content="1344">
 <meta name="twitter:title" content="El pipe nativo |>: el operador que ya trae R y no usas – José Vicente Ordóñez">
-<meta name="twitter:description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.">
+<meta name="twitter:description" content="Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones, con un ejemplo de ventas de comercios de Loja, Cuenca, Quito y Guayaquil.">
 <meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/pipe-nativo/index_files/figure-html/pipe-ggplot-1.png">
 <meta name="twitter:image-height" content="960">
 <meta name="twitter:image-width" content="1344">
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Sobre mí</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/josevicente1980"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">El pipe nativo |&gt;: el operador que ya trae R y no usas</h1>
                   <div>
         <div class="description">
-          Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones.
+          Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones, con un ejemplo de ventas de comercios de Loja, Cuenca, Quito y Guayaquil.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -214,9 +214,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#el-ejemplo-que-lo-cambia-todo" id="toc-el-ejemplo-que-lo-cambia-todo" class="nav-link" data-scroll-target="#el-ejemplo-que-lo-cambia-todo">El ejemplo que lo cambia todo</a></li>
   <li><a href="#nativo-vs-de-magrittr" id="toc-nativo-vs-de-magrittr" class="nav-link" data-scroll-target="#nativo-vs-de-magrittr"><code>|&gt;</code> nativo vs <code>%&gt;%</code> de magrittr</a>
   <ul class="collapse">
-  <li><a href="#y-si-necesito-pasar-a-otro-argumento" id="toc-y-si-necesito-pasar-a-otro-argumento" class="nav-link" data-scroll-target="#y-si-necesito-pasar-a-otro-argumento">¿Y si necesito pasar a otro argumento?</a></li>
+  <li><a href="#y-si-necesito-pasar-el-dato-a-otro-argumento" id="toc-y-si-necesito-pasar-el-dato-a-otro-argumento" class="nav-link" data-scroll-target="#y-si-necesito-pasar-el-dato-a-otro-argumento">¿Y si necesito pasar el dato a otro argumento?</a></li>
   </ul></li>
-  <li><a href="#tip-pro-método-_-globalmente" id="toc-tip-pro-método-_-globalmente" class="nav-link" data-scroll-target="#tip-pro-método-_-globalmente">Tip pro: método <code>_</code> globalmente</a></li>
+  <li><a href="#tip-pro-encadena-también-los-gráficos" id="toc-tip-pro-encadena-también-los-gráficos" class="nav-link" data-scroll-target="#tip-pro-encadena-también-los-gráficos">Tip pro: encadena también los gráficos</a></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
 </nav>
@@ -240,51 +240,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="el-ejemplo-que-lo-cambia-todo" class="level2">
 <h2 class="anchored" data-anchor-id="el-ejemplo-que-lo-cambia-todo">El ejemplo que lo cambia todo</h2>
-<p>Imagina que quieres el promedio de ventas <strong>por ciudad</strong>, sólo de las ciudades con más de 5 pedidos, ordenado de mayor a menor. Sin pipe:</p>
+<p>Imaginemos que trabajamos con un registro <strong>simulado</strong> de ventas de comercios de Loja, Cuenca, Quito y Guayaquil. Queremos el promedio de ventas por ciudad, sólo de las ciudades con más de 5 pedidos al mes, ordenado de mayor a menor.</p>
+<p>Sin pipe, tendríamos que escribir así:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">arrange</span>(<span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(datos, pedidos <span class="sc">&gt;</span> <span class="dv">5</span>), ciudad), <span class="at">media =</span> <span class="fu">mean</span>(ventas))), <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Horroroso. Con <code>|&gt;</code> se lee solo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>, <span class="st">"Lima"</span>, <span class="st">"CDMX"</span>), <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">120</span>)),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pedidos =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pedidos <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ventas)) <span class="sc">|&gt;</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Loja"</span>, <span class="st">"Cuenca"</span>, <span class="st">"Quito"</span>, <span class="st">"Guayaquil"</span>), <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">3000</span>, <span class="dv">700</span>)),  <span class="co"># ventas en USD, cifras simuladas</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pedidos =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pedidos <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ventas)) <span class="sc">|&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
-  ciudad media
-  &lt;chr&gt;  &lt;dbl&gt;
-1 CDMX    542.
-2 Bogotá  508.
-3 Madrid  506.
-4 Lima    457.</code></pre>
+  ciudad    media
+  &lt;chr&gt;     &lt;dbl&gt;
+1 Guayaquil 3242.
+2 Cuenca    3049.
+3 Loja      3033.
+4 Quito     2747.</code></pre>
 </div>
 </div>
-<p>Lee el código en voz alta: <em>“toma <code>datos</code>, filtra, agrupa, resume y ordena”</em>. Eso es exactamente lo que hace.</p>
+<p>Lee el código en voz alta: <em>“toma <code>datos</code>, filtra, agrupa, resume y ordena”</em>. Eso es exactamente lo que hace. Y como los datos se generan con <code>set.seed(42)</code>, obtendrás siempre el mismo resultado, sea cual sea la computadora.</p>
 </section>
 <section id="nativo-vs-de-magrittr" class="level2">
 <h2 class="anchored" data-anchor-id="nativo-vs-de-magrittr"><code>|&gt;</code> nativo vs <code>%&gt;%</code> de magrittr</h2>
@@ -319,28 +306,34 @@ Attaching package: 'dplyr'</code></pre>
 </tr>
 </tbody>
 </table>
-<section id="y-si-necesito-pasar-a-otro-argumento" class="level3">
-<h3 class="anchored" data-anchor-id="y-si-necesito-pasar-a-otro-argumento">¿Y si necesito pasar a otro argumento?</h3>
+<section id="y-si-necesito-pasar-el-dato-a-otro-argumento" class="level3">
+<h3 class="anchored" data-anchor-id="y-si-necesito-pasar-el-dato-a-otro-argumento">¿Y si necesito pasar el dato a otro argumento?</h3>
 <p>Con <code>|&gt;</code> puedes usar el <strong>placeholder <code>_</code></strong> (R 4.2+):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.by =</span> grupo)      <span class="co"># .by va al final</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">|&gt;</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> mtcars, _)         <span class="co"># ejemplo conceptual</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>En la práctica, la mayoría del código encadena en el primer argumento, así que <code>|&gt;</code> cubre el 95% de los casos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> _)          <span class="co"># pasa mtcars al argumento data=</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.by =</span> grupo)     <span class="co"># .by va al final de la expresión</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>En la práctica, la mayoría del código encadena en el primer argumento, así que <code>|&gt;</code> cubre el 95 % de los casos.</p>
 </section>
 </section>
-<section id="tip-pro-método-_-globalmente" class="level2">
-<h2 class="anchored" data-anchor-id="tip-pro-método-_-globalmente">Tip pro: método <code>_</code> globalmente</h2>
-<p>En cuanto dominas el pipe, <strong>nunca más quieres escribir sin él</strong>. Todos los paquetes del tidyverse (<code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>stringr</code>…) están diseñados para funcionar como eslabones de una cadena.</p>
+<section id="tip-pro-encadena-también-los-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="tip-pro-encadena-también-los-gráficos">Tip pro: encadena también los gráficos</h2>
+<p>En cuanto dominas el pipe, <strong>nunca más quieres escribir sin él</strong>. Todos los paquetes del tidyverse (<code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>stringr</code>…) están diseñados para funcionar como eslabones de una cadena:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ventas)) <span class="sc">|&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ciudad, media), <span class="at">y =</span> media)) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#146C94"</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ventas medias por ciudad"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Media"</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ventas)) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ciudad, media), <span class="at">y =</span> media)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#146C94"</span>, <span class="at">width =</span> <span class="fl">0.65</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(media, <span class="dv">0</span>)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ventas medias mensuales por ciudad"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Comercios simulados: Loja, Cuenca, Quito y Guayaquil"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Venta media (USD)"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: elaboración propia con datos simulados."</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey45"</span>, <span class="at">size =</span> <span class="dv">9</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -349,6 +342,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 </div>
+<p>Observa cómo <code>group_by()</code> y <code>summarise()</code> alimentan directamente a <code>ggplot()</code>: todo el pipeline de datos llega a la gráfica en una sola expresión.</p>
 <blockquote class="blockquote">
 <p>💡 <strong>Regla sencilla</strong>: si tu operación es un paso más en el procesamiento de datos, llévala por el pipe. Lee tu código como una frase y todo encajará.</p>
 </blockquote>
@@ -773,7 +767,7 @@ Attaching package: 'dplyr'</code></pre>
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Hecho con ❤️ en R y Quarto</p>
+<p>Hecho con R y Quarto desde Loja, Ecuador 🇪🇨</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

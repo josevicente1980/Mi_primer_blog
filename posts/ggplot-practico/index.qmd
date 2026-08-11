@@ -10,6 +10,11 @@ Una gráfica de ggplot2 **no tiene por qué parecer de R**. La diferencia entre 
 gráfico "de estudiante" y uno profesional está en 4 detalles: tema, colores,
 etiquetas y anotaciones. Aquí te muestro cómo.
 
+Para los ejemplos usaré una **encuesta simulada** de satisfacción estudiantil
+(escala 0–100) aplicada a estudiantes universitarios de Loja, Cuenca, Quito y
+Guayaquil. Los datos se generan con `set.seed(7)`, así que no corresponden a
+ninguna encuesta real; lo importante es el procedimiento.
+
 ## 1. Empieza con un buen tema (`theme_minimal` o `theme_light`)
 
 El tema por defecto de ggplot2 es feo. Con `theme_minimal()` o `theme_light()`
@@ -17,35 +22,39 @@ y un `base_size` generoso, tu gráfica ya sube varios niveles.
 
 ```{r}
 #| label: tema
+#| message: false
 library(ggplot2)
 library(dplyr)
 
 set.seed(7)
 datos <- data.frame(
-  categoria = rep(c("Norte", "Sur", "Este", "Oeste"), each = 25),
-  valor = c(rnorm(25, 60, 10), rnorm(25, 45, 8), rnorm(25, 70, 12), rnorm(25, 50, 9))
+  ciudad = rep(c("Loja", "Cuenca", "Quito", "Guayaquil"), each = 25),
+  satisfaccion = c(rnorm(25, 60, 10), rnorm(25, 45, 8), rnorm(25, 70, 12), rnorm(25, 50, 9))
 )
 ```
 
 ```{r}
 #| label: tema-plot
 p <- datos |>
-  ggplot(aes(x = categoria, y = valor, fill = categoria)) +
+  ggplot(aes(x = ciudad, y = satisfaccion, fill = ciudad)) +
   geom_boxplot(alpha = 0.9) +
   scale_fill_brewer(palette = "Blues") +
-  labs(title = "Distribución de valores por categoría",
-       subtitle = "Un boxplot limpio con tema minimal",
-       x = "Categoría", y = "Valor",
-       fill = "Categoría") +
+  labs(title = "Satisfacción estudiantil por ciudad",
+       subtitle = "Encuesta simulada, escala 0–100",
+       x = "Ciudad", y = "Satisfacción (0–100)",
+       fill = "Ciudad") +
   theme_minimal(base_size = 14)
 
 p
 ```
 
+*Fuente: elaboración propia con datos simulados.* A primera vista ya notas la
+diferencia: los boxplots tienen nombre, ejes etiquetados y una paleta consistente.
+
 ## 2. Quita el "ruido" del tema
 
 El tema por defecto mete **cuadrículas** y **ejes** que distraen. Limpia con
-`theme()` los elementos que no aportan.
+`theme()` los elementos que no aportan:
 
 ```{r}
 #| label: limpio
@@ -58,71 +67,84 @@ p +
   )
 ```
 
+Comparemos mentalmente las dos versiones: la segunda se lee igual, pero transmite
+menos ruido y el ojo se va directo a los datos.
+
 ## 3. Elige los colores con intención
 
 `scale_fill_brewer()` te da paletas probadas y accesibles. Para datos categóricos
-usa paletas `Set2`, `Dark2` o `Blues`; para secuenciales, `Blues` o `Viridis`.
+usa paletas `Set2`, `Dark2` o `Blues`; para datos secuenciales, `Blues` o `Viridis`.
 
 ```{r}
 #| label: colores
 datos |>
-  group_by(categoria) |>
-  summarise(media = mean(valor)) |>
-  ggplot(aes(x = reorder(categoria, media), y = media, fill = categoria)) +
+  group_by(ciudad) |>
+  summarise(media = mean(satisfaccion)) |>
+  ggplot(aes(x = reorder(ciudad, media), y = media, fill = ciudad)) +
   geom_col(width = 0.6) +
   scale_fill_brewer(palette = "Set2") +
   coord_flip() +
-  labs(title = "Media por categoría",
-       subtitle = "Ordenado y con paleta profesional",
-       x = NULL, y = "Media") +
+  labs(title = "Satisfacción media por ciudad",
+       subtitle = "Ordenado de menor a mayor y con paleta profesional",
+       x = NULL, y = "Satisfacción media (0–100)") +
   theme_minimal(base_size = 14) +
   theme(legend.position = "none")
 ```
 
+Observa el `reorder(ciudad, media)`: los niveles se ordenan según el valor, de modo
+que la barra más baja queda abajo y la más alta arriba. Ese orden hace que la
+gráfica se lea como un ranking.
+
 ## 4. Etiqueta tus ejes y usa títulos informativos
 
 `labs()` es tu aliado: un **título**, un **subtítulo** y un **caption** con la fuente
-hacen que la gráfica cuente una historia.
+hacen que la gráfica cuente una historia:
 
 ```{r}
 #| label: labs
 p +
   labs(
-    title = "¿Cómo se distribuyen los valores?",
-    subtitle = "Comparación de la variabilidad entre categorías",
-    caption = "Fuente: datos de ejemplo · Elaboración propia"
+    title = "¿Cómo se distribuye la satisfacción estudiantil?",
+    subtitle = "Comparación de la variabilidad entre ciudades",
+    caption = "Fuente: elaboración propia con datos simulados."
   )
 ```
 
 ## 5. Guarda con el tamaño correcto (`ggsave`)
 
 No exportes capturas de pantalla. Usa `ggsave()` con **dimensiones en pulgadas** y
-`dpi = 300` para calidad de publicación.
+`dpi = 300` para calidad de publicación:
 
 ```{r}
 #| eval: false
-ggsave("mi_grafico.png", plot = p, width = 8, height = 5, dpi = 300)
+ggsave("grafico_satisfaccion.png", plot = p, width = 8, height = 5, dpi = 300)
 ```
 
 ## 6. Anota puntos clave (`annotate` o `geom_text`)
 
 Resalta el dato importante para que el lector no tenga que adivinarlo. Con
-`geom_text()` marcas el valor máximo sin esfuerzo.
+`geom_text()` marcas el valor máximo (y su ciudad) sin esfuerzo:
 
 ```{r}
 #| label: anota
 datos |>
-  group_by(categoria) |>
-  summarise(media = mean(valor)) |>
-  ggplot(aes(x = categoria, y = media, fill = categoria)) +
+  group_by(ciudad) |>
+  summarise(media = mean(satisfaccion)) |>
+  ggplot(aes(x = ciudad, y = media, fill = ciudad)) +
   geom_col(width = 0.6) +
   geom_text(aes(label = round(media, 1)), vjust = -0.5, size = 5) +
   scale_fill_brewer(palette = "Dark2") +
-  coord_cartesian(ylim = c(0, 80)) +
-  labs(title = "Media por categoría", x = NULL, y = "Media") +
+  coord_cartesian(ylim = c(0, 85)) +
+  labs(title = "Satisfacción media por ciudad",
+       subtitle = "Encuesta simulada, escala 0–100",
+       x = NULL, y = "Satisfacción media",
+       caption = "Fuente: elaboración propia con datos simulados.") +
   theme_minimal(base_size = 14) +
   theme(legend.position = "none")
 ```
+
+Con los valores sobre las barras, el lector no necesita aproximar: lee el número
+exacto y compara ciudades al instante.
 
 ## Resumen
 
@@ -136,4 +158,4 @@ datos |>
 | Anotar | `geom_text()` o `annotate()` |
 
 Aplica estos 6 tips y tus gráficas (y tus informes) lucirán **profesionales** en
-menos de 5 minutos. 🚀
+menos de 5 minutos... y con datos de tu propia ciudad, mucho mejor. 🚀

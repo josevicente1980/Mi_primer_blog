@@ -113,10 +113,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="10 trucos de Quarto que la gente no conoce (y debería) – José Vicente Ordóñez">
 <meta property="og:description" content="Desde code folding hasta callouts y parámetros: diez trucos prácticos de Quarto que harán que tus documentos e informes se vean (y funcionen) mucho mejor.">
+<meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/quarto-trucos/profile.png">
 <meta property="og:site_name" content="José Vicente Ordóñez">
 <meta name="twitter:title" content="10 trucos de Quarto que la gente no conoce (y debería) – José Vicente Ordóñez">
 <meta name="twitter:description" content="Desde code folding hasta callouts y parámetros: diez trucos prácticos de Quarto que harán que tus documentos e informes se vean (y funcionen) mucho mejor.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/posts/quarto-trucos/profile.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -141,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Sobre mí</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/josevicente1980"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -210,10 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#parámetros-para-informes-reutilizables-params" id="toc-parámetros-para-informes-reutilizables-params" class="nav-link" data-scroll-target="#parámetros-para-informes-reutilizables-params">4. Parámetros para informes reutilizables (<code>params</code>)</a></li>
   <li><a href="#tabsets-para-comparar-.panel-tabset" id="toc-tabsets-para-comparar-.panel-tabset" class="nav-link" data-scroll-target="#tabsets-para-comparar-.panel-tabset">5. Tabsets para comparar (<code>::: {.panel-tabset}</code>)</a></li>
   <li><a href="#freeze-para-no-volver-a-ejecutar-todo" id="toc-freeze-para-no-volver-a-ejecutar-todo" class="nav-link" data-scroll-target="#freeze-para-no-volver-a-ejecutar-todo">6. <code>freeze</code> para no volver a ejecutar todo</a></li>
-  <li><a href="#problemas-desaparecen-con-message-false" id="toc-problemas-desaparecen-con-message-false" class="nav-link" data-scroll-target="#problemas-desaparecen-con-message-false">7. Problemas desaparecen con <code>#| message: false</code></a></li>
+  <li><a href="#los-mensajes-de-carga-desaparecen-con-message-false" id="toc-los-mensajes-de-carga-desaparecen-con-message-false" class="nav-link" data-scroll-target="#los-mensajes-de-carga-desaparecen-con-message-false">7. Los mensajes de carga desaparecen con <code>#| message: false</code></a></li>
   <li><a href="#tablas-bonitas-con-knitrkable" id="toc-tablas-bonitas-con-knitrkable" class="nav-link" data-scroll-target="#tablas-bonitas-con-knitrkable">8. Tablas bonitas con <code>knitr::kable()</code></a></li>
   <li><a href="#anotaciones-y-referencias-cruzadas" id="toc-anotaciones-y-referencias-cruzadas" class="nav-link" data-scroll-target="#anotaciones-y-referencias-cruzadas">9. Anotaciones y referencias cruzadas</a></li>
-  <li><a href="#renvrenv-no-pero-sí-hidden-true" id="toc-renvrenv-no-pero-sí-hidden-true" class="nav-link" data-scroll-target="#renvrenv-no-pero-sí-hidden-true">10. <code>RENV</code>/<code>renv</code> no, pero <em>sí</em> <code>hidden: true</code></a></li>
+  <li><a href="#guarda-tus-borradores-con-draft-true" id="toc-guarda-tus-borradores-con-draft-true" class="nav-link" data-scroll-target="#guarda-tus-borradores-con-draft-true">10. Guarda tus borradores con <code>draft: true</code></a></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
 </nav>
@@ -225,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Quarto es una de las mejores herramientas para crear informes, blogs y presentaciones con R. Pero la mayoría de la gente sólo usa el 20% de su potencial. Aquí van <strong>10 trucos super prácticos</strong>.</p>
+<p>Quarto es una de las mejores herramientas para crear informes, blogs y presentaciones con R. Pero la mayoría de la gente sólo usa el 20 % de su potencial. Aquí van <strong>10 trucos muy prácticos</strong>.</p>
 <section id="recuadros-con-callouts" class="level2">
 <h2 class="anchored" data-anchor-id="recuadros-con-callouts">1. Recuadros con callouts (<code>:::</code>)</h2>
 <p>En lugar de un simple texto en negrita, usa callouts para <strong>destacar ideas</strong>. Muy útiles en informes.</p>
@@ -258,7 +260,7 @@ Important
 </section>
 <section id="plegar-el-código-con-code-fold" class="level2">
 <h2 class="anchored" data-anchor-id="plegar-el-código-con-code-fold">2. Plegar el código con <code>code-fold</code></h2>
-<p>¿Informe para gente que sólo quiere resultados? Plegar el código con <code>code-fold</code> hace que tus bloques de código aparezcan <strong>colapsados</strong> y el lector pueda abrirlos si quiere.</p>
+<p>¿Informe para gente que sólo quiere resultados? Plegar el código con <code>code-fold</code> hace que tus bloques de código aparezcan <strong>colapsados</strong> y el lector pueda abrirlos si quiere:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -271,63 +273,66 @@ Important
 </section>
 <section id="ocultar-código-pero-mostrar-el-resultado-echo-false" class="level2">
 <h2 class="anchored" data-anchor-id="ocultar-código-pero-mostrar-el-resultado-echo-false">3. Ocultar código pero mostrar el resultado (<code>echo: false</code>)</h2>
-<p>¿Quieres mostrar el resultado sin el código? <code>echo: false</code> es tu amigo:</p>
+<p>¿Quieres mostrar el resultado sin el código? <code>echo: false</code> es tu amigo. Por ejemplo, esta línea genera la fecha de hoy sin mostrar el fragmento que la crea:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Este texto lo genera R: 2026-08-09"</code></pre>
+<pre><code>[1] "Informe generado el: 2026-08-11"</code></pre>
 </div>
 </div>
 </section>
 <section id="parámetros-para-informes-reutilizables-params" class="level2">
 <h2 class="anchored" data-anchor-id="parámetros-para-informes-reutilizables-params">4. Parámetros para informes reutilizables (<code>params</code>)</h2>
-<p>Crea un informe <strong>con parámetros</strong> y renderízalo con un botón “Render with parameters” en RStudio. Ideal para reportes que cambian de nombre, fecha o región.</p>
+<p>Crea un informe <strong>con parámetros</strong> y renderízalo con el botón <em>“Render with parameters”</em> de RStudio. Ideal para reportes que cambian de nombre, fecha o región.</p>
+<p>Imaginemos que llevamos informes mensuales para una <strong>asociación de emprendedores de Loja</strong>. En el YAML del documento pondríamos:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">empresa</span><span class="kw">:</span><span class="at"> </span><span class="st">"Mi empresa"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">empresa</span><span class="kw">:</span><span class="at"> </span><span class="st">"Asociación de emprendedores de Loja"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">anio</span><span class="kw">:</span><span class="at"> </span><span class="dv">2026</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Y dentro del documento, úsalos así:</p>
+<p>Y dentro del documento los usaríamos así:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>params<span class="sc">$</span>empresa</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>params<span class="sc">$</span>anio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Con un solo archivo fuente generas el informe de cualquier mes, sede o cliente: sólo cambia el valor de los parámetros al renderizar.</p>
 </section>
 <section id="tabsets-para-comparar-.panel-tabset" class="level2">
 <h2 class="anchored" data-anchor-id="tabsets-para-comparar-.panel-tabset">5. Tabsets para comparar (<code>::: {.panel-tabset}</code>)</h2>
-<p>¿Varias regiones, varios paquetes, distintas versiones? Organiza el contenido en <strong>pestañas</strong> dentro del documento.</p>
+<p>¿Varias opciones, varias regiones, varias formas de hacer lo mismo? Organiza el contenido en <strong>pestañas</strong> dentro del documento:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Opción A</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Opción B</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Opción A: un informe por sede</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Opción B: un informe parametrizado</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Solución A: rápida pero menos flexible.</p>
+<p>Si sólo tienes una sede (por ejemplo, la sucursal de Loja), creas un informe único y copias el archivo para cada sede. Simple, pero duplicas el mantenimiento.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Solución B: un poco más lenta pero mucho más flexible.</p>
+<p>Creas <strong>un solo</strong> informe con <code>params</code> para la sede y lo renderizas en un clic para Loja, Cuenca o Quito. Menos duplicación y menos errores.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="freeze-para-no-volver-a-ejecutar-todo" class="level2">
 <h2 class="anchored" data-anchor-id="freeze-para-no-volver-a-ejecutar-todo">6. <code>freeze</code> para no volver a ejecutar todo</h2>
-<p>Si tienes un blog o informe con código que tarda mucho, utiliza <code>freeze: true</code> en el YAML de la carpeta (o <code>#| freeze: true</code> en un chunk). Quarto <strong>guarda los resultados</strong> y no re-ejecuta el código en la próxima renderización <strong>a menos que el código cambie</strong>. Renderizado más rápido, mejores tiempos de build.</p>
+<p>Si tienes un blog o informe con código que tarda mucho, utiliza <code>freeze: true</code> en el YAML de la carpeta (o <code>#| freeze: true</code> en un chunk). Quarto <strong>guarda los resultados</strong> y no re-ejecuta el código en la próxima renderización <strong>a menos que el código cambie</strong>. Renderizado más rápido y mejores tiempos de build.</p>
 </section>
-<section id="problemas-desaparecen-con-message-false" class="level2">
-<h2 class="anchored" data-anchor-id="problemas-desaparecen-con-message-false">7. Problemas desaparecen con <code>#| message: false</code></h2>
-<p>Los mensajes de carga de paquetes (<code>Attaching package: 'dplyr'...</code>) ensucian los documentos. Siléncialos en cada chunk o de forma global.</p>
+<section id="los-mensajes-de-carga-desaparecen-con-message-false" class="level2">
+<h2 class="anchored" data-anchor-id="los-mensajes-de-carga-desaparecen-con-message-false">7. Los mensajes de carga desaparecen con <code>#| message: false</code></h2>
+<p>Los mensajes de los paquetes (<code>Attaching package: 'dplyr'...</code>) ensucian los documentos. Siléncialos en cada chunk o de forma global:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tablas-bonitas-con-knitrkable" class="level2">
 <h2 class="anchored" data-anchor-id="tablas-bonitas-con-knitrkable">8. Tablas bonitas con <code>knitr::kable()</code></h2>
-<p>Nada de tablas a medio formatear. Con <code>kable()</code> y <code>kableExtra()</code> tienes tablas listas para informes en <strong>dos líneas</strong>.</p>
+<p>Nada de tablas a medio formatear. Con <code>kable()</code> tienes tablas listas para informes en <strong>dos líneas</strong>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">ciudad =</span> <span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>), <span class="at">ventas =</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="dv">320</span>)),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Resultados por ciudad"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">ciudad =</span> <span class="fu">c</span>(<span class="st">"Loja"</span>, <span class="st">"Cuenca"</span>, <span class="st">"Quito"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ventas =</span> <span class="fu">c</span>(<span class="dv">12500</span>, <span class="dv">14800</span>, <span class="dv">19300</span>)),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Ventas mensuales simuladas por ciudad (USD)"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Resultados por ciudad</caption>
+<caption>Ventas mensuales simuladas por ciudad (USD)</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">ciudad</th>
@@ -336,29 +341,35 @@ Important
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Madrid</td>
-<td style="text-align: right;">500</td>
+<td style="text-align: left;">Loja</td>
+<td style="text-align: right;">12500</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Bogotá</td>
-<td style="text-align: right;">320</td>
+<td style="text-align: left;">Cuenca</td>
+<td style="text-align: right;">14800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quito</td>
+<td style="text-align: right;">19300</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<p><em>Fuente: elaboración propia con datos simulados.</em> El resultado es una tabla con título, alineación automática y un aspecto mucho más profesional que un <code>print()</code>.</p>
 </section>
 <section id="anotaciones-y-referencias-cruzadas" class="level2">
 <h2 class="anchored" data-anchor-id="anotaciones-y-referencias-cruzadas">9. Anotaciones y referencias cruzadas</h2>
-<p>Quarto genera <strong>referencias cruzadas</strong> a figuras, tablas y secciones. Ponle <code>#| label: fig-mi-grafico</code> a un chunk con figura y luego escribe <code>@fig-mi-grafico</code> en el texto. La numeración se genera sola.</p>
+<p>Quarto genera <strong>referencias cruzadas</strong> a figuras, tablas y secciones. Ponle <code>#| label: fig-mi-grafico</code> a un chunk con figura y luego escribe <code>@fig-mi-grafico</code> en el texto. La numeración se genera sola y se actualiza al renumerar.</p>
 </section>
-<section id="renvrenv-no-pero-sí-hidden-true" class="level2">
-<h2 class="anchored" data-anchor-id="renvrenv-no-pero-sí-hidden-true">10. <code>RENV</code>/<code>renv</code> no, pero <em>sí</em> <code>hidden: true</code></h2>
-<p>Este es el truco definitivo para posts y slides: añade <code>hidden: true</code> en el YAML de un archivo para que <strong>no aparezca en el índice del blog/sitio</strong> pero siga estando disponible con su URL directa.</p>
+<section id="guarda-tus-borradores-con-draft-true" class="level2">
+<h2 class="anchored" data-anchor-id="guarda-tus-borradores-con-draft-true">10. Guarda tus borradores con <code>draft: true</code></h2>
+<p>Para un post o documento en progreso usa <code>draft: true</code> en el YAML: Quarto <strong>lo renderiza</strong> pero <strong>no lo publica</strong> en el índice del blog ni en el feed, y sigue accesible desde su URL directa si necesitas compartir el avance:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Borrador"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Mi borrador en curso"</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Útil para escribir con calma y publicar cuando el post esté listo.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -369,7 +380,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En blogs de Quarto, además existe <code>draft: true</code>: el post se renderiza pero no se publica en la lista. Útil para tus notas en curso.</p>
+<p>En blogs de Quarto, además existe <code>hidden: true</code>: el archivo se integra al sitio pero no aparece en los listados. Útil para páginas de apoyo o materiales de clase.</p>
 </div>
 </div>
 </section>
@@ -382,6 +393,7 @@ Note
 <li><strong>tabsets</strong> para comparar contenido.</li>
 <li><strong>freeze</strong> para renderizaciones rápidas.</li>
 <li><strong>kable()</strong> para tablas con una pinta profesional.</li>
+<li><strong>draft</strong> y <strong>hidden</strong> para publicar sólo lo que está listo.</li>
 </ul>
 <p>Con estos 10 trucos, tus documentos Quarto pasan de “ok” a <strong>impresionantes</strong>. 🚀</p>
 
@@ -796,7 +808,7 @@ Note
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Hecho con ❤️ en R y Quarto</p>
+<p>Hecho con R y Quarto desde Loja, Ecuador 🇪🇨</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

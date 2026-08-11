@@ -3,16 +3,17 @@ title: "El pipe nativo |>: el operador que ya trae R y no usas"
 author: "José Vicente Ordóñez"
 date: "2026-08-08"
 categories: [R, tidyverse, principiantes]
-description: "Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones."
+description: "Aprende a usar el operador pipe nativo de R para escribir análisis claros, legibles y sin anidar funciones, con un ejemplo de ventas de comercios de Loja, Cuenca, Quito y Guayaquil."
 ---
 
 El pipe `|>` es, junto con `%>%`, la forma más elegante de escribir código en R.
-Desde **R 4.1** (2021) traes el pipe **nativo** incorporado: no necesitas instalar nada.
+Desde **R 4.1** (2021) traes el pipe **nativo** incorporado: no necesitas instalar
+nada.
 
 ## ¿Qué es un pipe?
 
-Un pipe **encadena** el resultado de una expresión como primer argumento de la siguiente.
-En lugar de escribir código "de adentro hacia afuera":
+Un pipe **encadena** el resultado de una expresión como primer argumento de la
+siguiente. En lugar de escribir código "de adentro hacia afuera":
 
 ```{r}
 #| eval: false
@@ -27,8 +28,11 @@ x |> abs() |> sqrt() |> round(2) |> sum()
 
 ## El ejemplo que lo cambia todo
 
-Imagina que quieres el promedio de ventas **por ciudad**, sólo de las ciudades con más
-de 5 pedidos, ordenado de mayor a menor. Sin pipe:
+Imaginemos que trabajamos con un registro **simulado** de ventas de comercios de
+Loja, Cuenca, Quito y Guayaquil. Queremos el promedio de ventas por ciudad, sólo de
+las ciudades con más de 5 pedidos al mes, ordenado de mayor a menor.
+
+Sin pipe, tendríamos que escribir así:
 
 ```{r}
 #| eval: false
@@ -39,12 +43,13 @@ Horroroso. Con `|>` se lee solo:
 
 ```{r}
 #| label: pipe-demo
+#| message: false
 library(dplyr)
 set.seed(42)
 
 datos <- data.frame(
-  ciudad = sample(c("Madrid", "Bogotá", "Lima", "CDMX"), 200, replace = TRUE),
-  ventas = round(rnorm(200, 500, 120)),
+  ciudad = sample(c("Loja", "Cuenca", "Quito", "Guayaquil"), 200, replace = TRUE),
+  ventas = round(rnorm(200, 3000, 700)),  # ventas en USD, cifras simuladas
   pedidos = sample(1:10, 200, replace = TRUE)
 )
 
@@ -55,8 +60,9 @@ datos |>
   arrange(desc(media))
 ```
 
-Lee el código en voz alta: *"toma `datos`, filtra, agrupa, resume y ordena"*. 
-Eso es exactamente lo que hace.
+Lee el código en voz alta: *"toma `datos`, filtra, agrupa, resume y ordena"*.
+Eso es exactamente lo que hace. Y como los datos se generan con `set.seed(42)`,
+obtendrás siempre el mismo resultado, sea cual sea la computadora.
 
 ## `|>` nativo vs `%>%` de magrittr
 
@@ -67,37 +73,47 @@ Eso es exactamente lo que hace.
 | Velocidad | Muy rápido | Rápido |
 | Mensajes de error | Más claros | A veces confusos |
 
-### ¿Y si necesito pasar a otro argumento?
+### ¿Y si necesito pasar el dato a otro argumento?
 
 Con `|>` puedes usar el **placeholder `_`** (R 4.2+):
 
 ```r
-df |> summarise(n = n(), .by = grupo)      # .by va al final
-1:10 |> lm(y ~ x, data = mtcars, _)         # ejemplo conceptual
+mtcars |> lm(mpg ~ wt, data = _)          # pasa mtcars al argumento data=
+df |> summarise(n = n(), .by = grupo)     # .by va al final de la expresión
 ```
 
 En la práctica, la mayoría del código encadena en el primer argumento, así que `|>`
-cubre el 95% de los casos.
+cubre el 95 % de los casos.
 
-## Tip pro: método `_` globalmente
+## Tip pro: encadena también los gráficos
 
 En cuanto dominas el pipe, **nunca más quieres escribir sin él**. Todos los paquetes
 del tidyverse (`dplyr`, `tidyr`, `ggplot2`, `stringr`...) están diseñados para
-funcionar como eslabones de una cadena.
+funcionar como eslabones de una cadena:
 
 ```{r}
 #| label: pipe-ggplot
+#| message: false
 library(ggplot2)
 
 datos |>
   group_by(ciudad) |>
   summarise(media = mean(ventas)) |>
   ggplot(aes(x = reorder(ciudad, media), y = media)) +
-  geom_col(fill = "#146C94") +
+  geom_col(fill = "#146C94", width = 0.65) +
+  geom_text(aes(label = round(media, 0)), hjust = -0.2, size = 3.5) +
   coord_flip() +
-  labs(title = "Ventas medias por ciudad", x = NULL, y = "Media") +
-  theme_minimal(base_size = 13)
+  labs(title = "Ventas medias mensuales por ciudad",
+       subtitle = "Comercios simulados: Loja, Cuenca, Quito y Guayaquil",
+       x = NULL,
+       y = "Venta media (USD)",
+       caption = "Fuente: elaboración propia con datos simulados.") +
+  theme_minimal(base_size = 13) +
+  theme(plot.caption = element_text(color = "grey45", size = 9))
 ```
+
+Observa cómo `group_by()` y `summarise()` alimentan directamente a `ggplot()`:
+todo el pipeline de datos llega a la gráfica en una sola expresión.
 
 > 💡 **Regla sencilla**: si tu operación es un paso más en el procesamiento de datos,
 > llévala por el pipe. Lee tu código como una frase y todo encajará.

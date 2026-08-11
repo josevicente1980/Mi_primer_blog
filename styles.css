@@ -1,1 +1,60 @@
-/* css styles */
+/* CSS styles — ajustes adicionales del blog */
+
+/* ============ Callouts ============ */
+.callout {
+  border-radius: 12px;
+}
+
+.callout-tip,
+.callout-note,
+.callout-warning,
+.callout-important {
+  border-left-width: 4px;
+}
+
+/* ============ Tarjetas del listado ============ */
+.listing-card .card,
+.quarto-grid .card {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* ============ Footer ============ */
+.page-footer {
+  border-top: 1px solid #e5edf1;
+  padding-top: 1.2rem;
+}
+
+/* ============ Código en línea ============ */
+code:not(pre code) {
+  background: #eef4f7;
+  border-radius: 6px;
+  padding: 0.15rem 0.4rem;
+  color: #0e597a;
+}
+
+/* ============ Tablas ============ */
+.table {
+  margin-bottom: 1.5rem;
+}
+
+/* ============ Imágenes ============ */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============ Banner del título ============ */
+.quarto-title-banner {
+  background: linear-gradient(135deg, #0b3a53, #146c94) !important;
+}
+
+.quarto-title-banner h1,
+.quarto-title-banner .quarto-title-meta {
+  color: #ffffff !important;
+}
+
+/* ============ Bloque de código: barra superior sutil ============ */
+.sourceCode {
+  border-radius: 12px;
+}

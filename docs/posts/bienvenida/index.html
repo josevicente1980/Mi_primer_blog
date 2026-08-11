@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Bienvenidos al blog de R y Quarto – José Vicente Ordóñez">
-<meta property="og:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
+<meta property="og:description" content="Blog de R, Quarto y análisis de datos con ejemplos prácticos, reproducibles y en español, escritos desde Loja, Ecuador.">
 <meta property="og:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.png">
 <meta property="og:site_name" content="José Vicente Ordóñez">
 <meta property="og:image:height" content="884">
 <meta property="og:image:width" content="577">
 <meta name="twitter:title" content="Bienvenidos al blog de R y Quarto – José Vicente Ordóñez">
-<meta name="twitter:description" content="Blog con tips super prácticos de R y Quarto para aprender cada día">
+<meta name="twitter:description" content="Blog de R, Quarto y análisis de datos con ejemplos prácticos, reproducibles y en español, escritos desde Loja, Ecuador.">
 <meta name="twitter:image" content="https://josevicente1980.github.io/Mi_primer_blog/profile.png">
 <meta name="twitter:image-height" content="884">
 <meta name="twitter:image-width" content="577">
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Sobre mí</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/josevicente1980"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -215,59 +215,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>¡Hola! 👋 Este es el primer post de este blog, y quiero contarte de qué va todo esto.</p>
+<p>¡Hola! 👋 Este es el primer post del blog y quiero contarte de qué va todo esto y, de paso, dejarte un primer ejemplo trabajando con datos de nuestro país.</p>
 <section id="la-idea" class="level2">
 <h2 class="anchored" data-anchor-id="la-idea">La idea</h2>
-<p>Aprendo <strong>R y Quarto</strong> casi todos los días, y me di cuenta de que los mejores consejos no son los que salen en los tutoriales teóricos, sino <strong>los pequeños trucos prácticos</strong> que usas una y otra vez en el trabajo real.</p>
-<p>Este blog nace para compartir exactamente eso: <strong>tips super prácticos</strong> que puedes aplicar <em>hoy mismo</em>.</p>
+<p>Aprendo <strong>R y Quarto</strong> casi todos los días, y me di cuenta de que los mejores consejos no salen de los tutoriales teóricos, sino de los <strong>pequeños trucos prácticos</strong> que se usan una y otra vez en el trabajo real, con datos reales… o con datos que se les parecen.</p>
+<p>Este blog nace para compartir exactamente eso: <strong>tips muy prácticos</strong> que puedas aplicar <em>hoy mismo</em>.</p>
 </section>
 <section id="lo-que-vas-a-encontrar" class="level2">
 <h2 class="anchored" data-anchor-id="lo-que-vas-a-encontrar">Lo que vas a encontrar</h2>
 <ul>
-<li>⚙️ <strong>R y tidyverse</strong>: pipes <code>|&gt;</code>, <code>dplyr</code>, <code>ggplot2</code>, manipulación de datos.</li>
-<li>📄 <strong>Quarto</strong>: documentos, informes, blogs, presentaciones y cómo publicar.</li>
-<li>🧰 <strong>Flujo de trabajo</strong>: RStudio, atajos, proyectos organizados y reproducibles.</li>
+<li>⚙️ <strong>R y tidyverse</strong>: pipes <code>|&gt;</code>, <code>dplyr</code>, <code>ggplot2</code> y manipulación de datos.</li>
+<li>📄 <strong>Quarto</strong>: documentos, informes, blogs, presentaciones y cómo publicarlos.</li>
+<li>🧰 <strong>Flujo de trabajo</strong>: RStudio, atajos y proyectos ordenados y reproducibles.</li>
 </ul>
 </section>
 <section id="un-ejemplo-rápido" class="level2">
 <h2 class="anchored" data-anchor-id="un-ejemplo-rápido">Un ejemplo rápido</h2>
-<p>¿Sabías que con el <strong>pipe nativo</strong> <code>|&gt;</code> (¡que ya viene con R!) puedes encadenar todo un análisis en una sola línea legible?</p>
+<p>¿Sabías que con el <strong>pipe nativo</strong> <code>|&gt;</code> (que ya viene con R) puedes encadenar todo un análisis en pocas líneas legibles?</p>
+<p>Imaginemos que llevamos un registro de las <strong>ventas mensuales</strong> (en dólares) de una muestra de negocios de Loja, Quito y Cuenca. Los datos son ficticios: se generan aquí mismo, con <code>set.seed()</code>, únicamente con fines didácticos.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"Bogotá"</span>, <span class="st">"Lima"</span>), <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">20</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(ventas)) <span class="sc">|&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ciudad =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Loja"</span>, <span class="st">"Quito"</span>, <span class="st">"Cuenca"</span>), <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ventas =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">2500</span>, <span class="dv">500</span>))  <span class="co"># dólares; cifras simuladas</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ciudad) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(ventas)) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   ciudad total
   &lt;chr&gt;  &lt;dbl&gt;
-1 Madrid  1313
-2 Bogotá   919
-3 Lima     760</code></pre>
+1 Loja   32845
+2 Quito  22987
+3 Cuenca 18964</code></pre>
 </div>
 </div>
-<p>Sin reasignar variables, sin líneas de por medio. En los próximos posts profundizaremos en esto y en mucho más.</p>
+<p>Fíjate en lo que hace el código: toma <code>datos</code>, agrupa por ciudad, suma las ventas y ordena de mayor a menor. Todo en una sola cadena, sin reasignar variables ni escribir líneas de por medio.</p>
+<blockquote class="blockquote">
+<p>💡 <em>Fuente: elaboración propia con datos simulados.</em> El objetivo de los ejemplos de este blog es que aprendas el procedimiento; los números, por coincidencia o parecido con la realidad, no son cifras oficiales.</p>
+</blockquote>
+<p>En los próximos posts profundizaremos en esto y en mucho más.</p>
 <p>¡Nos vemos en el siguiente post! 🚀</p>
 
 
@@ -681,7 +673,7 @@ Attaching package: 'dplyr'</code></pre>
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Hecho con ❤️ en R y Quarto</p>
+<p>Hecho con R y Quarto desde Loja, Ecuador 🇪🇨</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
